@@ -3,7 +3,7 @@
     xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>common-api</artifactId>
-        <groupId>com.github.alice52</groupId>
+        <groupId>io.github.alice52</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -13,60 +13,60 @@
     <dependencies>
         <!--
             <dependency>
-                <groupId>com.github.alice52</groupId>
+                <groupId>io.github.alice52</groupId>
                 <artifactId>common-security</artifactId>
                 <version>${project.version}</version>
             </dependency>
             -->
 
         <dependency>
-            <groupId>com.github.alice52</groupId>
+            <groupId>io.github.alice52</groupId>
             <artifactId>common-core</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.github.alice52</groupId>
+            <groupId>io.github.alice52</groupId>
             <artifactId>database-mybatis-plus</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.github.alice52</groupId>
+            <groupId>io.github.alice52</groupId>
             <artifactId>common-redis</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.github.alice52</groupId>
+            <groupId>io.github.alice52</groupId>
             <artifactId>common-log</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.github.alice52</groupId>
+            <groupId>io.github.alice52</groupId>
             <artifactId>common-oss</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.github.alice52</groupId>
+            <groupId>io.github.alice52</groupId>
             <artifactId>common-uid</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.github.alice52</groupId>
+            <groupId>io.github.alice52</groupId>
             <artifactId>swagger-2</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.github.alice52</groupId>
+            <groupId>io.github.alice52</groupId>
             <artifactId>common-openapi</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.github.alice52</groupId>
+            <groupId>io.github.alice52</groupId>
             <artifactId>common-http</artifactId>
             <version>${project.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>com.github.alice52</groupId>
+            <groupId>io.github.alice52</groupId>
             <artifactId>common-mq-sender</artifactId>
             <version>${project.version}</version>
         </dependency>
