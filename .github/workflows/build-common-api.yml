@@ -3,7 +3,7 @@ name: Build Common-Api
 on:
   push:
     paths:
-      - 'common-api/**'
+      - 'common-*/**'
       - '.github/workflows/build-common-api.yml'
 
 jobs:
@@ -36,5 +36,5 @@ jobs:
       - name: Build Common-Api
         run: |
           PROJECT_NAME=
-          cd $PROJECT_HOME/$PROJECT_PREFIX/$PROJECT_NAME
+          cd $PROJECT_HOME/$PROJECT_NAME
           mvn clean package -DskipTests=true
