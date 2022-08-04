@@ -51,7 +51,7 @@
         <!-- common -->
         <swagger.fox.version>2.9.2</swagger.fox.version>
         <swagger-bootstrap-ui.version>1.9.3</swagger-bootstrap-ui.version>
-        <swagger2.knife4j>2.0.4</swagger2.knife4j>
+        <swagger2.knife4j>2.0.9</swagger2.knife4j>
         <swagger.starter>3.0.0</swagger.starter>
         <slf4j.api.version>1.7.25</slf4j.api.version>
         <logback.core.version>1.2.3</logback.core.version>
