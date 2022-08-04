@@ -54,7 +54,7 @@
         <swagger2.knife4j>2.0.9</swagger2.knife4j>
         <swagger.starter>3.0.0</swagger.starter>
         <slf4j.api.version>1.7.25</slf4j.api.version>
-        <logback.core.version>1.2.3</logback.core.version>
+        <logback.core.version>1.2.11</logback.core.version>
         <logback.classic.version>1.2.11</logback.classic.version>
 
         <!-- tool -->
