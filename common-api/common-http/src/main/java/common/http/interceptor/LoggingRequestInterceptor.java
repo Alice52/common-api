@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalDateTime;
 
-import static io.lettuce.core.protocol.LettuceCharsets.UTF8;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 /**
@@ -46,7 +45,7 @@ public class LoggingRequestInterceptor implements Interceptor {
             if (!ObjectUtil.isNull(requestBody)) {
                 Buffer buffer = new Buffer();
                 requestBody.writeTo(buffer);
-                return buffer.readString(UTF8);
+                return buffer.readString(UTF_8);
             }
         } catch (Throwable e) {
             log.warn("get request body failed: ", e);

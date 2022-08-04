@@ -68,7 +68,7 @@
         <kaptcha.version>0.0.9</kaptcha.version>
 
         <!-- spring -->
-        <spring.boot.version>2.5.12</spring.boot.version>
+        <spring.boot.version>2.2.2.RELEASE</spring.boot.version>
         <actuator.admin.version>2.2.4</actuator.admin.version>
         <spring.cloud.version>Hoxton.SR1</spring.cloud.version>
         <cloud.alibaba.version>2.1.0.RELEASE</cloud.alibaba.version>
@@ -528,6 +528,16 @@
     </profiles>
 
     <distributionManagement>
+        <!-- <snapshotRepository>
+            <id>oss</id>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
+        </snapshotRepository>
+
+        <repository>
+            <id>sonatype-nexus-staging</id>
+            <name>Nexus Staging Repository</name>
+            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository> -->
         <repository>
             <id>sonatype-nexus-staging</id>
             <name>Nexus Staging Repository</name>
