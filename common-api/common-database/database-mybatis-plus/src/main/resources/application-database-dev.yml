@@ -1,0 +1,30 @@
+spring:
+  datasource:
+    username: ENC(3+5Pg+H9L0s1ATmg/xTWLbNt9OeMFguochuRyTl9a4BGbD4lL2SLM8351rdHYhC2)
+    password: ENC(MkGdNTchUL+OnF+nvm5YSSjWc7XeHLNab+KV9Wr3fqF1fAbEVLB2urZotLn8nAk1)
+    url: ENC(an2Bl+bjDWa0hEzzLDW2tZ/FGK5Czk4pHDAeaeFLMbxTMjj32UBSNj6Nc0013ImpyuMRvFGHsMLKQY/iuqXzuraoYQwLsZ6/hx5/h7XMMxMN5On2zxT8EEPiEtBnA1eqIPSy0Oj8RuBzpyRrQF/CMFwF4b/cgkjVO1Q08mT29vGhLOFF36bc6YjeWlgUPuMsQu9jsuwvHTCABcVEPOrqpzm8z2Xqzxw3BUzwhgyAfUCm+lAYgHIAvCwhXmjHG4N8Ki1C4MBexGdOulpLTB6KW1u9MDg+74IF0gAmGa4IvQLncrEUU/ZKlA0AgfEsiK9ctDHJ/HvaJqjJL2X6z4IfA0JBng+XLLGcrJt7/zp5X8vYXMr0EZpeQpoekkrHNdYPGJbRe4mgf4BQMNZg9wYCAtJ4IlhHFlsA4xCRE12BF+kC+SvQmwiLjrf9idJLONuW)
+    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      maximum-pool-size: 20
+
+# mybatis-plus
+mybatis-plus:
+  # typeEnumsPackage: boot.mybatis.common.constants.enums
+  mapper-locations: classpath*:/mapper/*Mapper.xml
+  global-config:
+    banner: false
+    db-config:
+      id-type: AUTO
+      field-strategy: NOT_NULL
+      table-underline: true
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+
+common:
+  global:
+    database:
+      de-sensitive: false

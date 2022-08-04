@@ -1,0 +1,6 @@
+common:
+  openapi:
+    enabled: true
+    earrival:
+      client-id: e-arrival
+      client-secret: 5231549ab56d11eca37d0242ac160003

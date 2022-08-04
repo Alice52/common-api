@@ -1,0 +1,9 @@
+common:
+  http:
+    host: http://mock-api.com/5n9eBAno.mock
+    clientId: xxx
+    clientSecret: xxx
+    decryptClientId: xx
+    decryptClientSecret: xx
+    maxRetryTimes: 10
+    retrySleep: 100

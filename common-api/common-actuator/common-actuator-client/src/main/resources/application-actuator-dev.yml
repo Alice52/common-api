@@ -1,0 +1,27 @@
+spring:
+  security:
+    user:
+      name: zack
+      password: ${JASYPT_ENCRYPTOR_PASSWORD}
+  boot:
+    admin:
+      client:
+        url: ENC(uWIYlmeKoXNaUwSWVsN8F9xYIPfIlUuRu1dCh0m9hH+CViLdwBgEDAjcfUbguOZ4GxBdGkBcuwN1OpdzqIKXYQ==)
+        instance:
+          prefer-ip: true
+          # 自己的 IP
+          service-base-url: 'http://localhost:8080'
+        metadata:
+        user.name: ${spring.security.user.name}
+        user.password: ${spring.security.user.password}
+
+management:
+  endpoint:
+    health:
+      # 端点健康情况，默认值"never"
+      # 设置为"always"可以显示硬盘使用情况和线程情况
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: '*'
