@@ -69,7 +69,7 @@
 
         <!-- spring -->
         <spring.boot.version>2.2.2.RELEASE</spring.boot.version>
-        <actuator.admin.version>2.7.3</actuator.admin.version>
+        <actuator.admin.version>2.7.4</actuator.admin.version>
         <spring.cloud.version>2021.0.3</spring.cloud.version>
         <cloud.alibaba.version>2.2.8.RELEASE</cloud.alibaba.version>
         <security.oauth.version>2.3.5.RELEASE</security.oauth.version>
