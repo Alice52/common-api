@@ -91,7 +91,7 @@
         <rabbitmq.client.version>5.15.0</rabbitmq.client.version>
 
         <!-- others -->
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.2</junit.version>
         <jquery.version>3.3.1</jquery.version>
         <justauth.starter>1.4.0</justauth.starter>
         <grpc_version>1.48.1</grpc_version>
