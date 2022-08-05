@@ -58,7 +58,7 @@
         <logback.classic.version>1.2.11</logback.classic.version>
 
         <!-- tool -->
-        <jodah.expiringmap.version>0.5.8</jodah.expiringmap.version>
+        <jodah.expiringmap.version>0.5.10</jodah.expiringmap.version>
         <lombok.version>1.18.12</lombok.version>
         <hutool.all.version>5.4.7</hutool.all.version>
         <jasypt.encrtpy.version>3.0.4</jasypt.encrtpy.version>
