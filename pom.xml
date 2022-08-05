@@ -93,7 +93,7 @@
         <!-- others -->
         <junit.version>4.12</junit.version>
         <jquery.version>3.3.1</jquery.version>
-        <justauth.starter>1.3.5</justauth.starter>
+        <justauth.starter>1.4.0</justauth.starter>
         <grpc_version>1.37.0</grpc_version>
         <curator.zk.version>4.1.0</curator.zk.version>
     </properties>
