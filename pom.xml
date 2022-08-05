@@ -76,7 +76,7 @@
         <feign.core.version>10.4.0</feign.core.version>
 
         <!-- jackson -->
-        <jackson.modules>2.9.8</jackson.modules>
+        <jackson.modules>2.13.3</jackson.modules>
 
         <!-- database -->
         <mysql.version>5.1.49</mysql.version>
