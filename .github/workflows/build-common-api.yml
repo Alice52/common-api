@@ -5,6 +5,8 @@ on:
     paths:
       - 'common-*/**'
       - '.github/workflows/build-common-api.yml'
+  pull_request:
+    types: [opened]
 
 jobs:
   build:
