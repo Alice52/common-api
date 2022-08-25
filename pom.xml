@@ -57,7 +57,7 @@
         <swagger-bootstrap-ui.version>1.9.3</swagger-bootstrap-ui.version>
         <swagger2.knife4j>3.0.3</swagger2.knife4j>
         <swagger.starter>3.0.0</swagger.starter>
-        <slf4j.api.version>1.7.36</slf4j.api.version>
+        <slf4j.api.version>2.0.0</slf4j.api.version>
         <logback.core.version>1.2.11</logback.core.version>
         <logback.classic.version>1.2.11</logback.classic.version>
 
