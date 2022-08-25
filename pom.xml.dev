@@ -30,6 +30,7 @@
 
     <properties>
         <spring-boot.repackage.skip>true</spring-boot.repackage.skip>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
 
     <dependencies>
