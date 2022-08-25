@@ -1,4 +1,4 @@
-package common.core.util;
+package common.core.util.se;
 
 import lombok.experimental.UtilityClass;
 

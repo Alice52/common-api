@@ -1,4 +1,4 @@
-package common.core.wrapper;
+package common.core.util.wrapper;
 
 import javax.servlet.ReadListener;
 import javax.servlet.ServletInputStream;

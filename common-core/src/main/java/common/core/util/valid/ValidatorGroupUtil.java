@@ -1,4 +1,4 @@
-package common.core.util;
+package common.core.util.valid;
 
 /**
  * Used by Spring validator to mark add operation.
@@ -7,8 +7,4 @@ package common.core.util;
  * @create 2021-06-01<br>
  * @project project-custom <br>
  */
-public interface ValidatorGroupUtil {
-    interface Add {}
-
-    interface Update {}
-}
+public interface ValidatorGroupUtil {}

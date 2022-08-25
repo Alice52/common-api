@@ -1,6 +1,6 @@
 package common.core.test;
 
-import common.core.util.AESUtil;
+import common.core.util.security.AesUtil;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -27,9 +27,9 @@ public class SecurityTests {
         String cKey = "jkl;POIU1234++==";
 
         log.info(original);
-        String enString = AESUtil.encrypt(original, cKey);
+        String enString = AesUtil.encrypt(original, cKey);
         log.info("加密后的字串是：" + enString);
-        String DeString = AESUtil.decryptOrNull(enString, cKey);
+        String DeString = AesUtil.decryptOrNull(enString, cKey);
         log.info("解密后的字串是：" + DeString);
     }
 

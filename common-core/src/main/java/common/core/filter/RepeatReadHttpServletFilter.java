@@ -1,6 +1,6 @@
 package common.core.filter;
 
-import common.core.wrapper.RepeatedlyReadRequestWrapper;
+import common.core.util.wrapper.RepeatedlyReadRequestWrapper;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;

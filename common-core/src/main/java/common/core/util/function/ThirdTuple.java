@@ -1,4 +1,4 @@
-package common.core.util;
+package common.core.util.function;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,7 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author asd <br>
- * @create 2021-12-03 3:53 PM <br>
+ * @create 2021-12-03 3:59 PM <br>
  * @project project-cloud-custom <br>
  */
 @Slf4j
@@ -16,7 +16,8 @@ import lombok.extern.slf4j.Slf4j;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class BiTuple<F, S> {
+public class ThirdTuple<F, S, T> {
     private F f;
     private S s;
+    private T t;
 }

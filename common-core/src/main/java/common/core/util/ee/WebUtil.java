@@ -1,4 +1,4 @@
-package common.core.util;
+package common.core.util.ee;
 
 import cn.hutool.core.codec.Base64;
 import cn.hutool.core.lang.Assert;
@@ -9,6 +9,7 @@ import cn.hutool.http.Method;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import common.core.exception.CheckedException;
+import common.core.util.se.ClassUtil;
 import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
@@ -169,7 +170,7 @@ public class WebUtil extends org.springframework.web.util.WebUtils {
      * @return 是否ajax请求
      */
     public static boolean hasBody(HandlerMethod handlerMethod) {
-        ResponseBody responseBody = ClassUtils.getAnnotation(handlerMethod, ResponseBody.class);
+        ResponseBody responseBody = ClassUtil.getAnnotation(handlerMethod, ResponseBody.class);
         return responseBody != null;
     }
 

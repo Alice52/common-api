@@ -1,7 +1,7 @@
 package common.database.interceptor;
 
 import cn.hutool.json.JSONUtil;
-import common.core.util.AESUtil;
+import common.core.util.security.AesUtil;
 import common.database.sensitive.annotation.SensitiveField;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.executor.Executor;
@@ -91,7 +91,7 @@ public class QuerySensitiveInterceptor implements Interceptor {
         try {
             if (parameter instanceof String) {
                 if (isEncryptStr(statement)) {
-                    parameter = AESUtil.encrypt(parameter);
+                    parameter = AesUtil.encrypt(parameter);
                 }
             } else if (parameter instanceof Map) {
                 log.info("{}", parameter);

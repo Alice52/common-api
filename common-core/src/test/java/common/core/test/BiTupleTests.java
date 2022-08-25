@@ -1,7 +1,7 @@
 package common.core.test;
 
-import common.core.util.BiTuple;
-import common.core.util.ThirdTuple;
+import common.core.util.function.BiTuple;
+import common.core.util.function.ThirdTuple;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 

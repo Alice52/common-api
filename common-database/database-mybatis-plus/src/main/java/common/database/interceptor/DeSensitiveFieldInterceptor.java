@@ -2,7 +2,7 @@ package common.database.interceptor;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.json.JSONUtil;
-import common.core.util.AESUtil;
+import common.core.util.security.AesUtil;
 import common.database.sensitive.annotation.SensitiveField;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
@@ -37,7 +37,7 @@ public class DeSensitiveFieldInterceptor implements Interceptor {
                 Object orgin = field.get(result);
                 if (orgin instanceof String) {
                     try {
-                        Object decrypt = AESUtil.decryptOrNull((String) orgin, field.getType());
+                        Object decrypt = AesUtil.decryptOrNull((String) orgin, field.getType());
                         field.set(result, decrypt);
                     } catch (Exception ex) {
                         log.error("decrypt failed for filed: {}", JSONUtil.toJsonStr(fileds));

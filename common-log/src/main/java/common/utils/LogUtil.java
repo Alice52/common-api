@@ -5,7 +5,7 @@ import cn.hutool.http.Method;
 import cn.hutool.json.JSON;
 import cn.hutool.json.JSONUtil;
 import common.core.util.UserUtil;
-import common.core.util.WebUtil;
+import common.core.util.ee.WebUtil;
 import common.model.vo.LogVO;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;

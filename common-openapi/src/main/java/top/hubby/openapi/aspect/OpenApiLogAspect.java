@@ -2,7 +2,7 @@ package top.hubby.openapi.aspect;
 
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.json.JSONUtil;
-import common.core.util.WebUtil;
+import common.core.util.ee.WebUtil;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;

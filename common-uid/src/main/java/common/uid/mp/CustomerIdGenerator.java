@@ -1,18 +1,27 @@
 package common.uid.mp;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.core.incrementer.IdentifierGenerator;
 import common.uid.generator.UidGenerator;
 
-import javax.annotation.Resource;
-
 /**
+ * https://blog.csdn.net/qq_43437874/article/details/115858034
+ *
+ * @see IdType#ASSIGN_ID
  * @author asd <br>
  * @create 2021-12-23 2:51 PM <br>
  * @project project-cloud-custom <br>
  */
 public class CustomerIdGenerator implements IdentifierGenerator {
 
-    @Resource private UidGenerator uidGenerator;
+    /**
+     * @Resource private UidGenerator uidGenerator;
+     */
+    private final UidGenerator uidGenerator;
+
+    public CustomerIdGenerator(UidGenerator uidGenerator) {
+        this.uidGenerator = uidGenerator;
+    }
 
     @Override
     public Number nextId(Object entity) {

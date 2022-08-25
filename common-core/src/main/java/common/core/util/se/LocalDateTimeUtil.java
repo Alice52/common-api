@@ -1,4 +1,4 @@
-package common.core.util;
+package common.core.util.se;
 
 import lombok.experimental.UtilityClass;
 
@@ -14,6 +14,7 @@ import java.util.Date;
  */
 @UtilityClass
 public class LocalDateTimeUtil {
+
     public Date localDateTime2Date(LocalDateTime dateTime) {
         ZoneId zoneId = ZoneId.systemDefault();
         ZonedDateTime zdt = dateTime.atZone(zoneId);

@@ -1,4 +1,4 @@
-package common.core.util;
+package common.core.util.valid;
 
 import cn.hutool.core.util.StrUtil;
 

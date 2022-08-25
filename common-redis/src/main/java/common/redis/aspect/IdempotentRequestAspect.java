@@ -3,7 +3,7 @@ package common.redis.aspect;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.http.Method;
 import common.core.util.UserUtil;
-import common.core.util.WebUtil;
+import common.core.util.ee.WebUtil;
 import common.redis.annotation.RedisIdempotentRequest;
 import common.redis.constants.enums.RedisKeyCommonEnum;
 import common.redis.utils.RedisUtil;

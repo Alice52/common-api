@@ -1,4 +1,4 @@
-package common.core.util;
+package common.core.util.system;
 
 import cn.hutool.core.util.StrUtil;
 import org.springframework.context.annotation.ConditionContext;
@@ -11,7 +11,7 @@ import java.util.Optional;
  * @create 2021-06-25<br>
  * @project project-custom <br>
  */
-public final class EnvPropertiesUtil {
+public class EnvPropertiesUtil {
 
     /**
      * Get property value from system, Such as -Dp=1
@@ -25,8 +25,8 @@ public final class EnvPropertiesUtil {
     }
 
     /**
-     * Get property value, including yml config.
-     *
+
+      * Get property value, including yml config.  *
      * @param key
      * @param context
      * @return

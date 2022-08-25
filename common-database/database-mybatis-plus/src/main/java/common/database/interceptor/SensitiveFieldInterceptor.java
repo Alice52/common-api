@@ -1,6 +1,6 @@
 package common.database.interceptor;
 
-import common.core.util.AESUtil;
+import common.core.util.security.AesUtil;
 import common.database.sensitive.annotation.SensitiveField;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
@@ -51,7 +51,7 @@ public class SensitiveFieldInterceptor implements Interceptor {
                 if (field.isAnnotationPresent(SensitiveField.class)) {
                     field.setAccessible(true);
                     Object object = field.get(parameterObject);
-                    field.set(parameterObject, AESUtil.encrypt(object));
+                    field.set(parameterObject, AesUtil.encrypt(object));
                 }
             }
         }

@@ -1,6 +1,6 @@
 package common.interceptor;
 
-import common.core.util.WebUtil;
+import common.core.util.ee.WebUtil;
 import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;

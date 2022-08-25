@@ -1,6 +1,7 @@
-package common.core.util;
+package common.core.util.collection;
 
 import cn.hutool.core.lang.Assert;
+import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
@@ -14,7 +15,8 @@ import static java.util.stream.Collectors.toList;
  * @project javase <br>
  */
 @Slf4j
-public final class StreamUtil {
+@UtilityClass
+public class StreamUtil {
 
     public static <T> List<List<T>> split(List<T> list, int splitSize) {
         Assert.notNull(list, "list cannot be null");

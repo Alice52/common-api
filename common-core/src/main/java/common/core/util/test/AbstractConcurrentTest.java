@@ -1,4 +1,4 @@
-package common.core.cocurrent.test;
+package common.core.util.test;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
  * 4.重写blockingMainThread方法，定义主线程阻塞策略<br>
  */
 @Slf4j
-public abstract class AbstractConcurrentControl {
+public abstract class AbstractConcurrentTest {
 
     /** 默认并发线程数为2000个，子类可重写 */
     private static final int DEFAULT_CONCURRENT_CONTROL = 2000;
@@ -25,11 +25,11 @@ public abstract class AbstractConcurrentControl {
 
     private ExecutorService executorService;
 
-    public AbstractConcurrentControl() {
+    public AbstractConcurrentTest() {
         this(DEFAULT_CONCURRENT_CONTROL);
     }
 
-    public AbstractConcurrentControl(int concurrentThreadNum) {
+    public AbstractConcurrentTest(int concurrentThreadNum) {
         this.concurrentThreadNum = concurrentThreadNum;
         blockLatch = new CountDownLatch(concurrentThreadNum);
         executorService = Executors.newCachedThreadPool();

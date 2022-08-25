@@ -1,7 +1,7 @@
 package common.database.interceptor;
 
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
-import common.core.util.AESUtil;
+import common.core.util.security.AesUtil;
 import common.database.sensitive.annotation.SensitiveField;
 import lombok.experimental.UtilityClass;
 
@@ -32,7 +32,7 @@ public class CryptPojoUtils {
                             field.setAccessible(true);
                             String fieldValue = (String) field.get(t);
                             if (StringUtils.isNotEmpty(fieldValue)) {
-                                field.set(t, AESUtil.encrypt(fieldValue));
+                                field.set(t, AesUtil.encrypt(fieldValue));
                             }
                             field.setAccessible(false);
                         }
@@ -54,7 +54,7 @@ public class CryptPojoUtils {
      */
     public static <T> T EncryptStr(T t) {
         if (t instanceof String) {
-            t = (T) AESUtil.encrypt((String) t);
+            t = (T) AesUtil.encrypt((String) t);
         }
         return t;
     }
@@ -75,7 +75,7 @@ public class CryptPojoUtils {
                             field.setAccessible(true);
                             String fieldValue = (String) field.get(t);
                             if (StringUtils.isNotEmpty(fieldValue)) {
-                                field.set(t, AESUtil.decryptOrNull(fieldValue));
+                                field.set(t, AesUtil.decryptOrNull(fieldValue));
                             }
                         }
                     }

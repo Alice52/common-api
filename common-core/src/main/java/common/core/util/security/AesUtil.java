@@ -1,4 +1,4 @@
-package common.core.util;
+package common.core.util.security;
 
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.lang.Assert;
@@ -23,7 +23,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
  */
 @Slf4j
 @UtilityClass
-public class AESUtil {
+public class AesUtil {
 
     private static final String AES = "AES";
     private static final String DEFAULT_ALG = "AES/ECB/PKCS5PADDING";

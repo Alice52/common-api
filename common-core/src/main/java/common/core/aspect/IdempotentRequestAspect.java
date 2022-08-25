@@ -3,7 +3,7 @@ package common.core.aspect;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.http.Method;
 import common.core.annotation.LocalIdempotentRequest;
-import common.core.util.WebUtil;
+import common.core.util.ee.WebUtil;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.jodah.expiringmap.ExpirationPolicy;
