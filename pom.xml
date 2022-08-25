@@ -53,7 +53,7 @@
         <maven.compiler.plugin>3.8.1</maven.compiler.plugin>
 
         <!-- common -->
-        <swagger.fox.version>2.9.2</swagger.fox.version>
+        <swagger.fox.version>2.10.5</swagger.fox.version>
         <swagger-bootstrap-ui.version>1.9.3</swagger-bootstrap-ui.version>
         <swagger2.knife4j>3.0.3</swagger2.knife4j>
         <swagger.starter>3.0.0</swagger.starter>
