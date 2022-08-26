@@ -7,7 +7,7 @@ on:
     types: [opened, synchronize, reopened]
 jobs:
   build-and-analyze:
-    name: Sonar Analysis on JDK 8
+    name: Sonar Analysis on JDK 11
     runs-on: ubuntu-latest
     steps:
 

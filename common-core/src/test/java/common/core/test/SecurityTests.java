@@ -66,7 +66,9 @@ public class SecurityTests {
     // DES 有秘钥的BASE64, 8位以上, 加解密
     // * =====================================
     @Test
-    public void testDES() {}
+    public void testDES() {
+        assert true;
+    }
 
     // * =====================================
     // RSA 非对称加密/解密, 用于加密、解密的密钥是不同的

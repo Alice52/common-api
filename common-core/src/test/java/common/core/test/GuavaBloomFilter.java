@@ -3,6 +3,7 @@ package common.core.test;
 import com.google.common.base.Charsets;
 import com.google.common.hash.BloomFilter;
 import com.google.common.hash.Funnels;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
 import java.time.LocalDateTime;
@@ -17,6 +18,7 @@ import java.util.function.Function;
  * @create 2021-06-11 14:50 <br>
  * @project custom-test <br>
  */
+@Slf4j
 public class GuavaBloomFilter {
     private static final int expectedInsertions = 1000000;
 
@@ -31,7 +33,7 @@ public class GuavaBloomFilter {
 
         times.sort(Comparator.comparing(Function.identity()));
 
-        System.out.println(times.get(0));
+        assert LocalDateTime.MIN.equals(times.get(0));
     }
 
     @Test
@@ -54,7 +56,7 @@ public class GuavaBloomFilter {
                 mightContainNum1++;
             }
         }
-        System.out.println("【key真实存在的情况】布隆过滤器认为存在的key值数：" + mightContainNum1);
-        System.out.println("-----------------------分割线---------------------------------");
+        log.info("【key真实存在的情况】布隆过滤器认为存在的key值数：" + mightContainNum1);
+        assert 480 <= mightContainNum1 && mightContainNum1 <= 500;
     }
 }
