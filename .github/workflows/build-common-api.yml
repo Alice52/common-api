@@ -3,10 +3,12 @@ name: Build Common-Api
 on:
   push:
     paths:
-      - 'common-*/**'
-      - '.github/workflows/build-common-api.yml'
-  pull_request:
-    # types: [opened]
+      - "common-*/**"
+      - ".github/workflows/build-common-api.yml"
+
+concurrency:
+  group: ${{ github.event_name }}-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -14,7 +16,7 @@ jobs:
     if: "!contains(github.event.head_commit.message, 'ci skip')"
     strategy:
       matrix:
-        java: [ '8', '11']
+        java: ["8", "11"]
     env: # define constant
       PROJECT_PREFIX: common-api/
     steps:
@@ -30,8 +32,8 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: ${{ matrix.java }}
-          distribution: 'zulu'
-          cache: 'maven'
+          distribution: "zulu"
+          cache: "maven"
 
       - name: Cache Maven packages
         uses: actions/cache@v3
