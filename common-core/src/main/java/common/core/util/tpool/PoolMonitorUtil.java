@@ -17,11 +17,6 @@ import java.util.concurrent.TimeUnit;
 @UtilityClass
 public class PoolMonitorUtil {
 
-    public ScheduledFuture<?> printStatsFixedRate(ThreadPoolExecutor tp, long period) {
-        return Executors.newSingleThreadScheduledExecutor()
-                .scheduleAtFixedRate(() -> printStats(tp), 0, period, TimeUnit.SECONDS);
-    }
-
     public void printStats(ThreadPoolExecutor tp) {
         log.info("=========================");
         log.info("Pool Size: {}", tp.getPoolSize());
@@ -29,5 +24,10 @@ public class PoolMonitorUtil {
         log.info("Number of Tasks Completed: {}", tp.getCompletedTaskCount());
         log.info("Number of Tasks in Queue: {}", tp.getQueue().size());
         log.info("=========================");
+    }
+
+    public ScheduledFuture<?> printStatsFixedRate(ThreadPoolExecutor tp, long period) {
+        return Executors.newSingleThreadScheduledExecutor()
+                .scheduleAtFixedRate(() -> printStats(tp), 0, period, TimeUnit.SECONDS);
     }
 }
