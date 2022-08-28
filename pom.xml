@@ -59,7 +59,7 @@
         <swagger.starter>3.0.0</swagger.starter>
         <slf4j.api.version>1.7.36</slf4j.api.version>
         <logback.core.version>1.2.11</logback.core.version>
-        <logback.classic.version>1.2.11</logback.classic.version>
+        <logback.classic.version>1.4.0</logback.classic.version>
 
         <!-- tool -->
         <jodah.expiringmap.version>0.5.10</jodah.expiringmap.version>
