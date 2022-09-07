@@ -1,22 +1,25 @@
 package common.core.filter;
 
-import cn.hutool.core.util.ObjectUtil;
-import lombok.val;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.Ordered;
-import org.springframework.core.annotation.Order;
-import org.springframework.stereotype.Component;
-import org.springframework.web.filter.OncePerRequestFilter;
-
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
+
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import cn.hutool.core.util.NumberUtil;
+import cn.hutool.core.util.ObjectUtil;
+import lombok.val;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
+import org.springframework.stereotype.Component;
+import org.springframework.web.filter.OncePerRequestFilter;
 
 /**
  * 1. 只能处理非异步的线程<br>
@@ -30,7 +33,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class TimeoutFilter extends OncePerRequestFilter {
 
-    @Value("${spring.mvc.async.request-timeout}")
+    @Value("${spring.mvc.async.request-timeout:-1}")
     private Long timeout;
 
     private ScheduledExecutorService timeoutsPool = Executors.newScheduledThreadPool(10);
@@ -40,7 +43,7 @@ public class TimeoutFilter extends OncePerRequestFilter {
             HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
 
-        if (ObjectUtil.isNull(timeout)) {
+        if (ObjectUtil.isNull(timeout) || new Long(-1).equals(timeout)) {
             filterChain.doFilter(request, response);
             return;
         }

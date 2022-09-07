@@ -1,4 +1,4 @@
-package top.hubby.mq.congig;
+package top.hubby.mq.config;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;

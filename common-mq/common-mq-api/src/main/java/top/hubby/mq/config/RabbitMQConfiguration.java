@@ -1,4 +1,4 @@
-package top.hubby.mq.congig;
+package top.hubby.mq.config;
 
 import lombok.Getter;
 import org.slf4j.Logger;

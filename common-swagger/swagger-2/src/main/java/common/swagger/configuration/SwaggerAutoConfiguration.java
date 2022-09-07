@@ -38,7 +38,7 @@ import java.util.stream.Collectors;
 @Configuration
 @EnableSwagger2
 @EnableAutoConfiguration
-@Profile({"dev", "cloud"})
+//@Profile({"dev", "cloud"})
 @ConditionalOnProperty(name = "swagger.enabled", matchIfMissing = true)
 @EnableConfigurationProperties(SwaggerProperties.class)
 public class SwaggerAutoConfiguration implements WebMvcConfigurer {
