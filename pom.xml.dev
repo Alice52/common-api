@@ -3,21 +3,24 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>project-cloud-custom</artifactId>
+        <artifactId>P_ARTIFACTID</artifactId>
         <groupId>io.github.alice52</groupId>
-        <version>0.0.1</version>
+        <version>P_VERSION</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>common-api</artifactId>
     <packaging>pom</packaging>
+    <version>0.0.1</version>
 
     <modules>
         <module>common-swagger</module>
         <module>common-core</module>
         <module>common-database</module>
         <module>common-redis</module>
+        <!--
         <module>common-security</module>
+        -->
         <module>common-log</module>
         <module>common-actuator</module>
         <module>common-oss</module>
