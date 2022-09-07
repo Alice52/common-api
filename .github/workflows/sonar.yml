@@ -1,5 +1,9 @@
 name: Sonar CI
 on:
+  push:
+    paths:
+     - "common*/**"
+     - ".github/workflows/build-common-api.yml"
   pull_request:
     types: [opened, synchronize, reopened]
 

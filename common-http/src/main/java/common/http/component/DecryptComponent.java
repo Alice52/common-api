@@ -20,7 +20,7 @@ import java.util.Base64;
 @Component
 public class DecryptComponent {
     // 默认解密算法
-    private static final String CIPHER_ALGORITHM = "AES";
+    private static final String CIPHER_ALGORITHM = "AES/GCM/NoPadding";
     // 私有解密成员变量
     private static SecretKeySpec secretKey;
     private static byte[] key;
