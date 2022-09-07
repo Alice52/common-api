@@ -58,7 +58,7 @@
         <!-- tool -->
         <jodah.expiringmap.version>0.5.10</jodah.expiringmap.version>
         <lombok.version>1.18.24</lombok.version>
-        <hutool.all.version>5.8.5</hutool.all.version>
+        <hutool.all.version>5.8.6</hutool.all.version>
         <jasypt.encrtpy.version>3.0.4</jasypt.encrtpy.version>
         <mapstruct.version>1.5.2.Final</mapstruct.version>
         <guava.version>31.1-jre</guava.version>
@@ -74,7 +74,7 @@
         <feign.core.version>11.9.1</feign.core.version>
 
         <!-- jackson -->
-        <jackson.modules>2.13.3</jackson.modules>
+        <jackson.modules>2.13.4</jackson.modules>
 
         <!-- database -->
         <mysql.version>5.1.49</mysql.version>
