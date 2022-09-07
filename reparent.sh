@@ -1,6 +1,6 @@
 #!/bin/bash
 
-rm pom.xml
+mv pom.xml pom.xml.pro
 mv pom.xml.dev pom.xml
 
 ls -r
