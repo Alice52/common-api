@@ -1,8 +1,9 @@
 package common.core.exception;
 
-import javax.validation.ConstraintViolation;
 import java.util.Map;
 import java.util.Set;
+
+import javax.validation.ConstraintViolation;
 
 /**
  * @author zack <br>

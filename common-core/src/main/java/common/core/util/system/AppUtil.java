@@ -34,10 +34,6 @@ public final class AppUtil {
 
     private AppUtil() {}
 
-    static {
-        resolveAppName();
-    }
-
     public static void resolveAppName() {
         String app = System.getProperty(APP_NAME);
         // use -Dproject.name first
@@ -74,5 +70,9 @@ public final class AppUtil {
 
     private static boolean isEmpty(String str) {
         return str == null || "".equals(str);
+    }
+
+    static {
+        resolveAppName();
     }
 }

@@ -2,6 +2,7 @@ package common.redis.utils;
 
 import cn.hutool.core.util.StrUtil;
 import common.redis.key.KeyPrefix;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 

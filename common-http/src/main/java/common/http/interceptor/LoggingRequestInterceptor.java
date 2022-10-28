@@ -1,15 +1,20 @@
 package common.http.interceptor;
 
-import cn.hutool.core.util.ObjectUtil;
-import lombok.extern.slf4j.Slf4j;
-import okhttp3.*;
-import okio.Buffer;
-import okio.BufferedSource;
-import org.springframework.stereotype.Component;
-
 import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalDateTime;
+
+import cn.hutool.core.util.ObjectUtil;
+import lombok.extern.slf4j.Slf4j;
+import okhttp3.Interceptor;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
+import okio.Buffer;
+import okio.BufferedSource;
+
+import org.springframework.stereotype.Component;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 

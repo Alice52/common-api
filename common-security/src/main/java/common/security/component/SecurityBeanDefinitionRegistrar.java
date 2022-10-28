@@ -2,6 +2,7 @@ package common.security.component;
 
 import common.core.constant.SecurityConstants;
 import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.GenericBeanDefinition;
 import org.springframework.context.annotation.Import;

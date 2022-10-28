@@ -1,13 +1,14 @@
 package common.core.exception;
 
+import javax.validation.constraints.NotNull;
+
 import common.core.constant.enums.CommonResponseEnum;
 import common.core.exception.assertion.IBaseErrorResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.lang.Nullable;
 
-import javax.validation.constraints.NotNull;
+import org.springframework.lang.Nullable;
 
 /**
  * @author zack <br>

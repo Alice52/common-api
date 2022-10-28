@@ -1,5 +1,13 @@
 package top.hubby.openapi.util;
 
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
+import javax.naming.OperationNotSupportedException;
+import javax.servlet.http.HttpServletRequest;
+
 import cn.hutool.json.JSONUtil;
 import common.core.exception.BaseException;
 import common.core.util.ee.WebUtil;
@@ -7,14 +15,10 @@ import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 
-import javax.naming.OperationNotSupportedException;
-import javax.servlet.http.HttpServletRequest;
-import java.time.Instant;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
-
-import static common.core.constant.RequestConstants.*;
+import static common.core.constant.RequestConstants.APPID;
+import static common.core.constant.RequestConstants.NONCESTR;
+import static common.core.constant.RequestConstants.SIGNATURE;
+import static common.core.constant.RequestConstants.TIMESTAMP;
 import static common.core.constant.enums.CommonResponseEnum.OPENAPI_SIGNATURE_ERROR;
 import static top.hubby.openapi.component.OpenApiSecretComponent.APP_MAP;
 

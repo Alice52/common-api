@@ -15,6 +15,9 @@
  */
 package common.uid.generator;
 
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.StrUtil;
 import common.core.constant.enums.CommonResponseEnum;
@@ -22,10 +25,8 @@ import common.core.exception.BaseException;
 import common.uid.BitsAllocator;
 import common.uid.worker.service.IWorkerIdAssigner;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.InitializingBean;
 
-import java.util.Date;
-import java.util.concurrent.TimeUnit;
+import org.springframework.beans.factory.InitializingBean;
 
 /**
  * Represents an implementation of {@link UidGenerator}

@@ -3,6 +3,7 @@ package common.security.connfiguration;
 import common.core.constant.SecurityConstants;
 import common.security.exception.handler.AccessDeniedHandler;
 import lombok.SneakyThrows;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.ApplicationContext;

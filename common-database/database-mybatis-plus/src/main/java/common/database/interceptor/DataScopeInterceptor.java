@@ -1,37 +1,37 @@
-//package common.database.interceptor;
+// package common.database.interceptor;
 //
-//import cn.hutool.core.collection.CollectionUtil;
-//import cn.hutool.core.util.StrUtil;
-//import com.baomidou.mybatisplus.core.toolkit.PluginUtils;
-//import common.database.model.DataScope;
-//import lombok.SneakyThrows;
-//import lombok.extern.slf4j.Slf4j;
-//import org.apache.ibatis.executor.statement.StatementHandler;
-//import org.apache.ibatis.mapping.BoundSql;
-//import org.apache.ibatis.mapping.MappedStatement;
-//import org.apache.ibatis.mapping.SqlCommandType;
-//import org.apache.ibatis.plugin.*;
-//import org.apache.ibatis.reflection.MetaObject;
-//import org.apache.ibatis.reflection.SystemMetaObject;
+// import cn.hutool.core.collection.CollectionUtil;
+// import cn.hutool.core.util.StrUtil;
+// import com.baomidou.mybatisplus.core.toolkit.PluginUtils;
+// import common.database.model.DataScope;
+// import lombok.SneakyThrows;
+// import lombok.extern.slf4j.Slf4j;
+// import org.apache.ibatis.executor.statement.StatementHandler;
+// import org.apache.ibatis.mapping.BoundSql;
+// import org.apache.ibatis.mapping.MappedStatement;
+// import org.apache.ibatis.mapping.SqlCommandType;
+// import org.apache.ibatis.plugin.*;
+// import org.apache.ibatis.reflection.MetaObject;
+// import org.apache.ibatis.reflection.SystemMetaObject;
 //
-//import java.sql.Connection;
-//import java.util.List;
-//import java.util.Map;
-//import java.util.Properties;
+// import java.sql.Connection;
+// import java.util.List;
+// import java.util.Map;
+// import java.util.Properties;
 //
-///**
+/// **
 // * mybatis 数据权限拦截器
 // *
 // * @author zack
 // */
-//@Slf4j
-//@Intercepts({
+// @Slf4j
+// @Intercepts({
 //    @Signature(
 //            type = StatementHandler.class,
 //            method = "prepare",
 //            args = {Connection.class, Integer.class})
-//})
-//public class DataScopeInterceptor extends AbstractSqlParserHandler implements Interceptor {
+// })
+// public class DataScopeInterceptor extends AbstractSqlParserHandler implements Interceptor {
 //
 //    @Override
 //    @SneakyThrows
@@ -114,4 +114,4 @@
 //        }
 //        return null;
 //    }
-//}
+// }

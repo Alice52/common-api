@@ -1,6 +1,7 @@
 package common.security.listener;
 
 import cn.hutool.core.collection.CollUtil;
+
 import org.springframework.context.ApplicationListener;
 import org.springframework.security.authentication.event.AuthenticationSuccessEvent;
 import org.springframework.security.core.Authentication;

@@ -2,9 +2,9 @@ name: Build Common-Api
 
 on:
   push:
-    # paths:
-    #  - "common*/**"
-    #  - ".github/workflows/build-common-api.yml"
+  # paths:
+  #  - "common*/**"
+  #  - ".github/workflows/build-common-api.yml"
 
 concurrency:
   group: ${{ github.event_name }}-${{ github.workflow }}-${{ github.ref }}

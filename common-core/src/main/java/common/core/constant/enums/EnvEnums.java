@@ -1,11 +1,12 @@
 package common.core.constant.enums;
 
+import java.util.Arrays;
+
+import javax.validation.constraints.NotNull;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-
-import javax.validation.constraints.NotNull;
-import java.util.Arrays;
 
 /**
  * @author asd <br>

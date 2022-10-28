@@ -1,10 +1,15 @@
 package common.core.util.wrapper;
 
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 import javax.servlet.ReadListener;
 import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
-import java.io.*;
 
 /**
  * @author zack <br>
@@ -15,9 +20,7 @@ public class RepeatedlyReadRequestWrapper extends HttpServletRequestWrapper {
 
     private final String body;
 
-    /**
-     * @param request
-     */
+    /** @param request */
     public RepeatedlyReadRequestWrapper(HttpServletRequest request) throws IOException {
         super(request);
         StringBuilder sb = new StringBuilder();

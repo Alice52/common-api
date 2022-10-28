@@ -1,14 +1,14 @@
 package common.core.test;
 
-import common.core.util.security.AesUtil;
-import lombok.SneakyThrows;
-import lombok.extern.slf4j.Slf4j;
-import org.junit.Test;
-
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.util.Base64;
+
+import common.core.util.security.AesUtil;
+import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
+import org.junit.Test;
 
 /**
  * @author asd <br>

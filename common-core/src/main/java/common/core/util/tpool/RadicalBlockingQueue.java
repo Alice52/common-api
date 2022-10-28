@@ -1,9 +1,9 @@
 package common.core.util.tpool;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author asd <br>

@@ -2,6 +2,7 @@ package common.security.exception;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import common.security.serialize.Auth2ExceptionSerializer;
+
 import org.springframework.http.HttpStatus;
 
 /**

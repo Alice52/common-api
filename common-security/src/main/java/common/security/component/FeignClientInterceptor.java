@@ -1,14 +1,15 @@
 package common.security.component;
 
+import java.util.Collection;
+
 import cn.hutool.core.collection.CollUtil;
 import common.core.constant.SecurityConstants;
 import feign.RequestTemplate;
+
 import org.springframework.cloud.security.oauth2.client.AccessTokenContextRelay;
 import org.springframework.cloud.security.oauth2.client.feign.OAuth2FeignRequestInterceptor;
 import org.springframework.security.oauth2.client.OAuth2ClientContext;
 import org.springframework.security.oauth2.client.resource.OAuth2ProtectedResourceDetails;
-
-import java.util.Collection;
 
 /**
  * @author asd <br>

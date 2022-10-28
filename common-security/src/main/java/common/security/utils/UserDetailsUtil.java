@@ -1,19 +1,20 @@
 package common.security.utils;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+
 import cn.hutool.core.util.ArrayUtil;
 import common.core.constant.SecurityConstants;
 import common.security.model.CustomUser;
 import custom.basic.api.dto.MemberSocialDTO;
 import custom.basic.api.dto.UserDTO;
 import custom.basic.api.entity.SysUser;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * @author asd <br>

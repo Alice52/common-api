@@ -21,6 +21,11 @@ public class ArgumentJsonFormatLayout extends MessageConverter {
 
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
+    @SneakyThrows
+    private static String writeAsString(Object obj) {
+        return MAPPER.writeValueAsString(obj);
+    }
+
     @Override
     public String convert(ILoggingEvent event) {
         String formattedMessage = event.getFormattedMessage();
@@ -39,10 +44,5 @@ public class ArgumentJsonFormatLayout extends MessageConverter {
         } catch (Exception e) {
             return formattedMessage;
         }
-    }
-
-    @SneakyThrows
-    private static String writeAsString(Object obj) {
-        return MAPPER.writeValueAsString(obj);
     }
 }

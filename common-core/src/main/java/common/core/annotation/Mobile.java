@@ -5,14 +5,14 @@ package common.core.annotation;
  * @create 2020-08-01 14:43 <br>
  * @project common-core <br>
  */
-
-import common.core.annotation.discriptor.MobileDescriptor;
-
-import javax.validation.Constraint;
-import javax.validation.Payload;
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
+
+import javax.validation.Constraint;
+import javax.validation.Payload;
+
+import common.core.annotation.discriptor.MobileDescriptor;
 
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;

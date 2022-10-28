@@ -3,11 +3,10 @@ package common.security.annotation;
 import common.security.component.SecurityBeanDefinitionRegistrar;
 import common.security.connfiguration.CustomFeignClientConfiguration;
 import common.security.connfiguration.ResourceServerAutoConfiguration;
+
 import org.springframework.context.annotation.Import;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
-
-import java.lang.annotation.*;
 
 /**
  * Mark resource server.

@@ -1,9 +1,9 @@
 package common.core.annotation.discriptor;
 
+import java.util.function.Function;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-
-import java.util.function.Function;
 
 /**
  * @author zack <br>

@@ -1,25 +1,5 @@
 package common.oss.service.impl;
 
-import cn.hutool.core.date.DatePattern;
-import cn.hutool.core.util.StrUtil;
-import com.aliyun.oss.OSS;
-import com.aliyun.oss.OSSClientBuilder;
-import com.aliyun.oss.common.utils.BinaryUtil;
-import com.aliyun.oss.model.*;
-import common.core.constant.enums.CommonResponseEnum;
-import common.core.exception.BaseException;
-import common.oss.annotation.OssType;
-import common.oss.constnats.enums.OssUploadTypeEnum;
-import common.oss.properties.AliyunOssProperties;
-import common.oss.service.OSSHander;
-import lombok.extern.slf4j.Slf4j;
-import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.stereotype.Component;
-
-import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
@@ -28,6 +8,32 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+
+import javax.annotation.PostConstruct;
+
+import cn.hutool.core.date.DatePattern;
+import cn.hutool.core.util.StrUtil;
+import com.aliyun.oss.OSS;
+import com.aliyun.oss.OSSClientBuilder;
+import com.aliyun.oss.common.utils.BinaryUtil;
+import com.aliyun.oss.model.MatchMode;
+import com.aliyun.oss.model.ObjectMetadata;
+import com.aliyun.oss.model.PolicyConditions;
+import com.aliyun.oss.model.PutObjectRequest;
+import com.aliyun.oss.model.PutObjectResult;
+import common.core.constant.enums.CommonResponseEnum;
+import common.core.exception.BaseException;
+import common.oss.annotation.OssType;
+import common.oss.constnats.enums.OssUploadTypeEnum;
+import common.oss.properties.AliyunOssProperties;
+import common.oss.service.OSSHander;
+import lombok.extern.slf4j.Slf4j;
+import org.json.JSONObject;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.stereotype.Component;
 
 /**
  * @author zack <br>

@@ -1,5 +1,8 @@
 package common.core.jackson;
 
+import java.io.IOException;
+import java.util.Objects;
+
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.BeanProperty;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -8,9 +11,6 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.ContextualSerializer;
 import common.core.annotation.DeSensitive;
 import common.core.annotation.discriptor.SensitiveStrategy;
-
-import java.io.IOException;
-import java.util.Objects;
 
 /**
  * @author zack <br>

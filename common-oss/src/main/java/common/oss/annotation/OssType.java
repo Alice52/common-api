@@ -1,8 +1,12 @@
 package common.oss.annotation;
 
-import common.oss.constnats.enums.OssUploadTypeEnum;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Inherited;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
-import java.lang.annotation.*;
+import common.oss.constnats.enums.OssUploadTypeEnum;
 
 /**
  * @author zack <br>

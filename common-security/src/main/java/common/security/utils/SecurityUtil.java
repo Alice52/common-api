@@ -1,18 +1,19 @@
 package common.security.utils;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 import cn.hutool.core.util.StrUtil;
 import common.core.constant.SecurityConstants;
 import common.security.model.CustomUser;
 import custom.basic.api.constant.enums.SocialType;
 import lombok.experimental.UtilityClass;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 /**
  * @author asd <br>

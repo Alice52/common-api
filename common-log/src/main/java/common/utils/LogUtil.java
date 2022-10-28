@@ -1,5 +1,10 @@
 package common.utils;
 
+import java.util.Map;
+import java.util.Set;
+
+import javax.servlet.http.HttpServletRequest;
+
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.http.Method;
 import cn.hutool.json.JSON;
@@ -10,14 +15,11 @@ import common.model.vo.LogVO;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.slf4j.MDC;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * @author zack <br>

@@ -1,9 +1,9 @@
 package common.http.model;
 
+import java.io.Serializable;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
-
-import java.io.Serializable;
 
 /**
  * @author asd <br>

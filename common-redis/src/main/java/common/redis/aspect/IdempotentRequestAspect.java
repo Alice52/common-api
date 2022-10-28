@@ -1,5 +1,8 @@
 package common.redis.aspect;
 
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.http.Method;
 import common.core.util.UserUtil;
@@ -15,10 +18,8 @@ import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
-import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
+import org.springframework.stereotype.Component;
 
 /**
  * @author zack <br>

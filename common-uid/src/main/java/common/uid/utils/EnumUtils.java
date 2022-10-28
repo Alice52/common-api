@@ -1,6 +1,7 @@
 package common.uid.utils;
 
 import common.uid.worker.ValuedEnum;
+
 import org.springframework.util.Assert;
 
 /**

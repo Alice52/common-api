@@ -1,73 +1,73 @@
-//package top.hubby.mq.config;
+// package top.hubby.mq.config;
 //
-//import java.io.IOException;
-//import java.nio.charset.StandardCharsets;
-//import java.util.ArrayList;
-//import java.util.Collection;
-//import java.util.Collections;
-//import java.util.HashSet;
-//import java.util.Iterator;
-//import java.util.List;
-//import java.util.Map;
-//import java.util.Set;
-//import java.util.SortedMap;
-//import java.util.concurrent.CompletableFuture;
-//import java.util.concurrent.ConcurrentHashMap;
-//import java.util.concurrent.ConcurrentMap;
-//import java.util.concurrent.ConcurrentSkipListMap;
-//import java.util.concurrent.CountDownLatch;
-//import java.util.concurrent.ExecutorService;
-//import java.util.concurrent.TimeUnit;
-//import java.util.concurrent.TimeoutException;
-//import java.util.concurrent.atomic.AtomicBoolean;
+// import java.io.IOException;
+// import java.nio.charset.StandardCharsets;
+// import java.util.ArrayList;
+// import java.util.Collection;
+// import java.util.Collections;
+// import java.util.HashSet;
+// import java.util.Iterator;
+// import java.util.List;
+// import java.util.Map;
+// import java.util.Set;
+// import java.util.SortedMap;
+// import java.util.concurrent.CompletableFuture;
+// import java.util.concurrent.ConcurrentHashMap;
+// import java.util.concurrent.ConcurrentMap;
+// import java.util.concurrent.ConcurrentSkipListMap;
+// import java.util.concurrent.CountDownLatch;
+// import java.util.concurrent.ExecutorService;
+// import java.util.concurrent.TimeUnit;
+// import java.util.concurrent.TimeoutException;
+// import java.util.concurrent.atomic.AtomicBoolean;
 //
-//import com.rabbitmq.client.AMQP;
-//import com.rabbitmq.client.AMQP.BasicProperties;
-//import com.rabbitmq.client.AlreadyClosedException;
-//import com.rabbitmq.client.BuiltinExchangeType;
-//import com.rabbitmq.client.CancelCallback;
-//import com.rabbitmq.client.Channel;
-//import com.rabbitmq.client.Command;
-//import com.rabbitmq.client.ConfirmCallback;
-//import com.rabbitmq.client.ConfirmListener;
-//import com.rabbitmq.client.Connection;
-//import com.rabbitmq.client.Consumer;
-//import com.rabbitmq.client.ConsumerShutdownSignalCallback;
-//import com.rabbitmq.client.DeliverCallback;
-//import com.rabbitmq.client.Envelope;
-//import com.rabbitmq.client.GetResponse;
-//import com.rabbitmq.client.LongString;
-//import com.rabbitmq.client.Method;
-//import com.rabbitmq.client.ReturnCallback;
-//import com.rabbitmq.client.ReturnListener;
-//import com.rabbitmq.client.ShutdownListener;
-//import com.rabbitmq.client.ShutdownSignalException;
-//import com.rabbitmq.client.impl.recovery.AutorecoveringChannel;
-//import lombok.extern.slf4j.Slf4j;
-//import org.apache.commons.logging.Log;
-//import org.apache.commons.logging.LogFactory;
+// import com.rabbitmq.client.AMQP;
+// import com.rabbitmq.client.AMQP.BasicProperties;
+// import com.rabbitmq.client.AlreadyClosedException;
+// import com.rabbitmq.client.BuiltinExchangeType;
+// import com.rabbitmq.client.CancelCallback;
+// import com.rabbitmq.client.Channel;
+// import com.rabbitmq.client.Command;
+// import com.rabbitmq.client.ConfirmCallback;
+// import com.rabbitmq.client.ConfirmListener;
+// import com.rabbitmq.client.Connection;
+// import com.rabbitmq.client.Consumer;
+// import com.rabbitmq.client.ConsumerShutdownSignalCallback;
+// import com.rabbitmq.client.DeliverCallback;
+// import com.rabbitmq.client.Envelope;
+// import com.rabbitmq.client.GetResponse;
+// import com.rabbitmq.client.LongString;
+// import com.rabbitmq.client.Method;
+// import com.rabbitmq.client.ReturnCallback;
+// import com.rabbitmq.client.ReturnListener;
+// import com.rabbitmq.client.ShutdownListener;
+// import com.rabbitmq.client.ShutdownSignalException;
+// import com.rabbitmq.client.impl.recovery.AutorecoveringChannel;
+// import lombok.extern.slf4j.Slf4j;
+// import org.apache.commons.logging.Log;
+// import org.apache.commons.logging.LogFactory;
 //
-//import org.springframework.amqp.core.Message;
-//import org.springframework.amqp.core.MessageProperties;
-//import org.springframework.amqp.rabbit.connection.ClosingRecoveryListener;
-//import org.springframework.amqp.rabbit.connection.CorrelationData;
-//import org.springframework.amqp.rabbit.connection.PendingConfirm;
-//import org.springframework.amqp.rabbit.connection.PublisherCallbackChannelFactory;
-//import org.springframework.amqp.rabbit.connection.PublisherCallbackChannelImpl;
-//import org.springframework.amqp.rabbit.support.DefaultMessagePropertiesConverter;
-//import org.springframework.amqp.rabbit.support.MessagePropertiesConverter;
-//import org.springframework.util.Assert;
-//import org.springframework.util.StringUtils;
+// import org.springframework.amqp.core.Message;
+// import org.springframework.amqp.core.MessageProperties;
+// import org.springframework.amqp.rabbit.connection.ClosingRecoveryListener;
+// import org.springframework.amqp.rabbit.connection.CorrelationData;
+// import org.springframework.amqp.rabbit.connection.PendingConfirm;
+// import org.springframework.amqp.rabbit.connection.PublisherCallbackChannelFactory;
+// import org.springframework.amqp.rabbit.connection.PublisherCallbackChannelImpl;
+// import org.springframework.amqp.rabbit.support.DefaultMessagePropertiesConverter;
+// import org.springframework.amqp.rabbit.support.MessagePropertiesConverter;
+// import org.springframework.util.Assert;
+// import org.springframework.util.StringUtils;
 //
-///**
+/// **
 // * just add executeReturn field and change handleReturn & doHandleConfirm
 // *
 // * @author zack <br>
 // * @create 2022-04-12<br>
 // * @project project-cloud-custom <br>
 // */
-//@Slf4j
-//public class MQPublisherCallbackChannelImpl extends PublisherCallbackChannelImpl {
+// @Slf4j
+// public class MQPublisherCallbackChannelImpl extends PublisherCallbackChannelImpl {
 //
 //    private static final MessagePropertiesConverter CONVERTER =
 //            new DefaultMessagePropertiesConverter();
@@ -119,9 +119,11 @@
 //        return executeReturn;
 //    }
 //
-//    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //    // BEGIN PURE DELEGATE METHODS
-//    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 //    @Override
 //    public synchronized void setAfterAckCallback(java.util.function.Consumer<Channel> callback) {
@@ -216,7 +218,8 @@
 //    }
 //
 //    @Override
-//    public void basicPublish(String exchange, String routingKey, BasicProperties props, byte[] body)
+//    public void basicPublish(String exchange, String routingKey, BasicProperties props, byte[]
+// body)
 //            throws IOException {
 //        this.delegate.basicPublish(exchange, routingKey, props, body);
 //    }
@@ -433,7 +436,8 @@
 //    }
 //
 //    @Override
-//    public void basicNack(long deliveryTag, boolean multiple, boolean requeue) throws IOException {
+//    public void basicNack(long deliveryTag, boolean multiple, boolean requeue) throws IOException
+// {
 //        this.delegate.basicNack(deliveryTag, multiple, requeue);
 //    }
 //
@@ -522,7 +526,8 @@
 //            DeliverCallback deliverCallback,
 //            ConsumerShutdownSignalCallback shutdownSignalCallback)
 //            throws IOException {
-//        return this.delegate.basicConsume(queue, autoAck, deliverCallback, shutdownSignalCallback);
+//        return this.delegate.basicConsume(queue, autoAck, deliverCallback,
+// shutdownSignalCallback);
 //    }
 //
 //    /**
@@ -543,7 +548,8 @@
 //    }
 //
 //    @Override
-//    public String basicConsume(String queue, boolean autoAck, String consumerTag, Consumer callback)
+//    public String basicConsume(String queue, boolean autoAck, String consumerTag, Consumer
+// callback)
 //            throws IOException {
 //        return this.delegate.basicConsume(queue, autoAck, consumerTag, callback);
 //    }
@@ -666,7 +672,8 @@
 //            ConsumerShutdownSignalCallback shutdownSignalCallback)
 //            throws IOException {
 //        return this.delegate.basicConsume(
-//                queue, autoAck, arguments, deliverCallback, cancelCallback, shutdownSignalCallback);
+//                queue, autoAck, arguments, deliverCallback, cancelCallback,
+// shutdownSignalCallback);
 //    }
 //
 //    @Override
@@ -972,9 +979,11 @@
 //        return this.delegate.messageCount(queue);
 //    }
 //
-//    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //    // END PURE DELEGATE METHODS
-//    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 //    @Override
 //    public Channel getDelegate() {
@@ -1103,7 +1112,8 @@
 //        processAck(seq, false, multiple, true);
 //    }
 //
-//    private synchronized void processAck(long seq, boolean ack, boolean multiple, boolean remove) {
+//    private synchronized void processAck(long seq, boolean ack, boolean multiple, boolean remove)
+// {
 //        try {
 //            doProcessAck(seq, ack, multiple, remove);
 //        } catch (Exception e) {
@@ -1163,7 +1173,8 @@
 //                    this.pendingConfirms.get(involvedListener);
 //            if (confirmsMap != null) {
 //                Map<Long, PendingConfirm> confirms = confirmsMap.headMap(seq + 1);
-//                Iterator<Map.Entry<Long, PendingConfirm>> iterator = confirms.entrySet().iterator();
+//                Iterator<Map.Entry<Long, PendingConfirm>> iterator =
+// confirms.entrySet().iterator();
 //                while (iterator.hasNext()) {
 //                    Map.Entry<Long, PendingConfirm> entry = iterator.next();
 //                    PendingConfirm value = entry.getValue();
@@ -1269,7 +1280,8 @@
 //                }
 //            }
 //        }
-//        Object returnListenerHeader = properties.getHeaders().get(RETURN_LISTENER_CORRELATION_KEY);
+//        Object returnListenerHeader =
+// properties.getHeaders().get(RETURN_LISTENER_CORRELATION_KEY);
 //        String uuidObject = null;
 //        if (returnListenerHeader != null) {
 //            uuidObject = returnListenerHeader.toString();
@@ -1324,4 +1336,4 @@
 //    public String toString() {
 //        return "PublisherCallbackChannelImpl: " + this.delegate.toString();
 //    }
-//}
+// }

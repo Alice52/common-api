@@ -1,12 +1,12 @@
 package common.uid.utils;
 
-import common.core.constant.enums.CommonResponseEnum;
-import common.core.exception.BaseException;
-
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.util.Enumeration;
+
+import common.core.constant.enums.CommonResponseEnum;
+import common.core.exception.BaseException;
 
 /**
  * @author zack <br>
@@ -17,14 +17,6 @@ public abstract class NetUtils {
 
     /** Pre-loaded local address */
     public static InetAddress localAddress;
-
-    static {
-        try {
-            localAddress = getLocalInetAddress();
-        } catch (SocketException e) {
-            throw new RuntimeException("fail to get local ip.");
-        }
-    }
 
     /**
      * Retrieve the first validated local ip address(the Public and LAN ip addresses are validated).
@@ -67,5 +59,13 @@ public abstract class NetUtils {
      */
     public static String getLocalAddress() {
         return localAddress.getHostAddress();
+    }
+
+    static {
+        try {
+            localAddress = getLocalInetAddress();
+        } catch (SocketException e) {
+            throw new RuntimeException("fail to get local ip.");
+        }
     }
 }

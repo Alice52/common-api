@@ -1,9 +1,9 @@
 package common.security.component;
 
+import java.util.Map;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.provider.token.UserAuthenticationConverter;
-
-import java.util.Map;
 
 /**
  * @author asd <br>

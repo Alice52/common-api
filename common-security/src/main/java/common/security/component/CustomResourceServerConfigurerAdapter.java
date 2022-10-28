@@ -4,6 +4,7 @@ import cn.hutool.core.collection.CollectionUtil;
 import common.core.configuration.properties.SecurityIgnoreProperties;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Import;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

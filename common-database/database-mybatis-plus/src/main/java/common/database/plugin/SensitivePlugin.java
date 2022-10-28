@@ -1,18 +1,22 @@
 package common.database.plugin;
 
+import java.lang.reflect.Field;
+import java.util.List;
+import java.util.Properties;
+import java.util.stream.Stream;
+
 import com.mysql.jdbc.Statement;
 import common.database.sensitive.SensitiveStrategy;
 import common.database.sensitive.annotation.SensitiveField;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.executor.resultset.ResultSetHandler;
-import org.apache.ibatis.plugin.*;
+import org.apache.ibatis.plugin.Interceptor;
+import org.apache.ibatis.plugin.Intercepts;
+import org.apache.ibatis.plugin.Invocation;
+import org.apache.ibatis.plugin.Plugin;
+import org.apache.ibatis.plugin.Signature;
 import org.apache.ibatis.reflection.MetaObject;
 import org.apache.ibatis.reflection.SystemMetaObject;
-
-import java.lang.reflect.Field;
-import java.util.List;
-import java.util.Properties;
-import java.util.stream.Stream;
 
 /**
  * @author zack <br>

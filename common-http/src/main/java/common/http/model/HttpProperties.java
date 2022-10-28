@@ -2,6 +2,7 @@ package common.http.model;
 
 import cn.hutool.core.util.StrUtil;
 import lombok.Data;
+
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
@@ -22,8 +23,6 @@ public class HttpProperties {
     private String decryptClientSecret = StrUtil.EMPTY;
 
     private Integer maxRetryTimes = 1;
-    /**
-     * @see java.util.concurrent.TimeUnit#MILLISECONDS
-     */
+    /** @see java.util.concurrent.TimeUnit#MILLISECONDS */
     private Integer retrySleep = 10;
 }

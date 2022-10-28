@@ -27,10 +27,6 @@ public abstract class DockerUtils {
     /** Whether is docker */
     private static boolean IS_DOCKER;
 
-    static {
-        retrieveFromEnv();
-    }
-
     /**
      * Retrieve docker host
      *
@@ -92,5 +88,9 @@ public abstract class DockerUtils {
                             + ", port:"
                             + DOCKER_PORT);
         }
+    }
+
+    static {
+        retrieveFromEnv();
     }
 }

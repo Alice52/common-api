@@ -1,11 +1,12 @@
 package common.redis.component;
 
+import javax.annotation.Resource;
+
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RBlockingDeque;
 import org.redisson.api.RedissonClient;
-import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
+import org.springframework.stereotype.Component;
 
 /**
  * @author zack <br>

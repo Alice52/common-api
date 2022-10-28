@@ -1,9 +1,9 @@
 package common.core.util.valid;
 
-import cn.hutool.core.util.StrUtil;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import cn.hutool.core.util.StrUtil;
 
 /**
  * @author zack <br>

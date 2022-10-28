@@ -5,6 +5,7 @@ import common.annotation.aspect.LogServiceAspect;
 import common.annotation.aspect.WebRequestLogAspect;
 import common.event.SysLogListener;
 import lombok.AllArgsConstructor;
+
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

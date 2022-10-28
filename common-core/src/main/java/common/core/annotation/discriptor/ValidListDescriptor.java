@@ -1,18 +1,19 @@
 package common.core.annotation.discriptor;
 
-import cn.hutool.core.collection.CollUtil;
-import common.core.annotation.ValidList;
-import common.core.component.ValidatorContext;
-import common.core.exception.ListValidException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+
+import cn.hutool.core.collection.CollUtil;
+import common.core.annotation.ValidList;
+import common.core.component.ValidatorContext;
+import common.core.exception.ListValidException;
 
 /**
  * @author zack <br>

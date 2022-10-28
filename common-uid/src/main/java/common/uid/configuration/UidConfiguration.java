@@ -1,19 +1,20 @@
 package common.uid.configuration;
 
+import javax.annotation.Resource;
+
 import common.uid.configuration.properties.StructConfigProperties;
 import common.uid.generator.CachedUidGenerator;
 import common.uid.generator.DefaultUidGenerator;
 import common.uid.worker.service.DisposableWorkerIdAssigner;
 import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
+
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Primary;
-
-import javax.annotation.Resource;
 
 /**
  * @author zack <br>

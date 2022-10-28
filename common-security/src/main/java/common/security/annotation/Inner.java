@@ -2,8 +2,6 @@ package common.security.annotation;
 
 import common.security.annotation.aspect.InnerAspect;
 
-import java.lang.annotation.*;
-
 /**
  * Not check permissions.
  *
