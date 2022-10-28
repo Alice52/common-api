@@ -69,12 +69,13 @@
         <kaptcha.version>0.0.9</kaptcha.version>
 
         <!-- spring -->
-        <spring.boot.version>2.2.2.RELEASE</spring.boot.version>
+        <spring.boot.version>2.7.5</spring.boot.version>
         <actuator.admin.version>2.7.6</actuator.admin.version>
         <spring.cloud.version>2021.0.4</spring.cloud.version>
         <cloud.alibaba.version>2021.1</cloud.alibaba.version>
         <security.oauth.version>2.5.2.RELEASE</security.oauth.version>
         <feign.core.version>11.9.1</feign.core.version>
+        <spring.boot.maven.version>2.2.2.RELEASE</spring.boot.maven.version>
 
         <!-- jackson -->
         <jackson.modules>2.13.4</jackson.modules>
@@ -97,7 +98,7 @@
         <justauth.starter>1.4.0</justauth.starter>
         <grpc_version>1.50.2</grpc_version>
         <curator.zk.version>5.3.0</curator.zk.version>
-         <!--  #region  ====================== common version =====================    -->
+        <!--  #region  ====================== common version =====================    -->
     </properties>
 
 
@@ -205,6 +206,11 @@
                 <version>${spring.boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-validation</artifactId>
+                <version>${spring.boot.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.security.oauth</groupId>

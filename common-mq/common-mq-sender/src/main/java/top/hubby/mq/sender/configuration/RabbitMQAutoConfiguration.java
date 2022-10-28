@@ -7,7 +7,6 @@ import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
-import top.hubby.mq.config.MQPublisherCallbackChannelImpl;
 import top.hubby.mq.config.RabbitMQConfiguration;
 import top.hubby.mq.constants.enums.EventStatus;
 import top.hubby.mq.sender.SenderService;
@@ -55,7 +54,7 @@ public class RabbitMQAutoConfiguration extends RabbitMQConfiguration
     protected void initRabbitTemplate() {
         /**
          * ConfirmCallback 异步执行的: 最少成功发送一次{消息存在重复的可能+业务唯一标识是很需要的}<br>
-         *  这一步是不能保证一定成功的, 即使不更新数据库, 也可能存在超时, 此时消息还是需要重发<br>
+         * 这一步是不能保证一定成功的, 即使不更新数据库, 也可能存在超时, 此时消息还是需要重发<br>
          *
          * <pre>
          *    1. 对于可路由消息回调时且ack为true: 持久化到磁盘 + 对于镜像队列[所有镜像都已接受该消息]

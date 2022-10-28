@@ -40,7 +40,7 @@ public abstract class RabbitMQConfiguration {
         connectionFactory.setPublisherConfirms(true);
         connectionFactory.setPublisherReturns(true);
 
-        connectionFactory.setPublisherChannelFactory(MQPublisherCallbackChannelImpl.factory());
+        // connectionFactory.setPublisherChannelFactory(MQPublisherCallbackChannelImpl.factory());
 
         rabbitTemplate = new RabbitTemplate(connectionFactory);
         rabbitTemplate.setMessageConverter(converter);
