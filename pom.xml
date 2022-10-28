@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -35,7 +36,6 @@
     <properties>
 
         <spring-boot.repackage.skip>true</spring-boot.repackage.skip>
-
 
         <!--  #region  ====================== common version =====================    -->
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
@@ -84,7 +84,6 @@
         <mysql.version>5.1.49</mysql.version>
         <druid.version>1.2.14</druid.version>
         <mybatis.plus.version>3.5.2</mybatis.plus.version>
-        <mybatis.plus.extension>3.3.1</mybatis.plus.extension>
         <mybatis.spring.boot.version>2.2.2</mybatis.spring.boot.version>
         <elasticsearch.version>7.17.5</elasticsearch.version>
         <redisson.version>3.17.6</redisson.version>
@@ -262,7 +261,7 @@
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-extension</artifactId>
-                <version>${mybatis.plus.extension}</version>
+                <version>${mybatis.plus.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.baomidou</groupId>
