@@ -96,7 +96,7 @@
         <jquery.version>3.3.1</jquery.version>
         <justauth.starter>1.4.0</justauth.starter>
         <grpc_version>1.50.2</grpc_version>
-        <curator.zk.version>5.3.0</curator.zk.version>
+        <curator.zk.version>5.4.0</curator.zk.version>
         <!--  #region  ====================== common version =====================    -->
     </properties>
 
