@@ -86,7 +86,7 @@
         <mybatis.plus.version>3.5.2</mybatis.plus.version>
         <mybatis.spring.boot.version>2.2.2</mybatis.spring.boot.version>
         <elasticsearch.version>7.17.7</elasticsearch.version>
-        <redisson.version>3.17.6</redisson.version>
+        <redisson.version>3.17.7</redisson.version>
 
         <!-- mq -->
         <rabbitmq.client.version>5.16.0</rabbitmq.client.version>
