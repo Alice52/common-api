@@ -74,7 +74,7 @@
         <cloud.alibaba.version>2021.1</cloud.alibaba.version>
         <security.oauth.version>2.5.2.RELEASE</security.oauth.version>
         <feign.core.version>11.10</feign.core.version>
-        <spring.boot.maven.version>2.2.2.RELEASE</spring.boot.maven.version>
+        <spring.boot.maven.version>2.2.6.RELEASE</spring.boot.maven.version>
 
         <!-- jackson -->
         <jackson.modules>2.13.4</jackson.modules>
