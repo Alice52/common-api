@@ -13,6 +13,15 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.codehaus.janino</groupId>
+            <artifactId>janino</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.aliyun.openservices</groupId>
+            <artifactId>aliyun-log-logback-appender</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>io.github.alice52</groupId>
             <artifactId>common-core</artifactId>
             <version>${project.version}</version>
