@@ -11,6 +11,10 @@
 
     <artifactId>common-security</artifactId>
 
+    <properties>
+        <security.cloud.starter.version>2.2.5.RELEASE</security.cloud.starter.version>
+        <security.oauth.boot.version>2.6.8</security.oauth.boot.version>
+    </properties>
 
     <dependencies>
         <dependency>
@@ -29,10 +33,12 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-security</artifactId>
+            <version>${security.cloud.starter.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.security.oauth.boot</groupId>
             <artifactId>spring-security-oauth2-autoconfigure</artifactId>
+            <version>${security.oauth.boot.version}</version>
         </dependency>
 
         <dependency>
