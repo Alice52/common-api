@@ -1,0 +1,11 @@
+spring:
+  profiles:
+    # this sequence is master
+    include: common-dev,database-dev,uid-dev,redis-dev,common
+
+common:
+  openapi:
+    enabled: true
+    earrival:
+      client-id: e-arrival
+      client-secret: 5231549ab56d11eca37d0242ac160003

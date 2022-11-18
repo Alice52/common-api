@@ -1,0 +1,26 @@
+spring:
+  profiles:
+    # this sequence is master
+    include: common-dev,redis-dev
+
+common:
+  oss:
+    aliyun:
+      enable: true
+      accessKey: ENC(Kf42+pHi8/IU/QWZlOm8UpTTLIMxHWRBWkYENv7a1hO93AkB/rb0G9juNLPXSAfpzYVkX4DGFvUKC1qLooR9Yw==)
+      accessKeySecret: ENC(zu07F3mfQ5SeGQR2YG3q7OWoRMoJPE73C5DWwqxV8LWyz8MOGpz0viKcdadOBeS/Gp54+V0LWWC8jjWIoVTbnA==)
+      endpoint: oss-cn-hangzhou.aliyuncs.com
+      bucket: ENC(xJHHZLCs0MUV7V9RH7Mc4Cn8foAUYQHk4pQ5tdVuU1EEqRF2sZjk57O61kYYTy04)
+      cdnHost:
+      host:
+      exportPath: "file/download/export/"
+    tencent:
+      enable: true
+      accessKey: ENC(FMtjulnXplHmQK9VEtk8Xmged1FJXFLsK4VEX+vVF9hZnoPBdx2pgj6IcOWGoYAocPNYCjaCt5Oo+VIhPnn2lahNDj9Z5+ZNC7AHD6QUEaE=)
+      accessKeySecret: ENC(rhz4PjHjCedUTtKpwKohsgZXMhNXxBJk+w5XKppx/9PjGzyYmxegLVUzyk4UwrAULYPZjnbeWkBTJFnM+zIdiwGvW9yUKMzjaGpkc4iYsGo=)
+      endpoint: ap-shanghai
+      bucket: ENC(ZnGJj4JiW3km0R8TnnDa4t5TW5NR3bEL51Gy+b0rC80K35Ar1elPSD/YGyZh738EkH7reA9fKLq+INGX6XUOxA==)
+      cdnHost:
+      host:
+      exportPath: "file/download/export/"
+      durationSeconds: 1800

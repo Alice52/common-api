@@ -1,0 +1,14 @@
+spring:
+  profiles:
+    # this sequence is master
+    include: common-dev,database-dev,uid-dev,redis-dev,common
+
+common:
+  http:
+    host: http://mock-api.com/5n9eBAno.mock
+    clientId: client_id
+    clientSecret: client_secret
+    decryptClientId: xx
+    decryptClientSecret: xx
+    maxRetryTimes: 10
+    retrySleep: 100

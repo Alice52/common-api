@@ -31,6 +31,7 @@
         <module>common-http</module>
         <module>common-openapi</module>
         <module>common-mq</module>
+        <module>custom-test</module>
     </modules>
 
     <properties>

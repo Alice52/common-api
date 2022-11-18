@@ -1,0 +1,70 @@
+spring:
+  profiles:
+    # this sequence is master
+    include: common-dev
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
+    # 开启消息到达exchange的异步回调，发送成功失败都会触发回调
+    publisher-confirms: true
+    # 开启消息从exhcange路由到queue的异步回调，只有路由失败时才会触发回调
+    publisher-returns: true
+    template:
+      # 为true时，如果exchange根据routingKey将消息路由到queue时找不到匹配的queue，触发return回调，为false时，exchange直接丢弃消息。
+      mandatory: true
+    publisher-confirm-type: correlated
+    # 手动提交消息
+    listener:
+      simple:
+        #重试次数超过上面的设置之后是否丢弃(消费者listener抛出异常，是否重回队列，默认true：重回队列， false为不重回队列(结合死信交换机))
+        default-requeue-rejected: true
+        acknowledge-mode: manual
+        retry: # 重试间隔 0s  5s  15s  45s
+          # 开启重试机制
+          enabled: true
+          # 最大重试传递次数
+          max-attempts: 3
+          #第一次和第二次尝试传递消息的间隔时间 单位毫秒
+          initial-interval: 5000ms
+          #最大重试时间间隔，单位毫秒
+          max-interval: 300000ms
+          #应用前一次重试间隔的乘法器，multiplier默认为1
+          multiplier: 3
+      direct:
+        acknowledge-mode: manual
+  datasource:
+    username: ENC(3+5Pg+H9L0s1ATmg/xTWLbNt9OeMFguochuRyTl9a4BGbD4lL2SLM8351rdHYhC2)
+    password: ENC(MkGdNTchUL+OnF+nvm5YSSjWc7XeHLNab+KV9Wr3fqF1fAbEVLB2urZotLn8nAk1)
+    url: ENC(an2Bl+bjDWa0hEzzLDW2tZ/FGK5Czk4pHDAeaeFLMbxTMjj32UBSNj6Nc0013ImpyuMRvFGHsMLKQY/iuqXzuraoYQwLsZ6/hx5/h7XMMxMN5On2zxT8EEPiEtBnA1eqIPSy0Oj8RuBzpyRrQF/CMFwF4b/cgkjVO1Q08mT29vGhLOFF36bc6YjeWlgUPuMsQu9jsuwvHTCABcVEPOrqpzm8z2Xqzxw3BUzwhgyAfUCm+lAYgHIAvCwhXmjHG4N8Ki1C4MBexGdOulpLTB6KW1u9MDg+74IF0gAmGa4IvQLncrEUU/ZKlA0AgfEsiK9ctDHJ/HvaJqjJL2X6z4IfA0JBng+XLLGcrJt7/zp5X8vYXMr0EZpeQpoekkrHNdYPGJbRe4mgf4BQMNZg9wYCAtJ4IlhHFlsA4xCRE12BF+kC+SvQmwiLjrf9idJLONuW)
+    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      maximum-pool-size: 20
+
+# mybatis-plus
+mybatis-plus:
+  typeEnumsPackage: top.hubby.mq.constants.enums
+  mapper-locations: classpath*:/mapper/*Mapper.xml
+  global-config:
+    banner: false
+    db-config:
+      id-type: AUTO
+      field-strategy: NOT_NULL
+      table-underline: true
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+common:
+  mq:
+    queue-type: direct  # direct/fanout/topic
+    exchange: custom-test-mq-sender-exchange
+    queue: custom-test-mq-sender-queue
+    routing-key: routing-key
+    dead-letter-queue: common-mq-sender-dl-queue
+    dead-letter-exchange: common-mq-sender-dl-exchange
+    dead-letter-routing-key: common-mq-sender-dl-routing-key

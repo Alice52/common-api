@@ -1,0 +1,46 @@
+spring:
+  config:
+    name: custom-syntax
+  # this will overwrite redis database config,
+  # and it is relative of including profile sequence
+  redis:
+    database: 15
+
+mybatis-plus:
+  typeEnumsPackage: top.hubby.custom.test.constants.enums
+
+logging:
+  config: classpath:logback-spring.xml
+#  level:
+#    orgspringframework.web: TRACE
+#    web: TRACE
+
+swagger:
+  enabled: true
+  # host: mc-gateway:9999
+  title: 'Custom Test Service API'
+  description: 'Custom 接口文档'
+  version: '1.0.0'
+  authorization:
+    name: OAuth Server
+    auth-regex: ^.*$
+    authorization-scope-list:
+      - scope: server
+        description: server all
+    token-url-list:
+      - http://mc-gateway:9999/auth/oauth/token
+  base-path: /**
+  path-mapping: /
+  exclude-path:
+    - /actuator/**
+    - /error
+
+common:
+  core:
+    global:
+      handler:
+        enabled: true
+      request-id:
+        enabled: true
+        key: req-id
+

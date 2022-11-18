@@ -2,6 +2,8 @@ package common.uid.worker.entity;
 
 import java.util.Date;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import common.uid.worker.WorkerNodeType;
 import lombok.Data;
@@ -18,7 +20,8 @@ import lombok.ToString;
 public class WorkerNodeEntity {
 
     /** Entity unique id (table unique) */
-    private long id;
+    @TableId(type = IdType.AUTO)
+    private Long id;
 
     /** Type of CONTAINER: HostName, ACTUAL : IP. */
     private String hostName;

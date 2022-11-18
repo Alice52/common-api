@@ -1,0 +1,4 @@
+spring:
+  profiles:
+    # this sequence is master
+    include: common-dev,redis-dev,common

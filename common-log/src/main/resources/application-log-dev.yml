@@ -1,0 +1,8 @@
+sls:
+  endpoint: cn-shanghai.log.aliyuncs.com
+  access-key-id: ${SLS_ACCESS_ID}
+  access-key-secret: ${SLS_ACCESS_SECRET}
+  project: tims-cms-service-local
+  log-store: tims-cms-service-local-logstore
+  topic: ${spring.application.name}
+  level: INFO
