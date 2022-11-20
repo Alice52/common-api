@@ -13,7 +13,7 @@ import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Service;
 
-import static top.hubby.mq.sender.configuration.RabbitMQAutoConfiguration.mqSender;
+import static top.hubby.mq.sender.configuration.RabbitMqAutoConfiguration.mqSender;
 
 /**
  * https://blog.csdn.net/xhf852963/article/details/107884528

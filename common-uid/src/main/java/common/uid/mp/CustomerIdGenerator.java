@@ -15,7 +15,7 @@ import common.uid.generator.UidGenerator;
 public class CustomerIdGenerator implements IdentifierGenerator {
 
     /** @Resource private UidGenerator uidGenerator; */
-    private final UidGenerator uidGenerator;
+    private UidGenerator uidGenerator;
 
     public CustomerIdGenerator(UidGenerator uidGenerator) {
         this.uidGenerator = uidGenerator;

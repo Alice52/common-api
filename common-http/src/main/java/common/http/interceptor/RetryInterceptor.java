@@ -7,7 +7,7 @@ import javax.annotation.Resource;
 import cn.hutool.core.util.NumberUtil;
 import common.http.exception.DecryptException;
 import common.http.exception.RetryException;
-import common.http.model.HttpProperties;
+import common.http.configuration.HttpProperties;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.Interceptor;

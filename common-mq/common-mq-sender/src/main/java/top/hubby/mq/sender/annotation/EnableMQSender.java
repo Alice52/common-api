@@ -7,7 +7,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import top.hubby.mq.sender.configuration.RabbitMQAutoConfiguration;
+import top.hubby.mq.sender.configuration.RabbitMqAutoConfiguration;
 
 import org.springframework.context.annotation.Import;
 
@@ -20,5 +20,5 @@ import org.springframework.context.annotation.Import;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited
-@Import({RabbitMQAutoConfiguration.class})
+@Import({RabbitMqAutoConfiguration.class})
 public @interface EnableMQSender {}

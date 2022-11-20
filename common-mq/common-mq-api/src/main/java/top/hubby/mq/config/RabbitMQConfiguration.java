@@ -19,9 +19,9 @@ import static org.springframework.amqp.support.converter.Jackson2JavaTypeMapper.
  * @project project-cloud-custom <br>
  */
 @Getter
-public abstract class RabbitMQConfiguration {
+public abstract class RabbitMqConfiguration {
 
-    private static final Logger log = LoggerFactory.getLogger(RabbitMQConfiguration.class);
+    private static final Logger log = LoggerFactory.getLogger(RabbitMqConfiguration.class);
     private RabbitTemplate rabbitTemplate;
 
     @Bean

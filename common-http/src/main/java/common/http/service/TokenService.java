@@ -9,10 +9,14 @@ import lombok.extern.slf4j.Slf4j;
  * @project project-cloud-custom <br>
  */
 @Slf4j
-public abstract class BusinessService {
+public abstract class TokenService {
+
+    /** Get refresh token for security. */
     public abstract void refreshToken();
 
+    /** Get access token for security. */
     public abstract TokenVO token();
 
-    public abstract void refreshDecryptToken();
+    /** Get decrypt token for security. */
+    public abstract TokenVO refreshDecryptToken();
 }

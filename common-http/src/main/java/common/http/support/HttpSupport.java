@@ -1,5 +1,26 @@
 package common.http.support;
 
+import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.core.util.StrUtil;
+import cn.hutool.json.JSONObject;
+import cn.hutool.json.JSONUtil;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import common.http.configuration.HttpProperties;
+import common.http.exception.HttpException;
+import common.http.model.PageResponseVO;
+import common.http.model.PageVO;
+import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
+import okhttp3.*;
+import okhttp3.internal.http.RealResponseBody;
+import org.springframework.lang.Nullable;
+import org.springframework.stereotype.Component;
+import org.springframework.util.Assert;
+
+import javax.annotation.Resource;
+import javax.validation.constraints.NotNull;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -8,39 +29,8 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-import javax.annotation.Resource;
-import javax.validation.constraints.NotNull;
-
-import cn.hutool.core.util.ObjectUtil;
-import cn.hutool.core.util.StrUtil;
-import cn.hutool.json.JSONObject;
-import cn.hutool.json.JSONUtil;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import common.http.exception.HttpException;
-import common.http.model.HttpProperties;
-import common.http.model.PageResponseVO;
-import common.http.model.PageVO;
-import lombok.SneakyThrows;
-import lombok.extern.slf4j.Slf4j;
-import okhttp3.Headers;
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
-import okhttp3.internal.http.RealResponseBody;
-
-import org.springframework.lang.Nullable;
-import org.springframework.stereotype.Component;
-import org.springframework.util.Assert;
-
 import static cn.hutool.core.util.CharUtil.AMP;
-import static common.http.constant.Constants.PAYLOAD;
-import static common.http.constant.Constants.SUCCESS;
-import static common.http.constant.Constants.URL_PREFIX;
-import static common.http.constant.Constants.URL_SUFFIX;
+import static common.http.constant.Constants.*;
 import static okhttp3.MediaType.parse;
 
 /**
@@ -56,6 +46,21 @@ public class HttpSupport {
     private static HttpProperties httpProperties;
     private static ObjectMapper objectMapper;
     private static OkHttpClient httpClient;
+
+    @Resource
+    public void setHttpClient(OkHttpClient httpClient) {
+        HttpSupport.httpClient = httpClient;
+    }
+
+    @Resource
+    public void setHmpProperties(HttpProperties hmpProperties) {
+        HttpSupport.httpProperties = hmpProperties;
+    }
+
+    @Resource
+    public void setObjectMapper(ObjectMapper objectMapper) {
+        HttpSupport.objectMapper = objectMapper;
+    }
 
     public static String doPost(
             String url, Map<String, String> params, Map<String, String> header) {
@@ -179,20 +184,5 @@ public class HttpSupport {
         paramStr.setLength(paramStr.length() - 1);
 
         return url + paramStr.toString();
-    }
-
-    @Resource
-    public void setHttpClient(OkHttpClient httpClient) {
-        HttpSupport.httpClient = httpClient;
-    }
-
-    @Resource
-    public void setHmpProperties(HttpProperties hmpProperties) {
-        HttpSupport.httpProperties = hmpProperties;
-    }
-
-    @Resource
-    public void setObjectMapper(ObjectMapper objectMapper) {
-        HttpSupport.objectMapper = objectMapper;
     }
 }

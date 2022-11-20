@@ -1,16 +1,17 @@
-package common.http.support;
-
-import java.util.Iterator;
+package common.core.util;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.LoggerFactory;
+
+import java.util.Iterator;
 
 /**
- * @author asd <br>
- * @create 2021-11-30 5:27 PM <br>
- * @project mc-middleware-api <br>
+ * @author zack <br/>
+ * @create 2022-11-20 21:20 <br/>
+ * @project custom-auth <br/>
  */
 @Slf4j
 public class JacksonUtil {

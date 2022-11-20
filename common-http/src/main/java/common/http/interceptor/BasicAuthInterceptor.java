@@ -12,7 +12,7 @@ import cn.hutool.http.HttpStatus;
 import common.http.constant.enums.RedisHttpEnum;
 import common.http.exception.HttpException;
 import common.http.model.TokenVO;
-import common.http.service.BusinessService;
+import common.http.service.TokenService;
 import common.redis.utils.RedisUtil;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.Headers;
@@ -34,7 +34,7 @@ import static common.http.constant.Constants.AUTHORIZATION;
 @Component
 public class BasicAuthInterceptor implements Interceptor {
 
-    @Resource private BusinessService middlewareService;
+    @Resource private TokenService middlewareService;
     @Resource private RedisUtil redisUtil;
 
     @Override

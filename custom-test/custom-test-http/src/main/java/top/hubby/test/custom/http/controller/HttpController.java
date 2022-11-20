@@ -2,7 +2,7 @@ package top.hubby.test.custom.http.controller;
 
 import common.core.util.R;
 import common.http.model.TokenVO;
-import common.http.service.BusinessService;
+import common.http.service.TokenService;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +22,7 @@ import javax.validation.constraints.NotNull;
 @RestController
 @RequestMapping("/custom/http")
 public class HttpController {
-    @Resource private BusinessService businessService;
+    @Resource private TokenService businessService;
 
     @GetMapping("/token")
     public @NotNull R<TokenVO> token() {

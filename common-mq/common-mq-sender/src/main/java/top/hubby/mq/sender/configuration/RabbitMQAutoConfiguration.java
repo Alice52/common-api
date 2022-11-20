@@ -1,24 +1,23 @@
 package top.hubby.mq.sender.configuration;
 
-import javax.annotation.Resource;
-
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
-import top.hubby.mq.config.RabbitMQConfiguration;
-import top.hubby.mq.constants.enums.EventStatus;
-import top.hubby.mq.sender.SenderService;
-import top.hubby.mq.service.DtxEventService;
-import top.hubby.mq.service.impl.DtxEventServiceImpl;
-
 import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.SmartInitializingSingleton;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Configuration;
+import top.hubby.mq.config.RabbitMqConfiguration;
+import top.hubby.mq.constants.enums.EventStatus;
+import top.hubby.mq.sender.SenderService;
+import top.hubby.mq.service.DtxEventService;
+import top.hubby.mq.service.impl.DtxEventServiceImpl;
+
+import javax.annotation.Resource;
 
 /**
  * @author zack <br>
@@ -36,7 +35,7 @@ import org.springframework.context.annotation.Configuration;
     DtxEventServiceImpl.class
 })
 @MapperScan("top.hubby.mq.mapper")
-public class RabbitMQAutoConfiguration extends RabbitMQConfiguration
+public class RabbitMqAutoConfiguration extends RabbitMqConfiguration
         implements SmartInitializingSingleton {
     public static RabbitTemplate mqSender;
 

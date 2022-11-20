@@ -1,4 +1,4 @@
-package common.http.model;
+package top.hubby.test.custom.http.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
@@ -27,4 +27,8 @@ public class PageResponseVO<T> {
     private String invokeKey;
     private String statusCode;
     private String statusCodeValue;
+
+    public void setPayload(PageVO<T> payload) {
+        this.payload = payload;
+    }
 }

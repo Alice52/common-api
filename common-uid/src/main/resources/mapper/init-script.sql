@@ -1,5 +1,5 @@
 DROP TABLE IF EXISTS WORKER_NODE;
-CREATE TABLE `worker_node`
+CREATE TABLE `uid_worker_node`
 (
     `ID`          bigint(20) NOT NULL AUTO_INCREMENT,
     `HOST_NAME`   varchar(64) COLLATE utf8mb4_bin NOT NULL,
