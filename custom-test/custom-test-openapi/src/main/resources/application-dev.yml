@@ -1,13 +1,13 @@
 spring:
   profiles:
     # this sequence is master
-    include: common-dev,database-dev,uid-dev,redis-dev,common
+    include: redis-dev,common
 
 common:
   openapi:
     enabled: true
     third-party:
-        - client-id: custom-test-http
+      - client-id: custom-test-http
         client-secret: 5231549ab56d11eca37d0242ac160003
       - client-id: custom-syntax
         client-secret: cd19de5f697c11ed900500163e0a2c73

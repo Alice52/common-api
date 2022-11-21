@@ -1,5 +1,6 @@
 package top.hubby.test.custom.openapi;
 
+import common.http.annotation.EnableHttpClient;
 import common.redis.config.ExcludeRedisConfig;
 import common.swagger.annotation.EnableSwagger;
 import common.uid.annotation.EnableUID;
@@ -15,9 +16,9 @@ import top.hubby.openapi.annotation.EnableOpenApi;
  * @create 2022-04-08 19:59 <br>
  * @project project-cloud-custom <br>
  */
+@EnableHttpClient
 @EnableOpenApi
 @EnableSwagger
-@Import(ExcludeRedisConfig.class)
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class, RabbitAutoConfiguration.class})
 public class OpenApiApplication {
     public static void main(String[] args) {

@@ -39,6 +39,7 @@ public class HttpProperties {
     @Getter
     @AllArgsConstructor
     public enum DecryptTypeEnum {
+        NONE("no encrypt"),
         FULL("full response is encrypted data"),
         DATA("part response is encrypted data"),
         ITEM("content response is encrypted data"),

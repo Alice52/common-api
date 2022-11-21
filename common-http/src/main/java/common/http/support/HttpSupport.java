@@ -2,6 +2,7 @@ package common.http.support;
 
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.http.Method;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -62,21 +63,28 @@ public class HttpSupport {
         HttpSupport.objectMapper = objectMapper;
     }
 
-    public static String doPost(
-            String url, Map<String, String> params, Map<String, String> header) {
-        return doPost(url, params, header, StrUtil.EMPTY);
+    public static String doRequest(
+            Method method,  String url, Map<String, String> params, Map<String, String> header) {
+        return doRequest(method, url, params, header, StrUtil.EMPTY);
     }
 
     @SneakyThrows
-    public static String doPost(
+    public static String doRequest(
+            Method method,
             String url,
             Map<String, String> params,
             Map<String, String> headers,
             String requestBodyStr) {
         url = buildUrl(url, params);
-        RequestBody body = buildBody(headers, requestBodyStr);
         Headers headerMap = okhttp3.Headers.of(headers);
-        Request request = new Request.Builder().url(url).headers(headerMap).post(body).build();
+
+        Request request;
+        if (Method.GET.equals(method)) {
+            request = new Request.Builder().url(url).headers(headerMap).get().build();
+        } else {
+            RequestBody body = buildBody(headers, requestBodyStr);
+            request = new Request.Builder().url(url).headers(headerMap).post(body).build();
+        }
 
         ResponseBody response = httpClient.newCall(request).execute().body();
         return Optional.ofNullable(response).orElse(RealResponseBody.create(null, "")).string();
@@ -111,7 +119,7 @@ public class HttpSupport {
                         .orElse(Collections.emptyMap());
         String bodyStr = prepareBody(interfaceCode, payloadSupplier.get());
 
-        String responseBody = HttpSupport.doPost(realUrl, paramMap, headerMap, bodyStr);
+        String responseBody = HttpSupport.doRequest(Method.POST, realUrl, paramMap, headerMap, bodyStr);
 
         PageResponseVO<E> response = doParseResponse(responseBody, payloadParser);
         if (!isHttpSuccess(response)) {

@@ -1,7 +1,6 @@
 package top.hubby.test.custom.openapi.controller;
 
 import common.core.exception.BusinessException;
-import common.core.util.R;
 import common.http.model.TokenVO;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
@@ -25,19 +24,16 @@ import static top.hubby.test.custom.openapi.constants.OpenApiResponseEnum.CLIENT
 public class TokenController {
 
     @GetMapping("/access-token")
-    public R<TokenVO> token(@RequestParam("clientId") String clientId) {
+    public TokenVO token(@RequestParam("client_id") String clientId) {
 
         if (!APP_MAP.containsKey(clientId)) {
             throw new BusinessException(CLIENT_ID_INVALID);
         }
 
-        TokenVO token =
-                TokenVO.builder()
-                        .accessToken(APP_MAP.get(clientId))
-                        .tokenType("grant_type")
-                        .expiresIn((long) (30 * 24 * 60 * 60))
-                        .build();
-
-        return new R<>(token);
+        return TokenVO.builder()
+                .accessToken(APP_MAP.get(clientId))
+                .tokenType("grant_type")
+                .expiresIn((long) (30 * 24 * 60 * 60))
+                .build();
     }
 }

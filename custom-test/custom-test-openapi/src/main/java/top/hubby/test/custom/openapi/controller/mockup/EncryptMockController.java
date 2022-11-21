@@ -5,11 +5,16 @@ import common.core.model.Pagination;
 import common.core.util.R;
 import common.http.component.DecryptComponent;
 import io.swagger.annotations.Api;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.crypto.Cipher;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
 
 import static top.hubby.openapi.configuration.OpenApiConfiguration.APP_MAP;
 import static top.hubby.test.custom.openapi.constants.OpenApiResponseEnum.CLIENT_ID_INVALID;
@@ -26,24 +31,22 @@ import static top.hubby.test.custom.openapi.constants.OpenApiResponseEnum.CLIENT
 public class EncryptMockController {
 
     // this is origin data.
-    R<Pagination> data =
-            new R<>(
-                    Pagination.builder()
-                            .currentPage(1)
-                            .total(100)
-                            .pageCount(5)
-                            .pageSize(20)
-                            .build());
+    Pagination data =
+            Pagination.builder().currentPage(1).total(100).pageCount(5).pageSize(20).build();
 
+    @SneakyThrows
     @GetMapping("/encrypted/full")
     public String token(@RequestParam("clientId") String clientId) {
-
         if (!APP_MAP.containsKey(clientId)) {
             throw new BusinessException(CLIENT_ID_INVALID);
         }
 
         String secret = APP_MAP.get(clientId);
-        String encrypt = DecryptComponent.encrypt(data, secret);
+
+        R<Pagination> r = new R<>(data);
+
+        String encrypt = DecryptComponent.encrypt(r, secret);
+
         log.info("encrypted data: {}", encrypt);
         String decrypt = DecryptComponent.decrypt(encrypt, secret);
         log.info("decrypt data: {}", decrypt);

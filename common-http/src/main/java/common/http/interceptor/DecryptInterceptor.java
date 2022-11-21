@@ -24,7 +24,6 @@ import java.io.IOException;
 public class DecryptInterceptor implements Interceptor {
 
     @Resource private HttpProperties p;
-    @Resource private DecryptComponent decryptComponent;
 
     @NotNull
     @Override
@@ -32,17 +31,29 @@ public class DecryptInterceptor implements Interceptor {
 
         Response proceed = chain.proceed(chain.request());
         ResponseBody body = proceed.body();
-        if (ObjectUtil.isNull(body) || StrUtil.isBlank(body.toString())) {
+        String bodyStr = LoggingRequestInterceptor.getResponseBody(proceed);
+        log.debug("[[http] debug encrypt response: {}", bodyStr);
+
+        if (ObjectUtil.isNull(body) || StrUtil.isBlank(bodyStr)) {
             return proceed;
         }
 
         HttpProperties.DecryptTypeEnum typeEnum = p.getDecryptType();
+        if (HttpProperties.DecryptTypeEnum.NONE.equals(typeEnum)) {
+            return proceed;
+        }
+
         if (HttpProperties.DecryptTypeEnum.FULL.equals(typeEnum)) {
-            // decrypt response
-            Object decrypt = DecryptComponent.tryDecrypt(body.toString());
-            ResponseBody decryptResponse =
-                    ResponseBody.create(body.contentType(), decrypt.toString());
-            return proceed.newBuilder().body(decryptResponse).build();
+            try {
+                // decrypt response
+                Object decrypt = DecryptComponent.tryDecrypt(bodyStr);
+                ResponseBody decryptResponse =
+                        ResponseBody.create(body.contentType(), decrypt.toString());
+                return proceed.newBuilder().body(decryptResponse).build();
+            } catch (Exception ex) {
+                body.close();
+                throw ex;
+            }
         }
 
         return proceed;

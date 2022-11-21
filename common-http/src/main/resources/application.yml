@@ -13,4 +13,4 @@ common:
     decrypt_client_id: xx
     decrypt_client_secret: xx
     decrypt_token_url: /token
-    decrypt_type: FULL | DATA | ITEM
+    decrypt_type: NONE

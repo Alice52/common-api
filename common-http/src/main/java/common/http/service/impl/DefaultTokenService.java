@@ -1,7 +1,7 @@
 package common.http.service.impl;
 
 import cn.hutool.core.util.StrUtil;
-import com.fasterxml.jackson.core.type.TypeReference;
+import cn.hutool.http.Method;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableMap;
 import common.http.configuration.HttpProperties;
@@ -48,7 +48,8 @@ public class DefaultTokenService extends TokenService {
                         p.getAccessTokenUrl(),
                         p.getGrantType(),
                         p.getClientId(),
-                        p.getClientSecret());
+                        p.getClientSecret(),
+                        TokenVO.class);
 
         if (token != null && StrUtil.isNotEmpty(token.getAccessToken())) {
             redisUtil.set(
@@ -68,7 +69,8 @@ public class DefaultTokenService extends TokenService {
                         p.getDecryptTokenUrl(),
                         p.getGrantType(),
                         p.getClientId(),
-                        p.getClientSecret());
+                        p.getClientSecret(),
+                        TokenVO.class);
 
         if (token != null && StrUtil.isNotEmpty(token.getAccessToken())) {
             redisUtil.set(
@@ -82,7 +84,7 @@ public class DefaultTokenService extends TokenService {
     }
 
     @SneakyThrows
-    private <T> T token(String url, String type, String id, String secret) {
+    private <T> T token(String url, String type, String id, String secret, Class<T> clazz) {
         Map<String, String> params =
                 ImmutableMap.<String, String>builder()
                         .put(GRANT_TYPE, type)
@@ -91,7 +93,7 @@ public class DefaultTokenService extends TokenService {
                         .build();
 
         Map<String, String> headers = ImmutableMap.of(API_AUTH_FLAG, Boolean.TRUE.toString());
-        String response = HttpSupport.doPost(p.getHost() + url, params, headers);
-        return objectMapper.readValue(response, new TypeReference<T>() {});
+        String response = HttpSupport.doRequest(Method.GET, p.getHost() + url, params, headers);
+        return objectMapper.readValue(response, clazz);
     }
 }

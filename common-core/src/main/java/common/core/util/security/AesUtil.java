@@ -1,12 +1,5 @@
 package common.core.util.security;
 
-import java.util.Arrays;
-import java.util.Base64;
-import java.util.Optional;
-
-import javax.crypto.Cipher;
-import javax.crypto.spec.SecretKeySpec;
-
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.lang.Assert;
 import cn.hutool.core.util.ObjectUtil;
@@ -14,6 +7,12 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
+
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
+import java.util.Arrays;
+import java.util.Base64;
+import java.util.Optional;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
@@ -32,20 +31,21 @@ public class AesUtil {
 
     public static String encrypt(Object data) {
 
+        return encrypt(data, DEFAULT_SECRET);
+    }
+
+    public static String encrypt(Object data, String secret) {
         if (ObjectUtil.isNull(data)) {
             return StrUtil.EMPTY;
         }
 
         if (ObjectUtil.isBasicType(data)) {
-            return encrypt(data.toString(), DEFAULT_SECRET, DEFAULT_ALG);
+            return encrypt(data.toString(), secret, DEFAULT_ALG);
         }
 
-        return encrypt(JSONUtil.toJsonStr(data), DEFAULT_SECRET, DEFAULT_ALG);
+        return encrypt(JSONUtil.toJsonStr(data), secret, DEFAULT_ALG);
     }
 
-    public static String encrypt(String data, String secret) {
-        return encrypt(data, secret, DEFAULT_ALG);
-    }
     // 加密
     public static String encrypt(String data, String secret, String alg) {
 

@@ -3,6 +3,7 @@ package common.http.component;
 import cn.hutool.core.text.CharSequenceUtil;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import common.core.util.security.AesUtil;
 import common.http.constant.enums.RedisHttpEnum;
 import common.http.exception.DecryptException;
 import common.http.service.TokenService;
@@ -12,11 +13,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
-import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
-import java.nio.charset.StandardCharsets;
-import java.util.Base64;
+import java.util.Objects;
 import java.util.concurrent.*;
+
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 /**
  * @author asd <br>
@@ -39,7 +40,7 @@ public class DecryptComponent {
                     new ThreadPoolExecutor.CallerRunsPolicy());
 
     // 默认解密算法
-    private static final String CIPHER_ALGORITHM = "AES/GCM/NoPadding";
+    private static final String EBC_ALGORITHM = "AES/ECB/PKCS5Padding";
     // 私有解密成员变量
     private static SecretKeySpec secretKey;
 
@@ -48,17 +49,17 @@ public class DecryptComponent {
     private static ObjectMapper objectMapper;
 
     @Resource
-    public static void setObjectMapper(ObjectMapper objectMapper) {
+    public void setObjectMapper(ObjectMapper objectMapper) {
         DecryptComponent.objectMapper = objectMapper;
     }
 
     @Resource
-    public static void setTokenService(TokenService tokenService) {
+    public void setTokenService(TokenService tokenService) {
         DecryptComponent.tokenService = tokenService;
     }
 
     @Resource
-    public static void setRedisUtil(RedisUtil redisUtil) {
+    public void setRedisUtil(RedisUtil redisUtil) {
         DecryptComponent.redisUtil = redisUtil;
     }
 
@@ -68,7 +69,7 @@ public class DecryptComponent {
      * @param myKey
      */
     private static void setKey(String myKey) {
-        byte[] key = myKey.getBytes(StandardCharsets.UTF_8);
+        byte[] key = myKey.getBytes(UTF_8);
         secretKey = new SecretKeySpec(key, "AES");
     }
 
@@ -80,29 +81,18 @@ public class DecryptComponent {
      * @return
      */
     public static String decrypt(String strToDecrypt, String secret) {
-        try {
-            setKey(secret);
-            Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM);
-            cipher.init(Cipher.DECRYPT_MODE, secretKey);
-            return new String(cipher.doFinal(Base64.getDecoder().decode(strToDecrypt)));
-        } catch (Exception e) {
-            log.info("Error while decrypting: " + e.toString());
+
+        String val = AesUtil.decryptOrNull(strToDecrypt, secret);
+        if (Objects.isNull(val)) {
             tokenService.refreshDecryptToken();
         }
-        return null;
+
+        return val;
     }
 
     public static String encrypt(Object data, String secret) {
-        try {
-            setKey(secret);
-            Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM);
-            cipher.init(Cipher.DECRYPT_MODE, secretKey);
-            return new String(
-                    cipher.doFinal(Base64.getEncoder().encode(data.toString().getBytes())));
-        } catch (Exception e) {
-            log.info("Error while encrypt: " + e.toString());
-        }
-        return null;
+
+        return AesUtil.encrypt(data.toString(), secret);
     }
 
     @SneakyThrows
@@ -117,7 +107,10 @@ public class DecryptComponent {
             }
         }
 
-        log.error("[http] Error while decrypting: with retry {} times.", origin);
+        log.error(
+                "[http] Error while decrypting[{}]: with retry {} times.",
+                origin,
+                TRY_DECRYPT_TIMES);
         throw new DecryptException("[http] Decrypting Response Error");
     }
 

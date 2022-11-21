@@ -36,7 +36,6 @@ public class TokenServiceImpl extends TokenService {
         throw new OperationNotSupportedException();
     }
 
-    @SneakyThrows
     @Override
     public TokenVO token() {
 
