@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import top.hubby.openapi.util.OpenApiSecureUtil;
 
 import static common.core.constant.RequestConstants.APPID;
-import static top.hubby.openapi.component.OpenApiSecretComponent.APP_MAP;
+import static top.hubby.openapi.configuration.OpenApiConfiguration.APP_MAP;
 
 /**
  * @author zack <br>

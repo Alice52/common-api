@@ -1,6 +1,6 @@
 package common.http.component;
 
-import cn.hutool.core.util.StrUtil;
+import cn.hutool.core.text.CharSequenceUtil;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import common.http.constant.enums.RedisHttpEnum;
@@ -72,8 +72,14 @@ public class DecryptComponent {
         secretKey = new SecretKeySpec(key, "AES");
     }
 
-    // 解密代码
-    private static String decrypt(String strToDecrypt, String secret) {
+    /**
+     * 解密代码
+     *
+     * @param strToDecrypt
+     * @param secret
+     * @return
+     */
+    public static String decrypt(String strToDecrypt, String secret) {
         try {
             setKey(secret);
             Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM);
@@ -86,6 +92,19 @@ public class DecryptComponent {
         return null;
     }
 
+    public static String encrypt(Object data, String secret) {
+        try {
+            setKey(secret);
+            Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM);
+            cipher.init(Cipher.DECRYPT_MODE, secretKey);
+            return new String(
+                    cipher.doFinal(Base64.getEncoder().encode(data.toString().getBytes())));
+        } catch (Exception e) {
+            log.info("Error while encrypt: " + e.toString());
+        }
+        return null;
+    }
+
     @SneakyThrows
     public static <T> T tryDecrypt(String origin) {
 
@@ -93,7 +112,7 @@ public class DecryptComponent {
         while (retry <= TRY_DECRYPT_TIMES) {
             retry++;
             String decrypt = decrypt(origin, getDecryptKey());
-            if (StrUtil.isNotBlank(decrypt)) {
+            if (CharSequenceUtil.isNotBlank(decrypt)) {
                 return objectMapper.readValue(decrypt, new TypeReference<T>() {});
             }
         }

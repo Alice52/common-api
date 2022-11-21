@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- considering control sls by config: include  -->
+<configuration>
+    <!-- include: common-core/resource-->
+    <include resource="logback-include.xml"/>
+
+    <springProperty scope="context" name="env" source="spring.profiles.active"/>
+
+    <!-- Level: FATAL 0  ERROR 3  WARN 4  INFO 6  DEBUG 7 -->
+    <root level="INFO">
+        <if condition='property("env").contains("dev") || property("env").contains("prod")'>
+            <then>
+                <appender-ref ref="aliyun"/>
+            </then>
+        </if>
+
+        <appender-ref ref="console"/>
+        <appender-ref ref="debug"/>
+        <appender-ref ref="error"/>
+    </root>
+</configuration>

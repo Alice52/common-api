@@ -3,7 +3,10 @@ package common.http.model;
 import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @author asd <br>
@@ -11,6 +14,9 @@ import lombok.Data;
  * @project project-cloud-custom <br>
  */
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class TokenVO implements Serializable {
 
     private static final long serialVersionUID = 1L;

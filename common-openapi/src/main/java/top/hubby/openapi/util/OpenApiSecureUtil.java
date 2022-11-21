@@ -20,7 +20,7 @@ import static common.core.constant.RequestConstants.NONCESTR;
 import static common.core.constant.RequestConstants.SIGNATURE;
 import static common.core.constant.RequestConstants.TIMESTAMP;
 import static common.core.constant.enums.CommonResponseEnum.OPENAPI_SIGNATURE_ERROR;
-import static top.hubby.openapi.component.OpenApiSecretComponent.APP_MAP;
+import static top.hubby.openapi.configuration.OpenApiConfiguration.APP_MAP;
 
 /**
  * @author asd <br>

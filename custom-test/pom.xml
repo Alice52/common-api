@@ -21,6 +21,7 @@
         <module>custom-syntax</module>
         <module>custom-oss</module>
         <module>custom-test-mq</module>
+        <module>custom-test-log</module>
     </modules>
 
     <dependencies>

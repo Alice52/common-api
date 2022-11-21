@@ -1,8 +1,9 @@
 package common.http.interceptor;
 
 import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.core.util.StrUtil;
 import common.http.component.DecryptComponent;
-import common.redis.utils.RedisUtil;
+import common.http.configuration.HttpProperties;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.Interceptor;
 import okhttp3.Response;
@@ -22,7 +23,7 @@ import java.io.IOException;
 @Component
 public class DecryptInterceptor implements Interceptor {
 
-    @Resource private RedisUtil redisUtil;
+    @Resource private HttpProperties p;
     @Resource private DecryptComponent decryptComponent;
 
     @NotNull
@@ -31,10 +32,19 @@ public class DecryptInterceptor implements Interceptor {
 
         Response proceed = chain.proceed(chain.request());
         ResponseBody body = proceed.body();
-        if (ObjectUtil.isNull(body)) {
+        if (ObjectUtil.isNull(body) || StrUtil.isBlank(body.toString())) {
             return proceed;
         }
 
-        return null;
+        HttpProperties.DecryptTypeEnum typeEnum = p.getDecryptType();
+        if (HttpProperties.DecryptTypeEnum.FULL.equals(typeEnum)) {
+            // decrypt response
+            Object decrypt = DecryptComponent.tryDecrypt(body.toString());
+            ResponseBody decryptResponse =
+                    ResponseBody.create(body.contentType(), decrypt.toString());
+            return proceed.newBuilder().body(decryptResponse).build();
+        }
+
+        return proceed;
     }
 }

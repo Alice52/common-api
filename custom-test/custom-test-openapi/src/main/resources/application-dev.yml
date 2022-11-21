@@ -6,6 +6,8 @@ spring:
 common:
   openapi:
     enabled: true
-    earrival:
-      client-id: e-arrival
-      client-secret: 5231549ab56d11eca37d0242ac160003
+    third-party:
+        - client-id: custom-test-http
+        client-secret: 5231549ab56d11eca37d0242ac160003
+      - client-id: custom-syntax
+        client-secret: cd19de5f697c11ed900500163e0a2c73

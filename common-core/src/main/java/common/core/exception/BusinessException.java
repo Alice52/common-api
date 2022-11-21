@@ -11,6 +11,11 @@ public class BusinessException extends BaseException {
 
     private static final long serialVersionUID = 1L;
 
+    public BusinessException(IBaseErrorResponse responseEnum) {
+        super(responseEnum);
+    }
+
+
     public BusinessException(IBaseErrorResponse responseEnum, Object[] args, String message) {
         super(responseEnum, args, message);
     }

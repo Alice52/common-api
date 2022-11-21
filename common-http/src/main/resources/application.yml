@@ -1,9 +1,16 @@
 common:
   http:
+    max_retry_times: 10
+    retry_sleep: 100
+
     host: http://mock-api.com/5n9eBAno.mock
-    clientId: xxx
-    clientSecret: xxx
-    decryptClientId: xx
-    decryptClientSecret: xx
-    maxRetryTimes: 10
-    retrySleep: 100
+    grant_type: client_credentials
+
+    client_id: client_id
+    client_secret: client_secret
+    access_token_url: /token
+
+    decrypt_client_id: xx
+    decrypt_client_secret: xx
+    decrypt_token_url: /token
+    decrypt_type: FULL | DATA | ITEM

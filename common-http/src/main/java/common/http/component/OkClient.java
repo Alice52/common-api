@@ -42,7 +42,7 @@ public class OkClient {
         return builder.addInterceptor(retryInterceptor)
                 .addInterceptor(authInterceptor)
                 .addInterceptor(loggingInterceptor)
-                // .addInterceptor(decryptInterceptor)
+                .addInterceptor(decryptInterceptor)
                 .build();
     }
 }
