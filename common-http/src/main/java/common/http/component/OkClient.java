@@ -1,19 +1,17 @@
 package common.http.component;
 
-import java.time.Duration;
-
-import javax.annotation.Resource;
-
 import common.http.interceptor.BasicAuthInterceptor;
 import common.http.interceptor.DecryptInterceptor;
 import common.http.interceptor.LoggingRequestInterceptor;
 import common.http.interceptor.RetryInterceptor;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.OkHttpClient;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.Resource;
+import java.time.Duration;
 
 /**
  * @see okhttp3.logging.HttpLoggingInterceptor

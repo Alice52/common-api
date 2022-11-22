@@ -1,4 +1,4 @@
-package top.hubby.test.custom.http.service;
+package top.hubby.test.custom.http.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import common.http.configuration.HttpProperties;

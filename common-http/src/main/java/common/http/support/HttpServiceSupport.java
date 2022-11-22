@@ -1,5 +1,12 @@
 package common.http.support;
 
+import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.util.ObjectUtil;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import common.core.constant.SecurityConstants;
+import common.core.util.R;
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -7,14 +14,6 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
-
-import cn.hutool.core.collection.CollUtil;
-import cn.hutool.core.util.ObjectUtil;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import common.core.constant.SecurityConstants;
-import common.core.util.R;
-import common.http.model.PageVO;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author asd <br>
@@ -29,14 +28,14 @@ public class HttpServiceSupport {
     private static final int RETRY_LIMIT = 4;
 
     /**
-     * @param sup 调用 HMP 系统获取数据相关的方法
+     * @param sup 调用系统获取数据相关的方法
      * @param doUpdateFunc 拿到数据之后修改本地数据库的相关方法
      * @param notifyFunc 发送短信相关的方法
      * @param <T>
      * @param <U>
      */
     public static <T, U> void doSyncTemplate(
-            BiFunction<String, Page<T>, R<PageVO<U>>> sup,
+            BiFunction<String, Page<T>, R<Page<U>>> sup,
             Consumer<List<U>> doUpdateFunc,
             Consumer<List<Long>> notifyFunc) {
         Set<Page<T>> failedPages = new HashSet<>();
@@ -55,7 +54,7 @@ public class HttpServiceSupport {
     private static <U, T> void doUpdate4FailedPage(
             int retry,
             Set<Page<T>> failedPages,
-            BiFunction<String, Page<T>, R<PageVO<U>>> sup,
+            BiFunction<String, Page<T>, R<Page<U>>> sup,
             Consumer<List<U>> doUpdateFunc,
             Consumer<List<Long>> notifyFunc) {
         if (CollUtil.isEmpty(failedPages)) {
@@ -94,7 +93,7 @@ public class HttpServiceSupport {
 
     /**
      * @param page 正在进行的页数
-     * @param sup 调用 HMP 系统获取数据相关的方法
+     * @param sup 调用系统获取数据相关的方法
      * @param doUpdateFunc 拿到数据之后修改本地数据库的相关方法
      * @param <T>
      * @param <U>
@@ -102,11 +101,11 @@ public class HttpServiceSupport {
      */
     public static <T, U> boolean doUpdateSpecifiedPage(
             Page<T> page,
-            BiFunction<String, Page<T>, R<PageVO<U>>> sup,
+            BiFunction<String, Page<T>, R<Page<U>>> sup,
             Consumer<List<U>> doUpdateFunc) {
 
-        R<PageVO<U>> rawData = sup.apply(SecurityConstants.FROM_IN, page);
-        PageVO<U> realData;
+        R<Page<U>> rawData = sup.apply(SecurityConstants.FROM_IN, page);
+        Page<U> realData;
         if (ObjectUtil.isNull(rawData) || ObjectUtil.isNull(realData = rawData.getData())) {
             log.warn(
                     "the data got from middleware service is empty for page: {}, R: {}",
@@ -115,9 +114,9 @@ public class HttpServiceSupport {
             return false;
         }
 
-        page.setTotal(realData.getTotalElements());
+        page.setTotal(realData.getTotal());
         boolean isSuccess = true;
-        List<U> records = realData.getResponseData();
+        List<U> records = realData.getRecords();
         try {
             doUpdateFunc.accept(records);
         } catch (Exception ex) {

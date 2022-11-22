@@ -36,7 +36,7 @@ public class CustomUser extends User {
     }
 
     public CustomUser(Long id, String username, String password) {
-        super(username, password, Collections.emptyList());
+        super(username, password, Lists.newArrayList;
         this.id = id;
     }
 
@@ -50,7 +50,7 @@ public class CustomUser extends User {
     }
 
     public CustomUser(Long id, String username, String password, Object basicInfo) {
-        super(username, password, Collections.emptyList());
+        super(username, password, Lists.newArrayList());
         this.id = id;
         this.basicInfo = basicInfo;
     }

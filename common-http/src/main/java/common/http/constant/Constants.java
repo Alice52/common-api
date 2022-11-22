@@ -15,6 +15,8 @@ public interface Constants {
 
     // value is string of boolean
     String API_AUTH_FLAG = "no-auth";
+    String DECRYPT_TYPE_FLAG = "decrypt-type";
+
 
     // cache
     String HTTP_PREFIX = SecurityConstants.PROJECT_PREFIX + ":http";

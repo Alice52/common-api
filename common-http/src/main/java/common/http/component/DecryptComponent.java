@@ -92,18 +92,38 @@ public class DecryptComponent {
 
     public static String encrypt(Object data, String secret) {
 
-        return AesUtil.encrypt(data.toString(), secret);
+        return AesUtil.encrypt(data, secret);
     }
 
     @SneakyThrows
-    public static <T> T tryDecrypt(String origin) {
+    public static String tryDecrypt(String origin) {
 
         int retry = 1;
         while (retry <= TRY_DECRYPT_TIMES) {
             retry++;
             String decrypt = decrypt(origin, getDecryptKey());
             if (CharSequenceUtil.isNotBlank(decrypt)) {
-                return objectMapper.readValue(decrypt, new TypeReference<T>() {});
+                return decrypt;
+            }
+        }
+
+        log.error(
+                "[http] Error while decrypting[{}]: with retry {} times.",
+                origin,
+                TRY_DECRYPT_TIMES);
+        throw new DecryptException("[http] Decrypting Response Error");
+    }
+
+    @SneakyThrows
+    @Deprecated
+    public static <T> T tryDecrypt(String origin, TypeReference<T> ref) {
+
+        int retry = 1;
+        while (retry <= TRY_DECRYPT_TIMES) {
+            retry++;
+            String decrypt = decrypt(origin, getDecryptKey());
+            if (CharSequenceUtil.isNotBlank(decrypt)) {
+                return objectMapper.readValue(decrypt, ref);
             }
         }
 

@@ -1,20 +1,18 @@
 package common.http.interceptor;
 
-import java.util.concurrent.TimeUnit;
-
-import javax.annotation.Resource;
-
 import cn.hutool.core.util.NumberUtil;
+import common.http.configuration.HttpProperties;
 import common.http.exception.DecryptException;
 import common.http.exception.RetryException;
-import common.http.configuration.HttpProperties;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
-
 import org.springframework.stereotype.Component;
+
+import javax.annotation.Resource;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author asd <br>
@@ -27,7 +25,7 @@ public class RetryInterceptor implements Interceptor {
 
     private static final String EXECUTE_TIMES = "retryTimes";
     private static String errMsg;
-    @Resource private HttpProperties hmpProperties;
+    @Resource private HttpProperties properties;
 
     @Override
     public Response intercept(Chain chain) {
@@ -38,12 +36,12 @@ public class RetryInterceptor implements Interceptor {
     private Response process(Chain chain, Request request) {
 
         int times = NumberUtil.parseInt(request.headers().get(EXECUTE_TIMES));
-        if (times++ > hmpProperties.getMaxRetryTimes()) {
+        if (times++ > properties.getMaxRetryTimes()) {
             log.warn(
                     "Retry Limit[{}] reached for hmp api[{}]",
-                    hmpProperties.getMaxRetryTimes(),
+                    properties.getMaxRetryTimes(),
                     request.url());
-            throw new RetryException(hmpProperties.getMaxRetryTimes(), errMsg);
+            throw new RetryException(properties.getMaxRetryTimes(), errMsg);
         }
 
         Response response = null;
@@ -61,7 +59,7 @@ public class RetryInterceptor implements Interceptor {
                             .addHeader(EXECUTE_TIMES, String.valueOf(times))
                             .build();
             log.warn("call mchmp failed for times[{}], detail: {}", times, ex);
-            int sleepMillis = hmpProperties.getRetrySleep() * times;
+            int sleepMillis = properties.getRetrySleep() * times;
             try {
                 TimeUnit.MILLISECONDS.sleep(sleepMillis);
             } finally {

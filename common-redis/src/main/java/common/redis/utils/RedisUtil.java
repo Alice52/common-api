@@ -1,38 +1,26 @@
 package common.redis.utils;
 
-import java.time.Duration;
-import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
-import java.util.concurrent.TimeUnit;
-import java.util.stream.IntStream;
-
-import javax.annotation.Resource;
-
 import cn.hutool.core.util.ObjectUtil;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import common.core.util.se.LocalDateTimeUtil;
 import common.redis.constants.enums.RedisKeyCommonEnum;
 import common.redis.key.KeyPrefix;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
-
 import org.springframework.data.redis.connection.BitFieldSubCommands;
-import org.springframework.data.redis.core.ConvertingCursor;
-import org.springframework.data.redis.core.RedisCallback;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.ScanOptions;
-import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.*;
 import org.springframework.data.redis.core.script.DefaultRedisScript;
 import org.springframework.data.redis.core.script.RedisScript;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.Resource;
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.IntStream;
 
 import static common.core.constant.CommonConstants.ZERO;
 import static common.redis.utils.RedisKeyUtil.buildKey;
@@ -80,7 +68,7 @@ public class RedisUtil {
         String cursor =
                 stringRedisTemplate.execute(
                         batchRegDelete,
-                        Collections.emptyList(),
+                        Lists.newArrayList(),
                         ZERO,
                         matchKey,
                         String.valueOf(batchCount));
@@ -91,7 +79,7 @@ public class RedisUtil {
             cursor =
                     stringRedisTemplate.execute(
                             batchRegDelete,
-                            Collections.emptyList(),
+                            Lists.newArrayList(),
                             cursor,
                             matchKey,
                             String.valueOf(batchCount));
@@ -124,7 +112,7 @@ public class RedisUtil {
         String cursor =
                 stringRedisTemplate.execute(
                         batchRegDelete,
-                        Collections.emptyList(),
+                        Lists.newArrayList(),
                         ZERO,
                         matchKey,
                         String.valueOf(batchCount));
@@ -133,7 +121,7 @@ public class RedisUtil {
             cursor =
                     stringRedisTemplate.execute(
                             batchRegDelete,
-                            Collections.emptyList(),
+                            Lists.newArrayList(),
                             cursor,
                             matchKey,
                             String.valueOf(batchCount));
@@ -422,7 +410,7 @@ public class RedisUtil {
             cursor.forEachRemaining(set::add);
             return set;
         }
-        return Collections.emptySet();
+        return Sets.newHashSet();
     }
 
     public Map<String, Object> scanSearchWithValue(
@@ -438,14 +426,14 @@ public class RedisUtil {
     public Boolean reduceStock(RedisKeyCommonEnum prefix, String... keys) {
 
         String matchKey = buildKey(prefix, keys);
-        return stringRedisTemplate.execute(reduceStock, Collections.emptyList(), matchKey);
+        return stringRedisTemplate.execute(reduceStock, Lists.newArrayList(), matchKey);
     }
 
     public Boolean reduceStock(RedisKeyCommonEnum prefix, int delta, String... keys) {
 
         String matchKey = buildKey(prefix, keys);
         return stringRedisTemplate.execute(
-                reduceStock, Collections.emptyList(), matchKey, String.valueOf(delta));
+                reduceStock, Lists.newArrayList(), matchKey, String.valueOf(delta));
     }
 
     /**

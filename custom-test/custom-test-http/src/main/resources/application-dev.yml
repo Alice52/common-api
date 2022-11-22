@@ -24,4 +24,4 @@ common:
     decrypt_client_id: custom-test-http
     decrypt_client_secret: client_secret
     decrypt_token_url: /openapi/access-token
-    decrypt_type: none
+    decrypt_type: full

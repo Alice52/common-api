@@ -1,5 +1,6 @@
 package top.hubby.test.custom.openapi.controller.mockup;
 
+import com.google.common.collect.Lists;
 import common.core.exception.BusinessException;
 import common.core.model.Pagination;
 import common.core.util.R;
@@ -12,9 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.crypto.Cipher;
-import javax.crypto.SecretKey;
-import javax.crypto.spec.SecretKeySpec;
+import java.util.List;
 
 import static top.hubby.openapi.configuration.OpenApiConfiguration.APP_MAP;
 import static top.hubby.test.custom.openapi.constants.OpenApiResponseEnum.CLIENT_ID_INVALID;
@@ -31,12 +30,24 @@ import static top.hubby.test.custom.openapi.constants.OpenApiResponseEnum.CLIENT
 public class EncryptMockController {
 
     // this is origin data.
-    Pagination data =
+    Pagination<Object> build1 =
             Pagination.builder().currentPage(1).total(100).pageCount(5).pageSize(20).build();
+    Pagination<Object> build2 =
+            Pagination.builder().currentPage(1).total(100).pageCount(5).pageSize(20).build();
+    List<Pagination> records = Lists.newArrayList(build1, build2);
+    Pagination<Pagination> data =
+            Pagination.<Pagination>builder()
+                    .currentPage(1)
+                    .total(100)
+                    .pageCount(5)
+                    .pageSize(20)
+                    .records(records)
+                    .build();
 
     @SneakyThrows
     @GetMapping("/encrypted/full")
-    public String token(@RequestParam("clientId") String clientId) {
+    public String full(@RequestParam("clientId") String clientId) {
+
         if (!APP_MAP.containsKey(clientId)) {
             throw new BusinessException(CLIENT_ID_INVALID);
         }
@@ -46,11 +57,26 @@ public class EncryptMockController {
         R<Pagination> r = new R<>(data);
 
         String encrypt = DecryptComponent.encrypt(r, secret);
-
         log.info("encrypted data: {}", encrypt);
         String decrypt = DecryptComponent.decrypt(encrypt, secret);
         log.info("decrypt data: {}", decrypt);
 
         return encrypt;
+    }
+
+    @SneakyThrows
+    @GetMapping("/encrypted/party")
+    public R<String> party(@RequestParam("clientId") String clientId) {
+        if (!APP_MAP.containsKey(clientId)) {
+            throw new BusinessException(CLIENT_ID_INVALID);
+        }
+        String secret = APP_MAP.get(clientId);
+
+        String encrypt = DecryptComponent.encrypt(data, secret);
+        log.info("encrypted data: {}", encrypt);
+        String decrypt = DecryptComponent.decrypt(encrypt, secret);
+        log.info("decrypt data: {}", decrypt);
+
+        return R.success(encrypt);
     }
 }

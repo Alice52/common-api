@@ -7,6 +7,8 @@ import lombok.Getter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.Arrays;
+
 import static common.http.configuration.HttpProperties.DecryptTypeEnum.FULL;
 
 /**
@@ -46,5 +48,13 @@ public class HttpProperties {
         ;
 
         String desc;
+
+        public static DecryptTypeEnum getByName(String name) {
+
+            return Arrays.stream(DecryptTypeEnum.values())
+                    .filter(x -> StrUtil.equalsAnyIgnoreCase(name, x.name()))
+                    .findFirst()
+                    .orElseGet(null);
+        }
     }
 }

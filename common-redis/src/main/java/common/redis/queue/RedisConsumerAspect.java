@@ -1,11 +1,6 @@
 package common.redis.queue;
 
-import java.time.Duration;
-import java.util.Collections;
-import java.util.Map;
-
-import javax.annotation.Resource;
-
+import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.RandomUtil;
 import common.redis.annotation.RedisConsumer;
@@ -13,7 +8,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RStream;
 import org.redisson.api.RedissonClient;
 import org.redisson.api.StreamMessageId;
-
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -22,6 +16,10 @@ import org.springframework.data.redis.connection.stream.ReadOffset;
 import org.springframework.data.redis.connection.stream.StreamOffset;
 import org.springframework.data.redis.stream.StreamListener;
 import org.springframework.data.redis.stream.StreamMessageListenerContainer;
+
+import javax.annotation.Resource;
+import java.time.Duration;
+import java.util.Map;
 
 /**
  * @author zack <br>
@@ -95,7 +93,7 @@ public class RedisConsumerAspect {
             if (!Boolean.TRUE.equals(stream.isExists())) {
                 // 往stream 发送消息，自动创建 stream
                 StreamMessageId recordId =
-                        stream.addAll(Collections.singletonMap("init-key", "init-data"));
+                        stream.addAll(MapUtil.builder().put("init-key", "init-data").build());
                 // 删除测试消息
                 stream.remove(recordId);
             }

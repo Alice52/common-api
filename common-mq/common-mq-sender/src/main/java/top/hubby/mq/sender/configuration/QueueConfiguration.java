@@ -1,20 +1,15 @@
 package top.hubby.mq.sender.configuration;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
-
-import com.google.common.collect.ImmutableMap;
-import top.hubby.mq.sender.configuration.props.MQProps;
-
-import org.springframework.amqp.core.Binding;
-import org.springframework.amqp.core.BindingBuilder;
-import org.springframework.amqp.core.DirectExchange;
-import org.springframework.amqp.core.Exchange;
-import org.springframework.amqp.core.Queue;
-import org.springframework.amqp.core.TopicExchange;
+import cn.hutool.core.map.MapUtil;
+import org.springframework.amqp.core.*;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import top.hubby.mq.sender.configuration.props.MQProps;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
+import java.util.Map;
 
 /**
  * spel: https://roytuts.com/spring-conditionalonexpression-example/
@@ -33,7 +28,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class QueueConfiguration {
-    private static ImmutableMap<String, Object> deadLetterMap;
+    private static Map<String, Object> deadLetterMap;
     @Resource public MQProps props;
 
     @PostConstruct
@@ -58,7 +53,7 @@ public class QueueConfiguration {
          * </pre>
          */
         deadLetterMap =
-                ImmutableMap.<String, Object>builder()
+                MapUtil.<String, Object>builder()
                         .put("x-dead-letter-exchange", props.getDeadLetterExchange())
                         .put("x-dead-letter-routing-key", props.getDeadLetterRoutingKey())
                         .build();

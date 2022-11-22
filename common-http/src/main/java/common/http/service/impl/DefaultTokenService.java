@@ -1,9 +1,9 @@
 package common.http.service.impl;
 
+import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.http.Method;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.collect.ImmutableMap;
 import common.http.configuration.HttpProperties;
 import common.http.constant.enums.RedisHttpEnum;
 import common.http.model.TokenVO;
@@ -86,14 +86,19 @@ public class DefaultTokenService extends TokenService {
     @SneakyThrows
     private <T> T token(String url, String type, String id, String secret, Class<T> clazz) {
         Map<String, String> params =
-                ImmutableMap.<String, String>builder()
+                MapUtil.<String, String>builder()
                         .put(GRANT_TYPE, type)
                         .put(CLIENT_ID, id)
                         .put(CLIENT_SECRET, secret)
                         .build();
 
-        Map<String, String> headers = ImmutableMap.of(API_AUTH_FLAG, Boolean.TRUE.toString());
-        String response = HttpSupport.doRequest(Method.GET, p.getHost() + url, params, headers);
+        Map<String, String> headers =
+                MapUtil.<String, String>builder()
+                        .put(API_AUTH_FLAG, Boolean.TRUE.toString())
+                        .build();
+        String response =
+                HttpSupport.doRequest(
+                        Method.GET, url, params, headers, HttpProperties.DecryptTypeEnum.NONE);
         return objectMapper.readValue(response, clazz);
     }
 }

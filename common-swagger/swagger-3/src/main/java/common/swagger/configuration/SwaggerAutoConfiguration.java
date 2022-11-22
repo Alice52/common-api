@@ -133,8 +133,8 @@ public class SwaggerAutoConfiguration implements WebMvcConfigurer {
                 .paths(getPredicate(excludePath, basePath))
                 .build()
                 .protocols(new LinkedHashSet<>(Arrays.asList("https", "http")))
-                .securitySchemes(Collections.singletonList(securitySchema()))
-                .securityContexts(Collections.singletonList(securityContext()))
+                .securitySchemes(Lists.newArrayList(securitySchema()))
+                .securityContexts(Lists.newArrayList(securityContext()))
                 .pathMapping(swaggerProperties.getPathMapping());
     }
 
@@ -161,7 +161,7 @@ public class SwaggerAutoConfiguration implements WebMvcConfigurer {
                         .map(x -> new AuthorizationScope(x.getScope(), x.getDescription()))
                         .collect(Collectors.toList());
 
-        return Collections.singletonList(
+        return Lists.newArrayList(
                 SecurityReference.builder()
                         .reference(swaggerProperties.getAuthorization().getName())
                         .scopes(authorizationScopeList.toArray(new AuthorizationScope[0]))
