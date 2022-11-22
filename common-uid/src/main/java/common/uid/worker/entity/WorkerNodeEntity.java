@@ -1,13 +1,13 @@
 package common.uid.worker.entity;
 
-import java.util.Date;
-
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import common.uid.worker.WorkerNodeType;
 import lombok.Data;
 import lombok.ToString;
+
+import java.util.Date;
 
 /**
  * @author zack <br>

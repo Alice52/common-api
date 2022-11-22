@@ -1,14 +1,5 @@
 package common.oss.service.impl;
 
-import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-import java.util.TreeMap;
-
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
-
 import cn.hutool.core.util.StrUtil;
 import com.qcloud.cos.COSClient;
 import com.qcloud.cos.ClientConfig;
@@ -25,10 +16,17 @@ import common.oss.properties.TencentOSSProperties;
 import common.oss.service.OSSHander;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONObject;
-
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+import java.util.TreeMap;
 
 /**
  * @author zack <br>

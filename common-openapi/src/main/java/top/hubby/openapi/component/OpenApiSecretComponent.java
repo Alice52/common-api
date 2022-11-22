@@ -1,17 +1,17 @@
-//package top.hubby.openapi.component;
+// package top.hubby.openapi.component;
 //
-//import java.util.HashMap;
+// import java.util.HashMap;
 //
-//import javax.annotation.PostConstruct;
+// import javax.annotation.PostConstruct;
 //
-//import org.springframework.beans.factory.annotation.Value;
+// import org.springframework.beans.factory.annotation.Value;
 //
-///**
+/// **
 // * @author zack <br>
 // * @create 2022-04-07 16:32 <br>
 // * @project mc-platform <br>
 // */
-//public final class OpenApiSecretComponent {
+// public final class OpenApiSecretComponent {
 //
 //    public static HashMap<String, String> APP_MAP = new HashMap<>();
 //
@@ -32,4 +32,4 @@
 //    public void seteArrivalSecret(String eArrivalSecret) {
 //        OpenApiSecretComponent.eArrivalSecret = eArrivalSecret;
 //    }
-//}
+// }

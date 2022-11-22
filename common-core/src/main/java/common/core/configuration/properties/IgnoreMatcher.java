@@ -1,7 +1,6 @@
 package common.core.configuration.properties;
 
 import lombok.Data;
-
 import org.springframework.http.HttpMethod;
 
 /**

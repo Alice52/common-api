@@ -1,7 +1,6 @@
 package common.uid;
 
 import lombok.Getter;
-
 import org.springframework.util.Assert;
 
 /**

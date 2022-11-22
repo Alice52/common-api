@@ -15,14 +15,13 @@
  */
 package common.uid.buffer;
 
-import java.util.concurrent.atomic.AtomicLong;
-
 import common.uid.handler.RejectedPutBufferHandler;
 import common.uid.handler.RejectedTakeBufferHandler;
 import common.uid.utils.PaddedAtomicLong;
 import lombok.extern.slf4j.Slf4j;
-
 import org.springframework.util.Assert;
+
+import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * Represents a ring buffer based on array.<br>

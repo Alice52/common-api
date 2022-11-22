@@ -1,10 +1,10 @@
 package common.database.model;
 
-import java.util.HashMap;
-import java.util.List;
-
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * @author zack <br>

@@ -1,10 +1,10 @@
 package common.database.model.entity;
 
-import java.io.Serializable;
-import java.time.LocalDateTime;
-
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import lombok.Data;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 @Data
 public class PlainEntity implements Serializable {

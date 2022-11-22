@@ -1,12 +1,11 @@
 package common.swagger.configuration.properties;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import org.springframework.boot.context.properties.ConfigurationProperties;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author zack <br>

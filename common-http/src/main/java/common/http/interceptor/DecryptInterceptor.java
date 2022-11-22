@@ -22,9 +22,8 @@ import static common.http.constant.Constants.API_AUTH_FLAG;
 import static common.http.constant.Constants.DECRYPT_TYPE_FLAG;
 
 /**
- * Considering use strategy to customize handler.
- *  - split and get encrypted data.
- *  - combine response.
+ * Considering use strategy to customize handler. - split and get encrypted data. - combine
+ * response.
  *
  * @author asd <br>
  * @create 2021-11-30 3:05 PM <br>

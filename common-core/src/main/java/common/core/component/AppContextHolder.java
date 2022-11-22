@@ -1,12 +1,11 @@
 package common.core.component;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import cn.hutool.core.util.ObjectUtil;
 import lombok.extern.slf4j.Slf4j;
-
 import org.springframework.stereotype.Component;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author zack <br>

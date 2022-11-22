@@ -1,15 +1,10 @@
 package common.redis.annotation;
 
-import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Inherited;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
-import java.util.concurrent.TimeUnit;
-
 import common.redis.constants.CommonCacheConstants;
 import common.redis.constants.enums.LockLevel;
+
+import java.lang.annotation.*;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author zack <br>

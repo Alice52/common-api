@@ -1,10 +1,5 @@
 package top.hubby.openapi.aspect;
 
-import java.util.Map;
-import java.util.Optional;
-
-import javax.servlet.http.HttpServletRequest;
-
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.json.JSONUtil;
 import common.core.util.ee.WebUtil;
@@ -16,12 +11,15 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
-import top.hubby.openapi.annotation.OpenApiLog;
-
 import org.springframework.core.NamedThreadLocal;
 import org.springframework.core.annotation.Order;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import top.hubby.openapi.annotation.OpenApiLog;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
+import java.util.Optional;
 
 /**
  * @author zack <br>

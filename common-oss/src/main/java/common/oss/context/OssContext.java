@@ -1,20 +1,19 @@
 package common.oss.context;
 
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
 import common.core.constant.enums.CommonResponseEnum;
 import common.oss.annotation.OssType;
 import common.oss.annotation.OssTypeImpl;
 import common.oss.condition.CustomCondition;
 import common.oss.constnats.enums.OssUploadTypeEnum;
 import common.oss.service.OSSHander;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Conditional;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @author zack <br>

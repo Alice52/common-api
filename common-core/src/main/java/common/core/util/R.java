@@ -1,10 +1,5 @@
 package common.core.util;
 
-import java.io.Serializable;
-import java.util.Optional;
-
-import javax.validation.constraints.NotNull;
-
 import common.core.constant.CommonConstants;
 import common.core.constant.enums.CommonResponseEnum;
 import common.core.exception.BaseException;
@@ -14,8 +9,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
 import lombok.experimental.Accessors;
-
 import org.springframework.lang.Nullable;
+
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+import java.util.Optional;
 
 /**
  * @author zack <br>

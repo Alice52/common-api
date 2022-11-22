@@ -1,11 +1,5 @@
 package common.oss.service;
 
-import java.io.File;
-import java.io.UnsupportedEncodingException;
-import java.util.Map;
-
-import javax.naming.OperationNotSupportedException;
-
 import cn.hutool.json.JSONUtil;
 import com.aliyun.oss.OSS;
 import com.aliyun.oss.model.OSSObject;
@@ -14,6 +8,11 @@ import common.core.exception.BaseException;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import javax.naming.OperationNotSupportedException;
+import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.util.Map;
 
 /**
  * @author zack <br>

@@ -1,29 +1,14 @@
 package top.hubby.mq.sender.configuration;
 
-import java.util.Map;
-
 import com.google.common.collect.Maps;
 import lombok.extern.slf4j.Slf4j;
-
-import org.springframework.amqp.core.Binding;
-import org.springframework.amqp.core.BindingBuilder;
-import org.springframework.amqp.core.CustomExchange;
-import org.springframework.amqp.core.FanoutExchange;
-import org.springframework.amqp.core.Queue;
-import org.springframework.amqp.core.TopicExchange;
+import org.springframework.amqp.core.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import static top.hubby.mq.constants.RabbitMQConstants.DELAY_MODE_QUEUE;
-import static top.hubby.mq.constants.RabbitMQConstants.DELAY_QUEUE;
-import static top.hubby.mq.constants.RabbitMQConstants.DIRECT_MODE_QUEUE_ONE;
-import static top.hubby.mq.constants.RabbitMQConstants.FANOUT_MODE_QUEUE;
-import static top.hubby.mq.constants.RabbitMQConstants.QUEUE_THREE;
-import static top.hubby.mq.constants.RabbitMQConstants.QUEUE_TWO;
-import static top.hubby.mq.constants.RabbitMQConstants.TOPIC_MODE_QUEUE;
-import static top.hubby.mq.constants.RabbitMQConstants.TOPIC_ROUTING_KEY_ONE;
-import static top.hubby.mq.constants.RabbitMQConstants.TOPIC_ROUTING_KEY_THREE;
-import static top.hubby.mq.constants.RabbitMQConstants.TOPIC_ROUTING_KEY_TWO;
+import java.util.Map;
+
+import static top.hubby.mq.constants.RabbitMQConstants.*;
 
 /**
  * RabbitMQ配置，主要是配置队列，如果提前存在该队列，可以省略本配置类<br>

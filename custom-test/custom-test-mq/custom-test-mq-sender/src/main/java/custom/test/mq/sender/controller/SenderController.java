@@ -1,19 +1,18 @@
 package custom.test.mq.sender.controller;
 
-import javax.annotation.Resource;
-
 import common.core.util.R;
 import common.uid.generator.CachedUidGenerator;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
-import top.hubby.mq.constants.enums.EventStatus;
-import top.hubby.mq.sender.SenderService;
-import top.hubby.mq.service.DtxEventService;
-
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import top.hubby.mq.constants.enums.EventStatus;
+import top.hubby.mq.sender.SenderService;
+import top.hubby.mq.service.DtxEventService;
+
+import javax.annotation.Resource;
 
 /**
  * @author zack <br>

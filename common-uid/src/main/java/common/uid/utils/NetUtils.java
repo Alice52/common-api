@@ -1,12 +1,12 @@
 package common.uid.utils;
 
+import common.core.constant.enums.CommonResponseEnum;
+import common.core.exception.BaseException;
+
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.util.Enumeration;
-
-import common.core.constant.enums.CommonResponseEnum;
-import common.core.exception.BaseException;
 
 /**
  * @author zack <br>

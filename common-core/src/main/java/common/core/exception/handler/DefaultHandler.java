@@ -1,16 +1,15 @@
 package common.core.exception.handler;
 
-import java.util.concurrent.TimeoutException;
-
 import common.core.constant.enums.CommonResponseEnum;
 import common.core.exception.BaseException;
 import common.core.util.R;
 import lombok.extern.slf4j.Slf4j;
-
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.core.annotation.Order;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import java.util.concurrent.TimeoutException;
 
 /**
  * @author zack <br>

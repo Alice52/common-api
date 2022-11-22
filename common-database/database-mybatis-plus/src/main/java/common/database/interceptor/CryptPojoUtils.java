@@ -1,11 +1,11 @@
 package common.database.interceptor;
 
-import java.lang.reflect.Field;
-
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import common.core.util.security.AesUtil;
 import common.database.sensitive.annotation.SensitiveField;
 import lombok.experimental.UtilityClass;
+
+import java.lang.reflect.Field;
 
 /**
  * @author zack <br>

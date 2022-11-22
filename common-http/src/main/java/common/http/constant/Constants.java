@@ -17,12 +17,8 @@ public interface Constants {
     String API_AUTH_FLAG = "no-auth";
     String DECRYPT_TYPE_FLAG = "decrypt-type";
 
-
     // cache
     String HTTP_PREFIX = SecurityConstants.PROJECT_PREFIX + ":http";
-
-
-
 
     /* ==================== http relative ======= */
 
@@ -32,5 +28,4 @@ public interface Constants {
     String PAYLOAD = "payload";
     String RESPONSE_DATA = "responseData";
     String SUCCESS = "S";
-
 }

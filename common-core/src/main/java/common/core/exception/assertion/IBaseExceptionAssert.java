@@ -1,9 +1,9 @@
 package common.core.exception.assertion;
 
-import java.text.MessageFormat;
-
 import common.core.exception.BaseException;
 import common.core.exception.WrapMessageException;
+
+import java.text.MessageFormat;
 
 /**
  * @author zack <br>

@@ -11,7 +11,6 @@ import common.redis.queue.RedisProducer;
 import common.redis.utils.RedisKeyUtil;
 import common.redis.utils.RedisUtil;
 import org.redisson.spring.starter.RedissonAutoConfiguration;
-
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
 import org.springframework.boot.autoconfigure.data.redis.RedisRepositoriesAutoConfiguration;

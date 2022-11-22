@@ -1,12 +1,10 @@
 package common.core.util.system;
 
-import java.util.Optional;
+import cn.hutool.core.util.StrUtil;
+import org.springframework.context.annotation.ConditionContext;
 
 import javax.annotation.Nullable;
-
-import cn.hutool.core.util.StrUtil;
-
-import org.springframework.context.annotation.ConditionContext;
+import java.util.Optional;
 
 /**
  * @author zack <br>

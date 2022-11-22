@@ -1,8 +1,5 @@
 package common.uid.generator;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import common.core.constant.enums.CommonResponseEnum;
 import common.core.exception.BaseException;
 import common.uid.BitsAllocator;
@@ -12,9 +9,11 @@ import common.uid.handler.RejectedPutBufferHandler;
 import common.uid.handler.RejectedTakeBufferHandler;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.util.Assert;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author zack <br>

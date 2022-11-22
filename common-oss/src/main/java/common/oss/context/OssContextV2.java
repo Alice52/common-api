@@ -1,11 +1,5 @@
 package common.oss.context;
 
-import java.io.File;
-import java.io.UnsupportedEncodingException;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
 import cn.hutool.json.JSONUtil;
 import com.aliyun.oss.OSS;
 import com.aliyun.oss.model.OSSObject;
@@ -18,11 +12,16 @@ import common.oss.constnats.enums.OssUploadTypeEnum;
 import common.oss.service.OSSHander;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONObject;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Conditional;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.stereotype.Component;
+
+import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @author zack <br>

@@ -1,20 +1,19 @@
 package top.hubby.openapi.aspect;
 
-import javax.servlet.http.HttpServletRequest;
-
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
-import top.hubby.openapi.annotation.OpenApiSignature;
-import top.hubby.openapi.util.OpenApiSecureUtil;
-
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import top.hubby.openapi.annotation.OpenApiSignature;
+import top.hubby.openapi.util.OpenApiSecureUtil;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author zack <br>

@@ -1,17 +1,16 @@
 package top.hubby.mq.sender;
 
-import javax.annotation.Resource;
-
 import cn.hutool.json.JSONUtil;
 import common.uid.generator.CachedUidGenerator;
-import top.hubby.mq.constants.enums.EventStatus;
-import top.hubby.mq.sender.configuration.props.MQProps;
-import top.hubby.mq.service.DtxEventService;
-
 import org.springframework.amqp.AmqpException;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Service;
+import top.hubby.mq.constants.enums.EventStatus;
+import top.hubby.mq.sender.configuration.props.MQProps;
+import top.hubby.mq.service.DtxEventService;
+
+import javax.annotation.Resource;
 
 import static top.hubby.mq.sender.configuration.RabbitMqAutoConfiguration.mqSender;
 

@@ -1,9 +1,9 @@
 package common.core.component;
 
+import org.springframework.stereotype.Component;
+
 import javax.annotation.Resource;
 import javax.validation.Validator;
-
-import org.springframework.stereotype.Component;
 
 /**
  * @author zack <br>

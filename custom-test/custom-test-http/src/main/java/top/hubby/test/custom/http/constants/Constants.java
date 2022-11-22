@@ -1,9 +1,9 @@
 package top.hubby.test.custom.http.constants;
 
 /**
- * @author zack <br/>
- * @create 2022-11-20 23:36 <br/>
- * @project custom-auth <br/>
+ * @author zack <br>
+ * @create 2022-11-20 23:36 <br>
+ * @project custom-auth <br>
  */
 public interface Constants {
 
@@ -13,5 +13,4 @@ public interface Constants {
     String PAYLOAD = "payload";
     String RESPONSE_DATA = "responseData";
     String SUCCESS = "S";
-
 }

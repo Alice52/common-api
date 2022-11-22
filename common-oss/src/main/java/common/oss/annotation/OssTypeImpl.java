@@ -1,8 +1,8 @@
 package common.oss.annotation;
 
-import java.lang.annotation.Annotation;
-
 import common.oss.constnats.enums.OssUploadTypeEnum;
+
+import java.lang.annotation.Annotation;
 
 /**
  * @author zack <br>

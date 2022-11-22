@@ -1,16 +1,14 @@
 package common.redis.queue;
 
-import java.util.Map;
-import java.util.concurrent.CompletableFuture;
-
-import javax.annotation.Resource;
-
 import lombok.extern.slf4j.Slf4j;
-
 import org.springframework.data.redis.connection.stream.RecordId;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.transaction.support.TransactionSynchronizationAdapter;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
+
+import javax.annotation.Resource;
+import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * @author zack <br>

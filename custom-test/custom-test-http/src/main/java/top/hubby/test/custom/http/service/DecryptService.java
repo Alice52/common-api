@@ -6,6 +6,7 @@ import common.core.util.R;
 public interface DecryptService {
 
     R<Pagination> fullEncrypt();
+
     R<Pagination> fullEncryptV2();
 
     top.hubby.test.custom.http.model.R<Pagination> partyEncrypt();

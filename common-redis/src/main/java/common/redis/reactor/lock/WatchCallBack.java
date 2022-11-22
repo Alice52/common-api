@@ -1,19 +1,13 @@
 package common.redis.reactor.lock;
 
+import lombok.Data;
+import lombok.SneakyThrows;
+import org.apache.zookeeper.*;
+import org.apache.zookeeper.data.Stat;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
-
-import lombok.Data;
-import lombok.SneakyThrows;
-import org.apache.zookeeper.AsyncCallback;
-import org.apache.zookeeper.CreateMode;
-import org.apache.zookeeper.KeeperException;
-import org.apache.zookeeper.WatchedEvent;
-import org.apache.zookeeper.Watcher;
-import org.apache.zookeeper.ZooDefs;
-import org.apache.zookeeper.ZooKeeper;
-import org.apache.zookeeper.data.Stat;
 
 /**
  * @author zack <br>

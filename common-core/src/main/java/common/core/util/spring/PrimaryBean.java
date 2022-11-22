@@ -1,16 +1,15 @@
 package common.core.util.spring;
 
-import java.time.LocalDateTime;
-
 import common.core.exception.handler.ExceptionHandlerSupport;
 import lombok.extern.slf4j.Slf4j;
-
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.annotation.Order;
+
+import java.time.LocalDateTime;
 
 /**
  * dynamic set primary key.

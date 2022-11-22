@@ -1,9 +1,8 @@
 package top.hubby.mq.sender.configuration.props;
 
 import lombok.Data;
-import top.hubby.mq.constants.enums.MQQueueTypeEnums;
-
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import top.hubby.mq.constants.enums.MQQueueTypeEnums;
 
 /**
  * @author zack <br>

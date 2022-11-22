@@ -81,8 +81,7 @@ public class PhaseController {
 
     @PostMapping("/phase")
     @CacheEvict(value = CommonCacheConstants.MODULE_PHASE_KEY, key = "'list'")
-    public R<Boolean> create(
-            @RequestBody @Validated({Add.class, Default.class}) PhaseDTO phase) {
+    public R<Boolean> create(@RequestBody @Validated({Add.class, Default.class}) PhaseDTO phase) {
         return R.success(phaseService.createPhase(phase));
     }
 }

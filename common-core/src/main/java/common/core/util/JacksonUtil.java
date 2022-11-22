@@ -4,14 +4,13 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.LoggerFactory;
 
 import java.util.Iterator;
 
 /**
- * @author zack <br/>
- * @create 2022-11-20 21:20 <br/>
- * @project custom-auth <br/>
+ * @author zack <br>
+ * @create 2022-11-20 21:20 <br>
+ * @project custom-auth <br>
  */
 @Slf4j
 public class JacksonUtil {

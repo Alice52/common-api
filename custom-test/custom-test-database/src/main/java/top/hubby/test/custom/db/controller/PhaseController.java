@@ -56,8 +56,7 @@ public class PhaseController {
     }
 
     @PostMapping("/phase")
-    public R<Boolean> create(
-            @RequestBody @Validated({Add.class, Default.class}) PhaseDTO phase) {
+    public R<Boolean> create(@RequestBody @Validated({Add.class, Default.class}) PhaseDTO phase) {
         return R.success(phaseService.createPhase(phase));
     }
 }

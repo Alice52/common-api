@@ -1,11 +1,11 @@
 package common.database.sensitive.annotation;
 
+import common.database.sensitive.SensitiveStrategy;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-
-import common.database.sensitive.SensitiveStrategy;
 
 import static common.database.sensitive.SensitiveStrategy.USERNAME;
 

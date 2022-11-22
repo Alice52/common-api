@@ -1,11 +1,11 @@
 package common.core.util.collection;
 
-import java.util.List;
-import java.util.stream.Stream;
-
 import cn.hutool.core.lang.Assert;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
+
+import java.util.List;
+import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
 
