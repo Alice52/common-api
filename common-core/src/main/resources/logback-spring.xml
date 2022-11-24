@@ -4,17 +4,18 @@
     <!-- include: common-core/resource-->
     <include resource="logback-include.xml"/>
 
-    <springProperty scope="context" name="env" source="spring.profiles.include"/>
+    <springProperty scope="context" name="enabled" source="sls.enabled"/>
 
     <!-- Level: FATAL 0  ERROR 3  WARN 4  INFO 6  DEBUG 7 -->
     <root level="INFO">
-        <!--  aliyun-sls: need sls id & key etcs.
-            <if condition='property("env").contains("dev") || property("env").contains("prod")'>
-                <then>
-                    <appender-ref ref="aliyun"/>
-                </then>
-            </if>
-        -->
+        <!--  aliyun-sls: need sls id & key etcs.   -->
+        <if condition='property("enabled") == "true"'>
+        <!-- <if condition='property("env").contains("dev") || property("env").contains("prod")'>-->
+            <then>
+                <appender-ref ref="aliyun"/>
+            </then>
+        </if>
+
         <appender-ref ref="console"/>
         <appender-ref ref="debug"/>
         <appender-ref ref="error"/>

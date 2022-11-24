@@ -1,4 +1,5 @@
 sls:
+  enabled: true
   endpoint: cn-shanghai.log.aliyuncs.com
   access-key-id: ${SLS_ACCESS_ID}
   access-key-secret: ${SLS_ACCESS_SECRET}
