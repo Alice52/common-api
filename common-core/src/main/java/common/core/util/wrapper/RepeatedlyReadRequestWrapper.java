@@ -7,10 +7,12 @@ import javax.servlet.http.HttpServletRequestWrapper;
 import java.io.*;
 
 /**
+ * @see RepeatedHttpServletRequestWrapper
  * @author zack <br>
  * @create 2022-04-08 11:55 <br>
  * @project mc-platform <br>
  */
+@Deprecated
 public class RepeatedlyReadRequestWrapper extends HttpServletRequestWrapper {
 
     private final String body;
@@ -40,7 +42,6 @@ public class RepeatedlyReadRequestWrapper extends HttpServletRequestWrapper {
             }
         }
 
-        sb.toString();
         body = sb.toString();
     }
 
@@ -52,26 +53,24 @@ public class RepeatedlyReadRequestWrapper extends HttpServletRequestWrapper {
     @Override
     public ServletInputStream getInputStream() {
         final ByteArrayInputStream byteArrayIns = new ByteArrayInputStream(body.getBytes());
-        ServletInputStream servletIns =
-                new ServletInputStream() {
-                    @Override
-                    public boolean isFinished() {
-                        return false;
-                    }
+        return new ServletInputStream() {
+            @Override
+            public boolean isFinished() {
+                return false;
+            }
 
-                    @Override
-                    public boolean isReady() {
-                        return false;
-                    }
+            @Override
+            public boolean isReady() {
+                return false;
+            }
 
-                    @Override
-                    public void setReadListener(ReadListener readListener) {}
+            @Override
+            public void setReadListener(ReadListener readListener) {}
 
-                    @Override
-                    public int read() {
-                        return byteArrayIns.read();
-                    }
-                };
-        return servletIns;
+            @Override
+            public int read() {
+                return byteArrayIns.read();
+            }
+        };
     }
 }

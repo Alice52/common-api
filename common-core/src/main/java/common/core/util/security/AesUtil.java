@@ -22,6 +22,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
  * @project project-cloud-custom <br>
  */
 @Slf4j
+@Deprecated
 @UtilityClass
 public class AesUtil {
 

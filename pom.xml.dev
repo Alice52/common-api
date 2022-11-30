@@ -29,6 +29,7 @@
         <module>common-openapi</module>
         <module>common-mq</module>
         <module>custom-test</module>
+        <module>common-crypt</module>
     </modules>
 
     <properties>

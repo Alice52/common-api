@@ -1,0 +1,13 @@
+common:
+  encrypt:
+    enabled: true
+    mode: x # cn.hutool.crypto.Mode
+    padding: x # cn.hutool.crypto.Padding
+    key: x
+    iv: x
+  decrypt:
+    enabled: true
+    mode: x
+    padding: x
+    key: x
+    iv: x

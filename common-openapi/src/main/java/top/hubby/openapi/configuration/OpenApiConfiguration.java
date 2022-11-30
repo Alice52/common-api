@@ -1,5 +1,6 @@
 package top.hubby.openapi.configuration;
 
+import common.core.filter.RepeatReadHttpServletFilter;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -53,7 +54,13 @@ public class OpenApiConfiguration {
         return new OpenApiSignatureAspect();
     }
 
-    @Bean
+    /**
+     * default enable repeated read input stream.
+     *
+     * @see RepeatReadHttpServletFilter
+     * @return
+     */
+    // @Bean
     public OpenApiHttpServletFilter filter() {
         return new OpenApiHttpServletFilter();
     }
