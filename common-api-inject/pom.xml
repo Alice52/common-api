@@ -72,6 +72,12 @@
             <version>${project.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>io.github.alice52</groupId>
+            <artifactId>common-crypt</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
         <!-- tool -->
         <dependency>
             <groupId>org.projectlombok</groupId>

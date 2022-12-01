@@ -1,0 +1,13 @@
+common:
+  encrypt:
+    enabled: true
+    mode: CBC # cn.hutool.crypto.Mode
+    padding: PKCS5Padding # cn.hutool.crypto.Padding
+    key: 5231549ab56d11eca37d0242ac160003
+    iv: 6bb5f2ae715711edbdbb00163e2cf386
+  decrypt:
+    enabled: true
+    mode: CBC # cn.hutool.crypto.Mode
+    padding: PKCS5Padding # cn.hutool.crypto.Padding
+    key: 5231549ab56d11eca37d0242ac160003
+    iv: 6bb5f2ae715711edbdbb00163e2cf386

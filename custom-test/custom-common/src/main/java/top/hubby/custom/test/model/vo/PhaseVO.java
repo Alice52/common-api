@@ -3,6 +3,8 @@ package top.hubby.custom.test.model.vo;
 import common.core.annotation.DeSensitive;
 import common.core.annotation.discriptor.SensitiveStrategy;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import top.hubby.custom.test.constants.enums.PhaseStatusEnum;
@@ -16,7 +18,9 @@ import java.time.LocalDateTime;
  * @project integration <br>
  */
 @Data
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 public class PhaseVO implements Serializable {
     private Long id;
 
