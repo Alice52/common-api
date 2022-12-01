@@ -15,4 +15,5 @@ org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
   common.core.filter.RepeatReadHttpServletFilter,\
   common.core.configuration.properties.SecurityIgnoreProperties,\
   common.core.component.BeanContextUtil,\
-  common.core.component.EnvUtil
+  common.core.component.EnvUtil,\
+  common.core.util.security.AesUtils

@@ -1,7 +1,7 @@
 package common.encrypt.configuration;
 
 import cn.hutool.crypto.symmetric.AES;
-import common.encrypt.advice.EncryptResponseAdvice;
+import common.encrypt.advice.DecryptRequestAdvice;
 import common.encrypt.configuration.properties.CryptProperties;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,9 +27,9 @@ import static cn.hutool.core.text.CharSequenceUtil.*;
 @AllArgsConstructor
 @ConditionalOnWebApplication
 @Configuration
-@Import(EncryptResponseAdvice.class)
+@Import(DecryptRequestAdvice.class)
 @EnableAutoConfiguration
-@ConditionalOnProperty(name = "common.encrypt.enabled")
+@ConditionalOnProperty(name = "common.decrypt.enabled", havingValue = "true")
 @EnableConfigurationProperties(CryptProperties.class)
 public class DecryptConfig {
 

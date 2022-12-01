@@ -4,6 +4,7 @@ import cn.hutool.core.date.DatePattern;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
@@ -33,7 +34,7 @@ public class JacksonConfig {
             builder.featuresToEnable(SerializationFeature.WRITE_ENUMS_USING_INDEX);
             builder.featuresToEnable(
                     DeserializationFeature.READ_UNKNOWN_ENUM_VALUES_USING_DEFAULT_VALUE);
-            // builder.modules(new JavaTimeModule());
+             builder.modules(new JavaTimeModule());
         };
     }
 }

@@ -5,6 +5,7 @@ import common.core.util.R;
 import common.core.util.security.AesUtils;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.SneakyThrows;
 
 import javax.validation.constraints.NotNull;
 import java.util.Objects;
@@ -34,10 +35,9 @@ public enum EncryptEnum {
 
     public BiFunction<AES, Object, Object> encrypt;
 
+    @SneakyThrows
     private static R encryptRData(@NotNull AES aes, @NotNull Object x) {
-        R r = (R) x;
-        Object data = r.getData();
-        r.setData(AesUtils.encryptHex(aes, data));
-        return r;
+
+        return ((R) x).setData(AesUtils.encryptHex(aes, ((R) x).getData()));
     }
 }

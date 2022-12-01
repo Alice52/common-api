@@ -1,6 +1,7 @@
 package common.encrypt.advice;
 
 import cn.hutool.crypto.symmetric.AES;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import common.core.exception.BusinessException;
 import common.core.util.ee.WebUtil;
@@ -10,6 +11,7 @@ import common.encrypt.aspect.DecryptAspect;
 import common.encrypt.constants.CryptConstant;
 import common.encrypt.constants.enums.CryptExceptionEnums;
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.HttpInputMessage;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -22,10 +24,15 @@ import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Type;
 
+import static common.encrypt.constants.enums.CryptExceptionEnums.DECRYPT_FIELD_NOT_FOUND;
+
 /**
+ * just work for @see RequestBody
+ *
  * @see DecryptAspect
  * @author Zack Zhang
  */
+@Slf4j
 @ControllerAdvice
 public class DecryptRequestAdvice extends RequestBodyAdviceAdapter {
     @Resource private ObjectMapper objectMapper;
@@ -66,24 +73,32 @@ public class DecryptRequestAdvice extends RequestBodyAdviceAdapter {
             Type targetType,
             Class<? extends HttpMessageConverter<?>> converterType) {
 
+        Decrypt decrypt = parameter.getMethodAnnotation(Decrypt.class);
+        String field = decrypt.field();
         HttpServletRequest request = WebUtil.getCurrentRequest();
 
         // 获取数据
         ServletInputStream inputStream = request.getInputStream();
-        String originData = objectMapper.readValue(inputStream, String.class);
+        JsonNode node = objectMapper.readValue(inputStream, JsonNode.class);
+        JsonNode dnode;
+        if (!node.has(field) || !(dnode = node.get(field)).isTextual()) {
+            throw new BusinessException(DECRYPT_FIELD_NOT_FOUND);
+        }
+        String origin = dnode.asText();
 
         // 放入解密之前的数据
-        request.setAttribute(CryptConstant.INPUT_ORIGINAL_DATA, originData);
+        request.setAttribute(CryptConstant.INPUT_ORIGINAL_DATA, origin);
 
         // 解密
-        String decryptText = null;
+        String decryptText;
         try {
-            decryptText = AesUtils.decrypt(decryptAes, originData);
+            decryptText = AesUtils.decrypt(decryptAes, origin);
             // 放入解密之后的数据
             request.setAttribute(CryptConstant.INPUT_DECRYPT_DATA, decryptText);
             // 获取结果
             return objectMapper.readValue(decryptText, body.getClass());
         } catch (Exception e) {
+            log.error("decrypt request occurs errors:  ", e);
             throw new BusinessException(CryptExceptionEnums.DECRYPT_FAILED);
         }
     }

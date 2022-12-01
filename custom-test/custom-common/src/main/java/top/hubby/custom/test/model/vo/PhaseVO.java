@@ -1,5 +1,6 @@
 package top.hubby.custom.test.model.vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import common.core.annotation.DeSensitive;
 import common.core.annotation.discriptor.SensitiveStrategy;
 import io.swagger.annotations.ApiModelProperty;
@@ -31,8 +32,10 @@ public class PhaseVO implements Serializable {
     @ApiModelProperty("阶段名称")
     private String phaseName;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime startTime;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime endTime;
 
     private String type;

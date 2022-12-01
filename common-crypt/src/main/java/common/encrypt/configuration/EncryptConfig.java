@@ -30,7 +30,7 @@ import static cn.hutool.core.text.CharSequenceUtil.*;
 @Configuration
 @Import({EncryptAspect.class, EncryptResponseAdvice.class})
 @EnableAutoConfiguration
-@ConditionalOnExpression("${common.decrypt.enabled:true} || ${common.encrypt.enabled:true}")
+@ConditionalOnExpression("${common.encrypt.enabled:true}")
 @EnableConfigurationProperties(CryptProperties.class)
 public class EncryptConfig {
 

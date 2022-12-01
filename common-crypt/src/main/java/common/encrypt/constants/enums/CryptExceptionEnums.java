@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public enum CryptExceptionEnums implements IBaseExceptionAssert {
     DECRYPT_FAILED(400_010_001, "Decrypt Error"),
+    DECRYPT_FIELD_NOT_FOUND(400_010_002, "Decrypt Field Not Found"),
     ;
 
     private Integer errorCode;

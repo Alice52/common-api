@@ -1,5 +1,7 @@
 package common.encrypt.annotation;
 
+import lombok.Data;
+
 import java.lang.annotation.*;
 
 /**
@@ -9,11 +11,21 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface Decrypt {
-    //    Mode mode();
-    //
-    //    Padding padding();
-    //
-    //    String key();
-    //
-    //    String iv();
+
+    /**
+     * 加密的文本字段名
+     *
+     * @return
+     */
+    String field() default "origin";
+
+    /**
+     * @see com.fasterxml.jackson.databind.JsonNode
+     */
+    @Data
+    @Deprecated
+    class RequestData {
+        // 加密的文本
+        private String origin;
+    }
 }
