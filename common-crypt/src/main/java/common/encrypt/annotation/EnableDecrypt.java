@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Import;
 import java.lang.annotation.*;
 
 /**
+ * @see DecryptConfig
  * @author Zack Zhang
  */
 @Import({DecryptConfig.class})

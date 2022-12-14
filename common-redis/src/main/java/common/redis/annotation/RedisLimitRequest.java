@@ -1,5 +1,7 @@
 package common.redis.annotation;
 
+import common.redis.aspect.LimitRequestAspect;
+
 import java.lang.annotation.*;
 import java.util.concurrent.TimeUnit;
 
@@ -7,6 +9,7 @@ import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.ElementType.TYPE;
 
 /**
+ * @see LimitRequestAspect
  * @author zack <br>
  * @create 2021-06-04 16:21 <br>
  * @project common-redis <br>

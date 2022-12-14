@@ -11,6 +11,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
+ * @see SensitiveJsonSerializer
  * @author zack <br>
  * @create 2021-06-09 09:38 <br>
  * @project custom-test <br>
