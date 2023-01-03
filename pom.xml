@@ -101,7 +101,7 @@
         <justauth.starter>1.4.0</justauth.starter>
         <grpc_version>1.50.2</grpc_version>
         <curator.zk.version>5.4.0</curator.zk.version>
-        <qcloud.version>5.6.109</qcloud.version>
+        <qcloud.version>5.6.125.2</qcloud.version>
         <!--  #region  ====================== common version =====================    -->
     </properties>
 
