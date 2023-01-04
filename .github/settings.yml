@@ -1,2 +1,5 @@
 ---
 _extends: .github
+
+repository:
+  homepage: gitee.com
