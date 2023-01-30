@@ -1,4 +1,4 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  common.interceptor.RequestInterceptor,\
-  common.configuration.LogAutoConfiguration,\
-  common.utils.LogUtil
+  common.logging.reqid.RequestInterceptor,\
+  common.logging.anno.configuration.LogAutoConfiguration,\
+  common.logging.common.LogUtil

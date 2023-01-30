@@ -4,7 +4,7 @@ import cn.hutool.crypto.symmetric.AES;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import common.core.exception.BusinessException;
-import common.core.util.ee.WebUtil;
+import common.core.util.web.WebUtil;
 import common.core.util.security.AesUtils;
 import common.encrypt.annotation.Decrypt;
 import common.encrypt.aspect.DecryptAspect;

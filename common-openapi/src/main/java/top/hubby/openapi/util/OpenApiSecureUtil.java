@@ -2,7 +2,7 @@ package top.hubby.openapi.util;
 
 import cn.hutool.json.JSONUtil;
 import common.core.exception.BaseException;
-import common.core.util.ee.WebUtil;
+import common.core.util.web.WebUtil;
 import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;

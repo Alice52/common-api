@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import top.hubby.openapi.annotation.OpenApiLog;
+import common.logging.anno.LogAnnoV2;
 import top.hubby.openapi.annotation.OpenApiSignature;
 
 /**
@@ -23,7 +23,7 @@ import top.hubby.openapi.annotation.OpenApiSignature;
 @Api(value = "第三方接口模块", tags = "第三方接口模块")
 public class OpenApiTestController {
 
-    @OpenApiLog
+    @LogAnnoV2
     @OpenApiSignature
     @RedisLimitRequest(count = 200)
     @ApiOperation(value = "新增帖子/文章")

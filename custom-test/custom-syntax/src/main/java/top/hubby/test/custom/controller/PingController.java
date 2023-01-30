@@ -1,6 +1,6 @@
 package top.hubby.test.custom.controller;
 
-import common.annotation.LogAnno;
+import common.logging.anno.LogAnno;
 import common.core.util.R;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;

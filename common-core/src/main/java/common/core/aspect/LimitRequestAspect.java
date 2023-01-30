@@ -5,7 +5,7 @@ import com.google.common.util.concurrent.RateLimiter;
 import common.core.annotation.LocalLimitRequest;
 import common.core.constant.enums.CommonResponseEnum;
 import common.core.exception.BaseException;
-import common.core.util.ee.WebUtil;
+import common.core.util.web.WebUtil;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;

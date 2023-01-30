@@ -27,11 +27,6 @@ public class AesUtils {
 
     private static ObjectMapper om;
 
-    @Resource
-    public void setOm(ObjectMapper objectMapper) {
-        AesUtils.om = objectMapper;
-    }
-
     public static String encryptHex(AES aes, byte[] data) {
         return aes.encryptHex(data);
     }
@@ -69,5 +64,10 @@ public class AesUtils {
 
     public static String decrypt(AES aes, String data) {
         return aes.decryptStr(data, UTF_8);
+    }
+
+    @Resource
+    public void setOm(ObjectMapper objectMapper) {
+        AesUtils.om = objectMapper;
     }
 }

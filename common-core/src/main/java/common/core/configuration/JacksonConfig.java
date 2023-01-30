@@ -34,7 +34,7 @@ public class JacksonConfig {
             builder.featuresToEnable(SerializationFeature.WRITE_ENUMS_USING_INDEX);
             builder.featuresToEnable(
                     DeserializationFeature.READ_UNKNOWN_ENUM_VALUES_USING_DEFAULT_VALUE);
-             builder.modules(new JavaTimeModule());
+            builder.modules(new JavaTimeModule());
         };
     }
 }

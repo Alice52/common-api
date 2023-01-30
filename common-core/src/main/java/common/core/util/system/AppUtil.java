@@ -32,6 +32,10 @@ public final class AppUtil {
 
     private static String appName;
 
+    static {
+        resolveAppName();
+    }
+
     private AppUtil() {}
 
     public static void resolveAppName() {
@@ -70,9 +74,5 @@ public final class AppUtil {
 
     private static boolean isEmpty(String str) {
         return str == null || "".equals(str);
-    }
-
-    static {
-        resolveAppName();
     }
 }

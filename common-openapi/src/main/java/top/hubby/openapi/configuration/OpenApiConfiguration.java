@@ -9,7 +9,6 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplicat
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import top.hubby.openapi.aspect.OpenApiLogAspect;
 import top.hubby.openapi.aspect.OpenApiSignatureAspect;
 import top.hubby.openapi.configuration.properties.OpenApiProperties;
 import top.hubby.openapi.filter.OpenApiHttpServletFilter;
@@ -42,11 +41,6 @@ public class OpenApiConfiguration {
         properties
                 .getThirdParty()
                 .forEach(x -> APP_MAP.putIfAbsent(x.getClientId(), x.getClientSecret()));
-    }
-
-    @Bean
-    public OpenApiLogAspect openApiLogAspect() {
-        return new OpenApiLogAspect();
     }
 
     @Bean

@@ -1,6 +1,6 @@
 package top.hubby.test.custom.controller;
 
-import common.annotation.LogAnno;
+import common.logging.anno.LogAnno;
 import common.core.annotation.LocalIdempotentRequest;
 import common.core.annotation.LocalLimitRequest;
 import common.core.exception.assertion.IBaseAssert;

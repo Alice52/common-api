@@ -15,13 +15,10 @@ public interface SecurityConstants {
     // oauth
     String OAUTH_PREFIX = PROJECT_PREFIX + ":oauth:";
     String OAUTH_ACCESS_KEY_PREFIX = OAUTH_PREFIX + "access:";
-
-    String FROM = "from";
-    String FROM_IN = "Y";
-
     // oauth 客户端信息
     String CLIENT_DETAILS_KEY = OAUTH_PREFIX + "client:details";
-
+    String FROM = "from";
+    String FROM_IN = "Y";
     // cache
     String ADMIN_USER_DETAILS_KEY = PROJECT_PREFIX + ":admin:user_details";
 

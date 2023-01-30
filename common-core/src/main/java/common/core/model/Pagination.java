@@ -18,9 +18,9 @@ import java.util.List;
 @Deprecated
 public class Pagination<T> {
 
+    protected List<T> records;
     private Integer total;
     private Integer pageCount;
     private Integer currentPage;
     private Integer pageSize;
-    protected List<T> records;
 }
