@@ -5,6 +5,7 @@ import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.amqp.core.MessageProperties;
 import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.SmartInitializingSingleton;
@@ -101,9 +102,18 @@ public class RabbitMqAutoConfiguration extends RabbitMqConfiguration
                             routingKey);
                 };
 
+        RabbitTemplate.ReturnsCallback rc =
+                returned -> {
+                    MessageProperties messageProperties =
+                            returned.getMessage().getMessageProperties();
+                    String correlationId = messageProperties.getCorrelationId();
+                    log.info("ReturnCallback: Fail message: {}", returned);
+                };
+
         // ack: 这个表示是否成功发送到 broker
         this.getRabbitTemplate().setConfirmCallback(defaultConfirmCallback);
         // 消息没有被发送到 queue 才会调用
-        this.getRabbitTemplate().setReturnCallback(defaultReturnCallback);
+        // this.getRabbitTemplate().setReturnCallback(defaultReturnCallback);
+        this.getRabbitTemplate().setReturnsCallback(rc);
     }
 }

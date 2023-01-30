@@ -1,4 +1,4 @@
-package common.core.util.tpool.reject;
+package common.core.executor.reject;
 
 import lombok.extern.slf4j.Slf4j;
 

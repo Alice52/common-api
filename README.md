@@ -2,6 +2,10 @@
 
 1. this is spring common api
 
+## wip
+
+1. com.github.rholder.retry.Retryer
+
 ## issues
 
 1. common-mq
