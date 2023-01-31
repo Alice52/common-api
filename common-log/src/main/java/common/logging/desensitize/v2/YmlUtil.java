@@ -1,186 +1,186 @@
 package common.logging.desensitize.v2;
 
+import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.map.MapUtil;
 import com.google.common.collect.Maps;
 import lombok.experimental.UtilityClass;
-import org.springframework.util.CollectionUtils;
 import org.yaml.snakeyaml.DumperOptions;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.InputStream;
 import java.util.*;
 
+/**
+ * @author zack
+ */
 @UtilityClass
 public class YmlUtil {
-    /** 默认脱敏配置文件名 - 默认在resources目录下 */
+
+    /** desensitize configuration file name */
     public String PROPERTY_NAME = "logback-desensitize.yml";
 
-    /** Key：pattern - 单规则 */
-    public final String PATTERN = "pattern";
-
-    /** Key：patterns - 多规则 */
-    public final String PATTERNS = "patterns";
-
-    /** Key:open - 是否开启脱敏 */
-    public final String OPEN_FLAG = "open";
-
-    /** Key:ignore - 是否开启忽略大小写匹配 */
-    public final String IGNORE = "ignore";
-
-    /** Key:脱敏配置文件头Key */
+    /* start symbol of desensitize configuration */
     public final String YML_HEAD_KEY = "log-desensitize";
 
-    /** key:patterns对应key下的规则Key */
+    public final String ENABLE_FLAG = "enable";
+
+    public final String IGNORE = "ignore";
+
+    public final String PATTERN = "pattern";
+
+    public final String PATTERNS = "patterns";
+
     public final String CUSTOM = "custom";
 
-    /** Yml脱敏配置文件内容 - Map格式 */
-    public Map<String, Object> patternMap;
+    public final String KEY = "key";
+
+    public final String DEFAULT_REGEX = "defaultRegex";
+    public final String POSITION = "position";
+    public final String CUSTOM_REGEX = "customRegex";
+
+    public Map<String, Object> desensitiveConfigCache;
 
     public final DumperOptions OPTIONS = new DumperOptions();
 
     static {
         OPTIONS.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK);
-        patternMap = getYmlByName(PROPERTY_NAME);
+        desensitiveConfigCache = loadYmlConfig(PROPERTY_NAME, YML_HEAD_KEY);
     }
 
     /**
-     * 获取Yml配置文件的内容 - 以Map的格式
+     * obtain all pattern, including pattern and patterns.<br>
+     * notice pattern has high priority. <br>
      *
-     * @param fileName Yml配置文件名
-     * @return 配置信息（Map格式）
+     * <pre>
+     *   Map<String, String> onceKey =  builder()
+     *            .put("customRegex", "^0[0-9]{2,3}-[0-9]{7,8}")
+     *            .put("position", "1,3")
+     *            .build();
+     *   ImmutableList<Map<String, String>> moreKeys = ImmutableList.builder()
+     *                         .add(builder().put("defaultRegex", "phone").put("position", "4,7").build())
+     *                         .add(builder().put("defaultRegex", "email").put("position", "xx)").build())
+     *                         .add(builder().put("defaultRegex", "ixy").put("position", "xx").build())
+     *                         .add(builder().put("customRegex", "^1{10}").put("position", "1,3").build())
+     *                         .add(builder().put("defaultRegex", "other").put("position", "1,3").build())
+     *                         .build();
+     *    map = builder()
+     *          .put("identity", "9, 13")
+     *          .put("email", "@>(4,7)")
+     *          .put("password", "password")
+     *          .put("localMobile", onceKey)
+     *          .put("phone", moreKeys)
+     *          .build();
+     *
+     * </pre>
+     *
+     * @return pattern <key, string> || <key, map<string, string>>
      */
-    private Map<String, Object> getYmlByName(String fileName) {
+    public Map<String, Object> getAllPattern() {
+
+        Map<String, Object> patterns = getPatterns();
+        patterns.putAll(getPattern());
+
+        return patterns;
+    }
+
+    /**
+     * whether enabled desensitize, and default value is false.
+     *
+     * @return whether enabled desensitize
+     */
+    public Boolean getEnableConfig() {
+        Object flag = desensitiveConfigCache.get(ENABLE_FLAG);
+        return flag instanceof Boolean ? (Boolean) flag : false;
+    }
+
+    /**
+     * whether ignore letter case, and default value is true.
+     *
+     * @return whether ignore letter case
+     */
+    public Boolean getIgnoreConfig() {
+        Object flag = desensitiveConfigCache.get(IGNORE);
+        return flag instanceof Boolean ? (Boolean) flag : true;
+    }
+
+    /**
+     * Get Maps of yml specified key configuration.
+     *
+     * @param fileName yml file name
+     * @param keyName specified key name
+     * @return specified yml config info
+     */
+    private Map<String, Object> loadYmlConfig(String fileName, String keyName) {
         try {
-            // 获取Yml配置文件的Map对象
-            Object fromYml = getFromYml(fileName, YML_HEAD_KEY);
-            // LinkedHashMap，如果不是Map类型（比如配置文件里只有log-desensitize=123456），直接返回patternMap本身
-            if (fromYml instanceof Map) {
-                return (Map<String, Object>) fromYml;
+            HashMap map = loadYmlConfig(fileName);
+            Object keyConfig;
+            if (MapUtil.isEmpty(map) || !((keyConfig = map.get(keyName)) instanceof Map)) {
+                return Maps.newHashMap();
             }
+
+            return (Map<String, Object>) keyConfig;
         } catch (Exception e) {
             return Maps.newHashMap();
         }
-        return patternMap;
     }
 
     /**
-     * 通过key获取value从yml配置文件
+     * Get Maps of yml configuration.
      *
-     * @param fileName Yml文件名
-     * @param key key
-     * @return value或者map本身
+     * @param fileName yml file name
+     * @return yml config info
      */
-    public Object getFromYml(String fileName, String key) {
-        // 创建一个Yaml对象
-        Yaml yaml = new Yaml(OPTIONS);
-        // 获得流
+    private HashMap loadYmlConfig(String fileName) {
         InputStream inputStream = YmlUtil.class.getClassLoader().getResourceAsStream(fileName);
-        HashMap<String, Object> map =
-                (HashMap<String, Object>) yaml.loadAs(inputStream, HashMap.class);
-        // 如果map内有值，直接返回key对应的Value，否则返回map本身
-        return Objects.nonNull(map) && map.size() > 0 ? map.get(key) : map;
+        return new Yaml(OPTIONS).loadAs(inputStream, HashMap.class);
     }
 
-    /**
-     * 获取key为pattern的值
-     *
-     * @return pattern对应的map，或者null（如pattern=123这种情况）
-     */
-    public Map<String, Object> getPattern() {
-        Object pattern = patternMap.get(PATTERN);
-        if (pattern instanceof Map) {
+    private Map<String, Object> getPattern() {
+        Object pattern = desensitiveConfigCache.get(PATTERN);
+
+        if (Objects.nonNull(pattern) && pattern instanceof Map) {
             return (Map<String, Object>) pattern;
         } else {
-            return null;
+            return Maps.newHashMap();
         }
     }
 
-    /**
-     * 获取所有pattern，含key为pattern，key为patterns
-     *
-     * @return pattern
-     */
-    public Map<String, Object> getAllPattern() {
-        Map<String, Object> allPattern = new HashMap<String, Object>();
-        Map<String, Object> pattern = getPattern();
-        Map<String, Object> patterns = getPatterns();
-        if (!CollectionUtils.isEmpty(patterns)) {
-            allPattern.putAll(patterns);
-        }
-        // 注意：patterns中的key与pattern的key重复，patterns中的不生效（Map无重复Key）
-        if (!CollectionUtils.isEmpty(pattern)) {
-            allPattern.putAll(pattern);
-        }
-        return allPattern;
-    }
+    private Map<String, Object> getPatterns() {
+        Map<String, Object> map = new HashMap<>();
 
-    /**
-     * 获取key为patterns的值
-     *
-     * @return patterns对应的map，或者null（如patterns=123这种情况）
-     */
-    public Map<String, Object> getPatterns() {
-        Map<String, Object> map = new HashMap<String, Object>();
-        Object patterns = patternMap.get(PATTERNS);
-        // patterns下有多个key的时候(List)
+        Object patterns = desensitiveConfigCache.get(PATTERNS);
+        // 1. patterns will be list if contains more keys
         if (patterns instanceof List) {
-            // 获取key为"patterns"的值(List<Map<String, Object>>)
             List<Map<String, Object>> list = (List<Map<String, Object>>) patterns;
-            if (!CollectionUtils.isEmpty(list)) {
-                Iterator<Map<String, Object>> iterator = list.iterator();
-                // 黄线强迫症，用for代替while
-                for (; iterator.hasNext(); ) {
-                    Map<String, Object> maps = (Map<String, Object>) iterator.next();
-                    assembleMap(map, maps);
-                }
-                return map;
+            if (CollUtil.isEmpty(list)) {
+                return Maps.newHashMap();
             }
-        }
-        // patterns只有一个key的时候，且非List
-        if (patterns instanceof Map) {
-            assembleMap(map, (Map<String, Object>) patterns);
+            list.forEach(x -> assembleMap(map, x));
+
             return map;
-        } else {
-            return null;
+        } else if (patterns instanceof Map) {
+            // 2. patterns will be map if just one key configured
+            assembleMap(map, (Map<String, Object>) patterns);
+
+            return map;
         }
+
+        return Maps.newHashMap();
     }
 
     /**
-     * 将patterns中每个key对应的规则按<key,规则>的方式放入map
+     * build pattern as <code> map<key, rule> </code>
      *
      * @param map map
      * @param patterns patterns
      */
     private void assembleMap(Map<String, Object> map, Map<String, Object> patterns) {
-        // 获取patterns里key值为"key"的值(脱敏关键字)
-        Object key = patterns.get("key");
-        if (key instanceof String) {
-            // 清除空格
-            String keyWords = ((String) key).replace(" ", "");
-            // 以逗号分隔出一个key数组
-            String[] keyArr = keyWords.split(",");
-            for (String keyStr : keyArr) {
-                map.put(keyStr, patterns.get(CUSTOM));
-            }
+        Object key = patterns.get(KEY);
+        if (!(key instanceof String)) {
+            return;
         }
-    }
 
-    /**
-     * 是否开启脱敏，默认不开启
-     *
-     * @return 是否开启脱敏
-     */
-    public Boolean getOpen() {
-        Object flag = patternMap.get(OPEN_FLAG);
-        return flag instanceof Boolean ? (Boolean) flag : false;
-    }
-
-    /**
-     * 是否忽略大小写匹配，默认开启
-     *
-     * @return 是否忽略大小写匹配
-     */
-    public Boolean getIgnore() {
-        Object flag = patternMap.get(IGNORE);
-        return flag instanceof Boolean ? (Boolean) flag : true;
+        Arrays.stream(((String) key).replace(" ", "").split(","))
+                .forEach(x -> map.put(x, patterns.get(CUSTOM)));
     }
 }

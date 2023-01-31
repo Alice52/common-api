@@ -3,7 +3,7 @@ log-desensitize:
   # 是否忽略大小写匹配，默认为true
   ignore: true
   # 是否开启脱敏，默认为false
-  open: true
+  enable: true
   # pattern下的key/value为固定脱敏规则
   pattern:
     # 邮箱 - @前第4-7位脱敏
