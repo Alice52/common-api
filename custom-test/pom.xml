@@ -23,6 +23,7 @@
         <module>custom-test-mq</module>
         <module>custom-test-log</module>
         <module>custom-test-crypt</module>
+        <module>custom-kotlin</module>
     </modules>
 
     <dependencies>
