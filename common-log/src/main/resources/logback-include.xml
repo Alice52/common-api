@@ -92,6 +92,13 @@
         </encoder>
     </appender>
 
+    <appender name="de-console" class="common.logging.desensitize.v2.DesConsoleAppender">
+        <encoder>
+            <pattern>${console.pattern}</pattern>
+        </encoder>
+    </appender>
+
+
     <!-- Log file debug output -->
     <appender name="debug" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${log.path}/debug.log</file>
