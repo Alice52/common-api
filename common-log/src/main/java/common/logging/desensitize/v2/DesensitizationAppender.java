@@ -38,9 +38,9 @@ public class DesensitizationAppender {
             try {
                 Class<? extends LoggingEvent> eventClazz = event.getClass();
                 // replace raw message of log-event by reflect
-                 Field message = eventClazz.getDeclaredField(MESSAGE);
-                 message.setAccessible(true);
-                 message.set(event, changeMessage);
+                Field message = eventClazz.getDeclaredField(MESSAGE);
+                message.setAccessible(true);
+                message.set(event, changeMessage);
 
                 // replace raw formatted-message of log-event by reflect
                 Field formattedMessage = eventClazz.getDeclaredField(FORMATTED_MESSAGE);

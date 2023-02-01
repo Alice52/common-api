@@ -1,6 +1,9 @@
 package common.logging.desensitize.v2;
 
 import cn.hutool.core.map.MapUtil;
+import cn.hutool.core.text.CharSequenceUtil;
+import cn.hutool.core.text.StrPool;
+import cn.hutool.core.util.NumberUtil;
 import com.google.common.collect.Maps;
 import lombok.experimental.UtilityClass;
 
@@ -11,12 +14,14 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static cn.hutool.core.text.CharSequenceUtil.EMPTY;
-import static cn.hutool.core.text.CharSequenceUtil.NULL;
+import static cn.hutool.core.text.CharSequenceUtil.*;
 import static common.logging.desensitize.v2.YmlUtil.*;
 import static java.util.Objects.isNull;
 import static org.apache.logging.log4j.util.Strings.isBlank;
 
+/**
+ * @author Zack Zhang
+ */
 @UtilityClass
 public class DesensitizationUtil {
 
@@ -41,22 +46,15 @@ public class DesensitizationUtil {
             Pattern.compile(
                     "\\s*([\"]?[\\w]+[\"]?)(\\s*[:=]+[^\\u4e00-\\u9fa5@,.*{\\[\\w]*\\s*)([\\u4e00-\\u9fa5_\\-@.\\w]+)[\\W&&[^\\-@.]]?\\s*");
 
-    /** 匹配非数字 */
-    public final Pattern REGEX_NUM = Pattern.compile("[^0-9]");
-
-    public Boolean enable = null;
-
-    public Boolean ignoreCase = null;
-
-    public Map<String, Object> allPattern = YmlUtil.getAllPattern();
-
-    public Map<String, Object> lowerCaseAllPattern;
-
     public final String PHONE = "phone";
     public final String EMAIL = "email";
     public final String IDENTITY = "identity";
     public final String OTHER = "other";
     public final String PASSWORD = "password";
+    public Boolean enable = null;
+    public Boolean ignoreCase = null;
+    public Map<String, Object> allPattern = YmlUtil.getAllPattern();
+    public Map<String, Object> lowerCaseAllPattern;
 
     /**
      * 将event对象的formattedMessage脱敏
@@ -77,35 +75,22 @@ public class DesensitizationUtil {
             // todo: this reg will poor performance
             Matcher regexMatcher = REGEX_PATTERN.matcher(message);
 
-            // 如果部分匹配（一个对象/JSON字符串/Map/List<对象/Map>等会有多个匹配），就根据分组来获取key和value
             while (regexMatcher.find()) {
-
-                // 获取key: 将引号替换掉，去掉两边空格（JSON字符串去引号）
-                String key =
-                        Optional.ofNullable(regexMatcher.group(1))
-                                .orElseGet(() -> EMPTY)
-                                .replaceAll("\"", "")
-                                .trim();
+                // group(1)就是key, group(2)就是分隔符(如：和=), group(3)就是value
 
                 // 获取原始Value
                 String rawValue =
                         Optional.ofNullable(regexMatcher.group(3))
                                 .orElseGet(() -> EMPTY)
-                                .replaceAll("\"", "")
+                                .replace("\"", EMPTY)
                                 .trim();
                 // 获取Key对应规则
-                Object rules = getPatternRules(key);
-
+                Object rules = getConfiguredRules(regexMatcher.group(1));
                 if (isNull(rules) || isBlank(rawValue) || NULL.equals(rawValue)) {
                     continue;
                 }
 
-                // todo: what's this ?? password?
-                if (!rawValue.equalsIgnoreCase(key)) {
-                    continue;
-                }
-
-                String ruleOrPosition = firstAppliedRule(rules, rawValue).replaceAll(" ", "");
+                String ruleOrPosition = firstAppliedRule(rules, rawValue).replaceAll(SPACE, EMPTY);
                 // when is not specified rule, such as email | password, which define in pattern
                 // and rule's position is empty, which define in patterns' custom
                 if (EMPTY.equals(ruleOrPosition)) {
@@ -114,8 +99,7 @@ public class DesensitizationUtil {
 
                 // password rule. which will be log as ******
                 if (PASSWORD.equalsIgnoreCase(ruleOrPosition)) {
-                    rawValue = "******";
-                    originalMessage = replaceTuple(originalMessage, regexMatcher, rawValue);
+                    originalMessage = replaceTuple(originalMessage, regexMatcher, "******");
                     continue;
                 }
 
@@ -125,21 +109,24 @@ public class DesensitizationUtil {
                     ruleOrPosition = position;
                 }
 
-                rawValue = getReplaceValue(rawValue, ruleOrPosition, rawRuleOrPosition);
-                //  if (rawValue != null && !"".equals(rawValue)) {
-                originalMessage = replaceTuple(originalMessage, regexMatcher, rawValue);
-                // }
+                String dValue = getDesensitizedValue(rawValue, ruleOrPosition, rawRuleOrPosition);
+                originalMessage = replaceTuple(originalMessage, regexMatcher, dValue);
             }
 
             return originalMessage;
         } catch (Exception e) {
-            // 捕获到异常，直接返回结果(空字符串) - 这个异常可能发生的场景：同时开启控制台和输出文件的时候
-            // 当控制台进行一次脱敏之后，文件的再去脱敏，是对脱敏后的message脱敏，则正则匹配会出现错误
-            // 比如123456789@.com 脱敏后：123***456789@qq.com，正则匹配到123，这个123去substring的时候会出错
-            return "";
+            return message;
         }
     }
 
+    /**
+     * replace this matched k-v for desensitize
+     *
+     * @param originalMessage full length message
+     * @param regexMatcher current matched tuple
+     * @param rawValue desensitized value
+     * @return
+     */
     private static String replaceTuple(
             String originalMessage, Matcher regexMatcher, String rawValue) {
         String origin = regexMatcher.group(1) + regexMatcher.group(2) + regexMatcher.group(3);
@@ -148,91 +135,68 @@ public class DesensitizationUtil {
     }
 
     /**
-     * 获取替换后的value
+     * Calculate desensitized value by position info.
      *
      * @param value value
-     * @param position 核心规则
-     * @param rawRuleOrPosition 原始规则
+     * @param position such as 1,3
+     * @param rawRuleOrPosition origin rule{`@<(1,3)`} or position{`1,3`}
      * @return
      */
-    private String getReplaceValue(String value, String position, String rawRuleOrPosition) {
+    private String getDesensitizedValue(String value, String position, String rawRuleOrPosition) {
 
-        String[] split = position.split(",");
+        final int two = 2;
+        final String ast = "*";
 
-        if (split.length >= 2 && !"".equals(position)) {
-            String append = "";
-            String start = REGEX_NUM.matcher(split[0]).replaceAll("");
-            String end = REGEX_NUM.matcher(split[1]).replaceAll("");
-            int startSub = Integer.parseInt(start) - 1;
-            int endSub = Integer.parseInt(end) - 1;
-            // 脱敏起点/结尾符下标
-            int index;
-            String flagSub;
-            int indexOf;
-            int newValueL;
-            String newValue;
-            // 脱敏结尾
-            if (rawRuleOrPosition.contains(">")) {
-                // 获取>的下标
-                index = rawRuleOrPosition.indexOf(">");
-                // 获取标志符号
-                flagSub = rawRuleOrPosition.substring(0, index);
-                // 获取标志符号的下标
-                indexOf = value.indexOf(flagSub);
-                // 获取标志符号前面数据
-                newValue = value.substring(0, indexOf);
-                // 获取数据的长度
-                newValueL = newValue.length();
-                // 获取标识符及后面的数据
-                append = value.substring(indexOf);
-                value =
-                        doDesensitize(
-                                        Math.max(startSub, 0),
-                                        endSub >= 0
-                                                ? (endSub <= newValueL ? endSub : newValueL - 1)
-                                                : 0,
-                                        newValue)
-                                + append;
-            } else if (rawRuleOrPosition.contains("<")) {
-                // 脱敏起点
-                index = rawRuleOrPosition.indexOf("<");
-                flagSub = rawRuleOrPosition.substring(0, index);
-                indexOf = value.indexOf(flagSub);
-                newValue = value.substring(indexOf + 1);
-                newValueL = newValue.length();
-                append = value.substring(0, indexOf + 1);
-                value =
-                        append
-                                + doDesensitize(
-                                        Math.max(startSub, 0),
-                                        endSub >= 0
-                                                ? (endSub <= newValueL ? endSub : newValueL - 1)
-                                                : 0,
-                                        newValue);
-            } else if (rawRuleOrPosition.contains(",")) {
-                newValueL = value.length();
-                value =
-                        doDesensitize(
-                                Math.max(startSub, 0),
-                                endSub >= 0 ? (endSub <= newValueL ? endSub : newValueL - 1) : 0,
-                                value);
-            }
-        } else if (!"".equals(position)) {
-            int beforeIndexOf = position.indexOf("*");
-            int last = position.length() - position.lastIndexOf("*");
-            int lastIndexOf = value.length() - last;
-            value = doDesensitize(beforeIndexOf, lastIndexOf, value);
+        if (EMPTY.equals(position)) {
+            return value;
         }
+
+        String[] split = position.split(StrPool.COMMA);
+        if (split.length != two && !position.contains(ast)) {
+            return value;
+        }
+
+        // position is nc***b: which means just remain first two and last one letter
+        int length = value.length();
+        if (position.contains(ast)) {
+            int start = position.indexOf(ast);
+            int end = length - (position.length() - position.lastIndexOf(ast));
+            return CharSequenceUtil.hide(value, start, end + 1);
+        }
+
+        // rawRuleOrPosition is 1,3 || rawRuleOrPosition is @>(1,3)
+        if (position.equals(rawRuleOrPosition) || rawRuleOrPosition.contains(">")) {
+            if (NumberUtil.isNumber(split[0]) && NumberUtil.isNumber(split[1])) {
+                int start = NumberUtil.parseInt(split[0]);
+                int end = NumberUtil.parseInt(split[1]);
+                return CharSequenceUtil.hide(value, start, end + 1);
+            }
+            return value;
+        }
+
+        // position is @<(1,3)
+        if (rawRuleOrPosition.contains("<")) {
+            if (NumberUtil.isNumber(split[0]) && NumberUtil.isNumber(split[1])) {
+                int start = NumberUtil.parseInt(split[0]);
+                int end = NumberUtil.parseInt(split[1]);
+                return CharSequenceUtil.hide(value, length - end, length - start + 1);
+            }
+            return value;
+        }
+
         return value;
     }
 
     /**
-     * Get pattern's rule by key
+     * Get pattern's rule by key <br>
+     * todo: how to guarantee the configured sequence
      *
      * @param key key
-     * @return rules
+     * @return rules string | map | list
      */
-    private Object getPatternRules(String key) {
+    private Object getConfiguredRules(String key) {
+
+        key = Optional.ofNullable(key).orElseGet(() -> EMPTY).replace("\"", "").trim();
 
         // init for flag and lower case convert
         if (isNull(ignoreCase)) {
@@ -243,7 +207,7 @@ public class DesensitizationUtil {
         }
 
         if (ignoreCase) {
-            return lowerCaseAllPattern.get(key.toLowerCase());
+            return lowerCaseAllPattern.get(key.toUpperCase());
         } else {
             return allPattern.get(key);
         }
@@ -318,7 +282,7 @@ public class DesensitizationUtil {
             String defaultRegex = map.get(DEFAULT_REGEX).toString();
             String position = map.get(POSITION).toString();
 
-            // todo: check value ?? what's this?
+            // notice: this will check value pattern again
             if (IDENTITY.equals(defaultRegex) && RegUtil.isIdentity(value)) {
                 return position;
             }
@@ -363,7 +327,7 @@ public class DesensitizationUtil {
         return ruleOrPosition.substring(startCons + 1, endCons);
     }
 
-    private Boolean enableDesensitize() {
+    private boolean enableDesensitize() {
 
         if (isNull(enable)) {
             return YmlUtil.getEnableConfig();
@@ -375,12 +339,15 @@ public class DesensitizationUtil {
     /**
      * 脱敏处理
      *
+     * @deprecated
      * @param start 脱敏开始下标
      * @param end 脱敏结束下标
      * @param value value
      * @return
      */
+    @Deprecated
     public String doDesensitize(int start, int end, String value) {
+
         char[] chars;
         int i;
         // 正常情况 - end在数组长度内

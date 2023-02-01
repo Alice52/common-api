@@ -6,7 +6,7 @@ import ch.qos.logback.core.ConsoleAppender;
 /**
  * @author Zack Zhang
  */
-public class DesConsoleAppender<E> extends ConsoleAppender<E> {
+public class DeConsoleAppender<E> extends ConsoleAppender<E> {
 
     @Override
     protected void subAppend(E event) {

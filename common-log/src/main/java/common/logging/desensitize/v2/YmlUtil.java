@@ -16,31 +16,22 @@ import java.util.*;
 @UtilityClass
 public class YmlUtil {
 
-    /** desensitize configuration file name */
-    public String PROPERTY_NAME = "logback-desensitize.yml";
-
     /* start symbol of desensitize configuration */
     public final String YML_HEAD_KEY = "log-desensitize";
-
     public final String ENABLE_FLAG = "enable";
-
     public final String IGNORE = "ignore";
-
     public final String PATTERN = "pattern";
-
     public final String PATTERNS = "patterns";
-
     public final String CUSTOM = "custom";
-
     public final String KEY = "key";
-
     public final String DEFAULT_REGEX = "defaultRegex";
     public final String POSITION = "position";
     public final String CUSTOM_REGEX = "customRegex";
+    public final DumperOptions OPTIONS = new DumperOptions();
+    /** desensitize configuration file name */
+    public String PROPERTY_NAME = "logback-desensitize.yml";
 
     public Map<String, Object> desensitiveConfigCache;
-
-    public final DumperOptions OPTIONS = new DumperOptions();
 
     static {
         OPTIONS.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK);
@@ -88,9 +79,9 @@ public class YmlUtil {
      *
      * @return whether enabled desensitize
      */
-    public Boolean getEnableConfig() {
+    public boolean getEnableConfig() {
         Object flag = desensitiveConfigCache.get(ENABLE_FLAG);
-        return flag instanceof Boolean ? (Boolean) flag : false;
+        return flag instanceof Boolean && (boolean) flag;
     }
 
     /**
@@ -98,9 +89,9 @@ public class YmlUtil {
      *
      * @return whether ignore letter case
      */
-    public Boolean getIgnoreConfig() {
+    public boolean getIgnoreConfig() {
         Object flag = desensitiveConfigCache.get(IGNORE);
-        return flag instanceof Boolean ? (Boolean) flag : true;
+        return !(flag instanceof Boolean) || (boolean) flag;
     }
 
     /**

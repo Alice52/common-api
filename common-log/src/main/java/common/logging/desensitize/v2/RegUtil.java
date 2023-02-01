@@ -1,13 +1,11 @@
 package common.logging.desensitize.v2;
 
 import lombok.experimental.UtilityClass;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
- * @author zack <br/>
- * @create 2023-02-01 00:21 <br/>
- * @project common-api <br/>
+ * @author zack <br>
+ * @create 2023-02-01 00:21 <br>
+ * @project common-api <br>
  */
 @UtilityClass
 public class RegUtil {
