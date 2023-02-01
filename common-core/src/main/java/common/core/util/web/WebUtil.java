@@ -13,6 +13,7 @@ import common.core.util.se.ClassUtil;
 import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.MDC;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.server.ServerHttpRequest;
@@ -205,10 +206,12 @@ public class WebUtil extends org.springframework.web.util.WebUtils {
         String requestId;
         String parameterRequestId = request.getParameter(requestIdKey);
         String headerRequestId = request.getHeader(requestIdKey);
-        if (parameterRequestId == null && headerRequestId == null) {
+        String mdcRequestId = MDC.get(requestIdKey);
+        if (parameterRequestId == null && headerRequestId == null && mdcRequestId == null) {
             requestId = IdUtil.fastUUID();
+            // request.setAttribute(requestIdKey, requestId);
         } else {
-            requestId = parameterRequestId != null ? parameterRequestId : headerRequestId;
+            requestId = StrUtil.firstNonBlank(parameterRequestId, headerRequestId, mdcRequestId);
         }
         return requestId;
     }

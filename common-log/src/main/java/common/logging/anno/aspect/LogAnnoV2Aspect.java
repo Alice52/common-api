@@ -1,17 +1,18 @@
 package common.logging.anno.aspect;
 
-import cn.hutool.core.util.IdUtil;
 import cn.hutool.json.JSONUtil;
 import common.core.util.web.WebUtil;
 import common.logging.anno.LogAnnoV2;
 import common.logging.anno.vo.LogVOV2;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.NamedThreadLocal;
 import org.springframework.core.annotation.Order;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -29,17 +30,21 @@ import java.util.Optional;
 @Aspect
 @Slf4j
 @AllArgsConstructor
+@NoArgsConstructor
 public class LogAnnoV2Aspect {
     private static NamedThreadLocal<LogVOV2> tl = new NamedThreadLocal<>("open-api-log");
 
-    private static void doBefore(JoinPoint joinPoint) {
+    @Value("${common.core.global.request-id.key:req-id}")
+    private String requestIdKey;
+
+    private void doBefore(JoinPoint joinPoint) {
         try {
             ServletRequestAttributes attributes =
                     (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
             HttpServletRequest request = attributes.getRequest();
 
             LogVOV2 optLog = new LogVOV2();
-            optLog.setReqId(IdUtil.fastUUID());
+            optLog.setReqId(WebUtil.getRequestId(request, requestIdKey));
             optLog.setRequestTime(System.currentTimeMillis());
             optLog.setBeanName(joinPoint.getSignature().getDeclaringTypeName());
             optLog.setMethodName(joinPoint.getSignature().getName());
@@ -57,7 +62,7 @@ public class LogAnnoV2Aspect {
         }
     }
 
-    private static void doAfterReturning(Object result) {
+    private void doAfterReturning(Object result) {
         try {
             LogVOV2 vo = Optional.ofNullable(tl.get()).orElseGet(LogVOV2::new);
             Long beginTime = Optional.ofNullable(vo.getRequestTime()).orElseGet(() -> 0L);

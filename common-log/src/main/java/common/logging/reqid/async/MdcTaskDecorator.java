@@ -21,13 +21,23 @@ public class MdcTaskDecorator implements TaskDecorator {
      */
     @Override
     public Runnable decorate(Runnable runnable) {
-        Map<String, String> map = MDC.getCopyOfContextMap();
+
+        Map<String, String> context = MDC.getCopyOfContextMap();
         return () -> {
+            Map<String, String> previous = MDC.getCopyOfContextMap();
+            if (context == null) {
+                MDC.clear();
+            } else {
+                MDC.setContextMap(context);
+            }
             try {
-                MDC.setContextMap(map);
                 runnable.run();
             } finally {
-                MDC.clear();
+                if (previous == null) {
+                    MDC.clear();
+                } else {
+                    MDC.setContextMap(previous);
+                }
             }
         };
     }

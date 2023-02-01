@@ -16,8 +16,7 @@ import java.util.concurrent.ThreadPoolExecutor;
  */
 @Slf4j
 @EnableAsync
-@Configuration
-public class ThreadPoolConfig {
+public class SampleThreadPoolConfig {
     private int corePoolSize = 50;
     private int maxPoolSize = 200;
     private int queueCapacity = 1000;

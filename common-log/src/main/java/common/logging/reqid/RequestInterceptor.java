@@ -17,12 +17,12 @@ import javax.servlet.http.HttpServletResponse;
  * @create 2021-06-02 12:35 <br>
  * @project custom-test <br>
  */
+@Component
 @ConditionalOnProperty(
         prefix = "common.core.global.request-id",
         value = {"enabled"},
         havingValue = "true",
         matchIfMissing = true)
-@Component
 public class RequestInterceptor extends HandlerInterceptorAdapter implements WebMvcConfigurer {
 
     /** if use responseProperties, will throw exception due to responseProperties is null now. */
