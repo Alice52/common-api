@@ -84,7 +84,7 @@
         <!-- 可选项 设置 time 字段呈现的时区 -->
         <timeZone>Asia/Shanghai</timeZone>
     </appender>
-    <appender name="de-aliyun" class="common.logging.desensitize.v2.DeLoghubAppender">
+    <appender name="de-aliyun" class="common.logging.desensitize.v2.appender.DeLoghubAppender">
         <!-- 内网 | 外网 -->
         <endpoint>${sls.endpoint}</endpoint>
         <accessKeyId>${sls.access-key-id}</accessKeyId>
@@ -140,7 +140,7 @@
             <pattern>${console.pattern}</pattern>
         </encoder>
     </appender>
-    <appender name="de-console" class="common.logging.desensitize.v2.DeConsoleAppender">
+    <appender name="de-console" class="common.logging.desensitize.v2.appender.DeConsoleAppender">
         <encoder>
             <pattern>${console.pattern}</pattern>
         </encoder>
@@ -162,7 +162,7 @@
             <charset>UTF-8</charset>
         </encoder>
     </appender>
-    <appender name="de-debug" class="common.logging.desensitize.v2.DeRollingFileAppender">
+    <appender name="de-debug" class="common.logging.desensitize.v2.appender.DeRollingFileAppender">
         <file>${log.path}/de-debug.log</file>
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>DEBUG</level>
@@ -200,7 +200,7 @@
             <charset>UTF-8</charset>
         </encoder>
     </appender>
-    <appender name="de-error" class="common.logging.desensitize.v2.DeRollingFileAppender">
+    <appender name="de-error" class="common.logging.desensitize.v2.appender.DeRollingFileAppender">
         <file>${log.path}/de-error.log</file>
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>error</level>

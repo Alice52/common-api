@@ -4,6 +4,7 @@ import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.text.CharSequenceUtil;
 import cn.hutool.core.text.StrPool;
 import cn.hutool.core.util.NumberUtil;
+import cn.hutool.core.util.StrUtil;
 import com.google.common.collect.Maps;
 import lombok.experimental.UtilityClass;
 
@@ -51,10 +52,15 @@ public class DesensitizationUtil {
     public final String IDENTITY = "identity";
     public final String OTHER = "other";
     public final String PASSWORD = "password";
-    public Boolean enable = null;
-    public Boolean ignoreCase = null;
-    public Map<String, Object> allPattern = YmlUtil.getAllPattern();
-    public Map<String, Object> lowerCaseAllPattern;
+    private Boolean enable = null;
+    private Boolean ignoreCase;
+    private Map<String, Object> allPattern;
+    private Map<String, Object> lowerCaseAllPattern;
+
+    static {
+        allPattern = YmlUtil.getAllPattern();
+        ignoreCase = getIgnoreCase();
+    }
 
     /**
      * 将event对象的formattedMessage脱敏
@@ -64,17 +70,21 @@ public class DesensitizationUtil {
      */
     public String customChange(String message) {
         try {
+            // not enable desensitize feature or message is blank
+            Map<String, Object> config = YmlUtil.desensitiveConfigCache;
+            if (MapUtil.isEmpty(config) || !enableDesensitize() || StrUtil.isBlank(message)) {
+                return message;
+            }
+
+            // contains no keyword, which need to be desensitized
+            if (!containsKeyword(message)) {
+                return message;
+            }
+
             // 原始信息 - 格式化后的
             String originalMessage = message;
 
-            Map<String, Object> config = YmlUtil.desensitiveConfigCache;
-            if (MapUtil.isEmpty(config) || !enableDesensitize()) {
-                return originalMessage;
-            }
-
-            // todo: this reg will poor performance
             Matcher regexMatcher = REGEX_PATTERN.matcher(message);
-
             while (regexMatcher.find()) {
                 // group(1)就是key, group(2)就是分隔符(如：和=), group(3)就是value
 
@@ -117,6 +127,23 @@ public class DesensitizationUtil {
         } catch (Exception e) {
             return message;
         }
+    }
+
+    /**
+     * whether the formatted message contains keyword.
+     *
+     * @param message
+     * @return
+     */
+    private static boolean containsKeyword(String message) {
+
+        for (String keyword : allPattern.keySet()) {
+            if (containsIgnoreCase(message, keyword)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
@@ -196,21 +223,31 @@ public class DesensitizationUtil {
      */
     private Object getConfiguredRules(String key) {
 
-        key = Optional.ofNullable(key).orElseGet(() -> EMPTY).replace("\"", "").trim();
+        key = Optional.ofNullable(key).orElseGet(() -> EMPTY).replace("\"", EMPTY).trim();
 
-        // init for flag and lower case convert
-        if (isNull(ignoreCase)) {
-            ignoreCase = YmlUtil.getIgnoreConfig();
-            if (ignoreCase) {
-                lowerCaseAllPattern = transformUpperCase(allPattern);
-            }
-        }
-
-        if (ignoreCase) {
+        if (Boolean.TRUE.equals(ignoreCase)) {
             return lowerCaseAllPattern.get(key.toUpperCase());
         } else {
             return allPattern.get(key);
         }
+    }
+
+    /**
+     * init for flag and lower case convert
+     *
+     * @return
+     */
+    private boolean getIgnoreCase() {
+        if (isNull(ignoreCase)) {
+            ignoreCase = YmlUtil.getIgnoreConfig();
+            if (Boolean.TRUE.equals(ignoreCase)) {
+                lowerCaseAllPattern = transformUpperCase(allPattern);
+            }
+
+            return ignoreCase;
+        }
+
+        return ignoreCase;
     }
 
     /**

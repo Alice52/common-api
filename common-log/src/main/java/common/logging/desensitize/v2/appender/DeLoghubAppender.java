@@ -1,7 +1,8 @@
-package common.logging.desensitize.v2;
+package common.logging.desensitize.v2.appender;
 
 import ch.qos.logback.classic.spi.LoggingEvent;
 import com.aliyun.openservices.log.logback.LoghubAppender;
+import common.logging.desensitize.v2.DesensitizationAppender;
 
 /**
  * @author Zack Zhang

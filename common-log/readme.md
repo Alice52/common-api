@@ -43,3 +43,4 @@
 1. Custom TaskDecorator
 2. @EnableAsync + ThreadPoolTaskExecutor + TaskDecorator
 3. @Async("threadPoolTaskExecutor")
+4. https://mp.weixin.qq.com/s/1FxpPy2jwnOouQDTNJAxeA
