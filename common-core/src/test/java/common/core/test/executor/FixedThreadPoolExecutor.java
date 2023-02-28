@@ -1,13 +1,13 @@
 package common.core.test.executor;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
-import common.core.executor.RadicalBlockingQueue;
 import common.core.executor.reject.CallerBlocksPolicy;
 import common.core.util.pool.PoolMonitorUtil;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
+import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -40,7 +40,7 @@ public class FixedThreadPoolExecutor {
                         threadCount,
                         30,
                         TimeUnit.SECONDS,
-                        new RadicalBlockingQueue<>(queueSize),
+                        new LinkedBlockingQueue<>(queueSize),
                         f,
                         new CallerBlocksPolicy());
 

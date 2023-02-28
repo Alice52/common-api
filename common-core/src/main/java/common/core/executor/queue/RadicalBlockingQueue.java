@@ -1,4 +1,4 @@
-package common.core.executor;
+package common.core.executor.queue;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -6,12 +6,15 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * this class have been built-in RadicalThreadPoolExecutor.
+ *
  * @author asd <br>
  * @create 2022-08-25 10:41 AM <br>
  * @project project-cloud-custom <br>
  */
 @Slf4j
-public class RadicalBlockingQueue<E> extends LinkedBlockingQueue<E> {
+@Deprecated
+class RadicalBlockingQueue<E> extends LinkedBlockingQueue<E> {
 
     public RadicalBlockingQueue(int capacity) {
         super(capacity);

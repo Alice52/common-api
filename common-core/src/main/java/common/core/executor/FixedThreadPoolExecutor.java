@@ -1,17 +1,17 @@
 package common.core.executor;
 
-import org.slf4j.MDC;
+import common.core.executor.factory.ExecutorThreadFactory;
 
-import java.util.Map;
 import java.util.concurrent.*;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
+ * 固定队列大小的执行器
+ *
  * @author zack <br>
  * @create 2022-04-08 11:56 <br>
  * @project mc-platform <br>
  */
-public class FixedThreadPoolExecutor extends ThreadPoolExecutor {
+public class FixedThreadPoolExecutor extends AbstractThreadPoolExecutor {
 
     private static final Long KEEP_ALIVE_TIME_SECONDS = 120L;
 
@@ -42,53 +42,7 @@ public class FixedThreadPoolExecutor extends ThreadPoolExecutor {
                 KEEP_ALIVE_TIME_SECONDS,
                 TimeUnit.SECONDS,
                 new LinkedBlockingQueue<>(queueSize),
-                new FixedThreadFactory(),
+                new ExecutorThreadFactory(ExecutorThreadFactory.ExecutorEnum.Fixed),
                 handler);
-    }
-
-    /**
-     * 在子线程中使用父线程的 MDC#log 上线文
-     *
-     * @param runnable
-     * @return
-     */
-    private static Runnable executor(final Runnable runnable) {
-
-        final Map<String, String> context = MDC.getCopyOfContextMap();
-
-        return () -> {
-            Map<String, String> previous = MDC.getCopyOfContextMap();
-            if (context == null) {
-                MDC.clear();
-            } else {
-                MDC.setContextMap(context);
-            }
-            try {
-                runnable.run();
-            } finally {
-                if (previous == null) {
-                    MDC.clear();
-                } else {
-                    MDC.setContextMap(previous);
-                }
-            }
-        };
-    }
-
-    @Override
-    public void execute(Runnable command) {
-        super.execute(executor(command));
-    }
-
-    static class FixedThreadFactory implements ThreadFactory {
-
-        private final AtomicInteger threadNumber = new AtomicInteger(1);
-
-        @Override
-        public Thread newThread(Runnable r) {
-            Thread thread = new Thread(r);
-            thread.setName("fixed-thread-" + threadNumber.getAndIncrement());
-            return thread;
-        }
     }
 }
