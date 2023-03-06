@@ -44,7 +44,7 @@
         <spring.boot.maven.version>2.2.6.RELEASE</spring.boot.maven.version>
 
         <!-- jackson -->
-        <jackson.modules>2.13.4</jackson.modules>
+        <jackson.modules>2.14.2</jackson.modules>
 
         <!-- database -->
         <mysql.version>5.1.49</mysql.version>
