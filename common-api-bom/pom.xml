@@ -35,7 +35,7 @@
         <kaptcha.version>0.0.9</kaptcha.version>
 
         <!-- spring -->
-        <spring.boot.version>2.7.5</spring.boot.version>
+        <spring.boot.version>2.7.9</spring.boot.version>
         <actuator.admin.version>2.7.7</actuator.admin.version>
         <spring.cloud.version>2021.0.4</spring.cloud.version>
         <cloud.alibaba.version>2021.1</cloud.alibaba.version>
