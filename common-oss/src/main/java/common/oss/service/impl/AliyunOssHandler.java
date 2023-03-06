@@ -13,6 +13,7 @@ import common.oss.constnats.enums.OssUploadTypeEnum;
 import common.oss.properties.AliyunOssProperties;
 import common.oss.service.OSSHander;
 import lombok.extern.slf4j.Slf4j;
+import lombok.SneakyThrows;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -89,6 +90,7 @@ public class AliyunOssHandler implements OSSHander {
     }
 
     @Override
+    @SneakyThrows
     public JSONObject signature() throws UnsupportedEncodingException {
         String host =
                 "https://" + ossProperties.getBucket() + StrUtil.DOT + ossProperties.getEndpoint();

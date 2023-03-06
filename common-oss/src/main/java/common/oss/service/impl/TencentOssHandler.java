@@ -16,6 +16,7 @@ import common.oss.properties.TencentOSSProperties;
 import common.oss.service.OSSHander;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONObject;
+import lombok.SneakyThrows;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Component;
@@ -66,6 +67,7 @@ public class TencentOssHandler implements OSSHander {
      * @return
      */
     @Override
+    @SneakyThrows
     public JSONObject signature() {
         TreeMap<String, Object> config = new TreeMap<String, Object>();
         config.put("SecretId", ossProperties.getAccessKey());

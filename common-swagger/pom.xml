@@ -17,7 +17,25 @@
         <module>swagger-3</module>
     </modules>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.github.alice52</groupId>
+                <artifactId>common-api-bom</artifactId>
+                <version>${project.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
+        <dependency>
+            <groupId>io.github.alice52</groupId>
+            <artifactId>common-apis</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
         <!-- fix for spring 2.7.5  -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
