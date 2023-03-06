@@ -21,7 +21,7 @@
         <slf4j.api.version>1.7.36</slf4j.api.version>
         <logback.core.version>1.2.9</logback.core.version>
         <logback.classic.version>1.2.3</logback.classic.version>
-        <aliyun.logback.version>0.1.18</aliyun.logback.version>
+        <aliyun.logback.version>0.1.20</aliyun.logback.version>
         <janino.version>3.1.9</janino.version>
 
         <!-- tool -->
