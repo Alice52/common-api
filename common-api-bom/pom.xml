@@ -51,7 +51,7 @@
         <druid.version>1.2.16</druid.version>
         <mybatis.plus.version>3.5.2</mybatis.plus.version>
         <mybatis.spring.boot.version>3.0.1</mybatis.spring.boot.version>
-        <elasticsearch.version>7.17.7</elasticsearch.version>
+        <elasticsearch.version>7.17.9</elasticsearch.version>
         <redisson.version>3.20.0</redisson.version>
 
         <!-- mq -->
