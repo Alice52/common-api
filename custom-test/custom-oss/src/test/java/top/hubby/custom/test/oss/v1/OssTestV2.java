@@ -1,8 +1,9 @@
-package top.hubby.custom.test.oss;
+package top.hubby.custom.test.oss.v1;
 
 import common.core.util.se.FileUtil;
 import common.oss.constnats.enums.OssUploadTypeEnum;
-import common.oss.context.OssContextV2;
+import common.oss.context.OssContext;
+import common.oss.service.OSSHander;
 import lombok.SneakyThrows;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,11 +24,11 @@ import java.net.URI;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = OssApplication.class)
-public class OssTest {
-    @Resource private OssContextV2 ossContext;
+public class OssTestV2 {
 
     private String URL_PATH =
             "https://imgcache.qq.com/open_proj/proj_qcloud_v2/cvm/src/styles/img/sence1.png";
+    @Resource private OssContext ossContext;
 
     @SneakyThrows
     @Test
@@ -35,9 +36,10 @@ public class OssTest {
 
         URI u = URI.create(URL_PATH);
         try (InputStream inputStream = u.toURL().openStream()) {
-            File file = new File("46.png");
+            File file = new File("45.png");
             FileUtil.copyInputStreamToFile(inputStream, file);
-            ossContext.upload("46.png", file, null, OssUploadTypeEnum.aliyun);
+            OSSHander handler = ossContext.getHandler(OssUploadTypeEnum.aliyun);
+            handler.upload("45.png", file, null);
 
             file.delete();
         }
@@ -49,9 +51,10 @@ public class OssTest {
 
         URI u = URI.create(URL_PATH);
         try (InputStream inputStream = u.toURL().openStream()) {
-            File file = new File("46.png");
+            File file = new File("45.png");
             FileUtil.copyInputStreamToFile(inputStream, file);
-            ossContext.upload("46.png", file, null, OssUploadTypeEnum.tencent);
+            OSSHander handler = ossContext.getHandler(OssUploadTypeEnum.tencent);
+            handler.upload("45.png", file, null);
 
             file.delete();
         }

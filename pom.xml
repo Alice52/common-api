@@ -71,6 +71,7 @@
         <guava.version>31.1-jre</guava.version>
         <validation.api.version>2.0.1.Final</validation.api.version>
         <kaptcha.version>0.0.9</kaptcha.version>
+        <aws.version>1.12.423</aws.version>
 
         <!-- spring -->
         <spring.boot.version>2.7.5</spring.boot.version>
@@ -202,6 +203,11 @@
                 <groupId>com.github.axet</groupId>
                 <artifactId>kaptcha</artifactId>
                 <version>${kaptcha.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.amazonaws</groupId>
+                <artifactId>aws-java-sdk-s3</artifactId>
+                <version>${aws.version}</version>
             </dependency>
 
             <!-- jackson -->

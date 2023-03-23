@@ -1,0 +1,26 @@
+spring:
+  profiles:
+    # this sequence is master
+    include: common-dev,redis-dev
+https://project-ec:
+  oss-cn-hangzhou:
+    aliyuncs:
+      com/2020-10-10/044a82f2-7218-41b9-8f21-614cdd2c1706/14894-8:
+        jpg:
+common:
+  oss:
+    vender: OSS
+    endpoint: oss-cn-hangzhou.aliyuncs.com
+    # region: ap-shanghai
+    path-style-access: false
+    accessKey: ENC(Kf42+pHi8/IU/QWZlOm8UpTTLIMxHWRBWkYENv7a1hO93AkB/rb0G9juNLPXSAfpzYVkX4DGFvUKC1qLooR9Yw==)
+    secretKey: ENC(zu07F3mfQ5SeGQR2YG3q7OWoRMoJPE73C5DWwqxV8LWyz8MOGpz0viKcdadOBeS/Gp54+V0LWWC8jjWIoVTbnA==)
+
+#    vender: COS
+#    cos-app-id: 1300043990
+#    endpoint: http://cos.ap-shanghai.myqcloud.com
+#    region: ap-shanghai
+#    path-style-access: false
+#    accessKey: ENC(FMtjulnXplHmQK9VEtk8Xmged1FJXFLsK4VEX+vVF9hZnoPBdx2pgj6IcOWGoYAocPNYCjaCt5Oo+VIhPnn2lahNDj9Z5+ZNC7AHD6QUEaE=)
+#    secretKey: ENC(rhz4PjHjCedUTtKpwKohsgZXMhNXxBJk+w5XKppx/9PjGzyYmxegLVUzyk4UwrAULYPZjnbeWkBTJFnM+zIdiwGvW9yUKMzjaGpkc4iYsGo=)
+

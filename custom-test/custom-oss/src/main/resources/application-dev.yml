@@ -5,6 +5,13 @@ spring:
 
 common:
   oss:
+    vender: OSS
+    endpoint: oss-cn-hangzhou.aliyuncs.com
+    # region: ap-shanghai
+    path-style-access: false
+    accessKey: ENC(Kf42+pHi8/IU/QWZlOm8UpTTLIMxHWRBWkYENv7a1hO93AkB/rb0G9juNLPXSAfpzYVkX4DGFvUKC1qLooR9Yw==)
+    secretKey: ENC(zu07F3mfQ5SeGQR2YG3q7OWoRMoJPE73C5DWwqxV8LWyz8MOGpz0viKcdadOBeS/Gp54+V0LWWC8jjWIoVTbnA==)
+
     aliyun:
       enable: true
       accessKey: ENC(Kf42+pHi8/IU/QWZlOm8UpTTLIMxHWRBWkYENv7a1hO93AkB/rb0G9juNLPXSAfpzYVkX4DGFvUKC1qLooR9Yw==)

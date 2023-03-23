@@ -3,7 +3,7 @@ server:
 
 spring:
   profiles:
-    active: dev
+    active: v2
   application:
     name: custom-oss
   mvc:
