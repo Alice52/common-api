@@ -15,6 +15,8 @@ import java.util.Map;
 import java.util.Set;
 
 /**
+ * common-log#desensitize#v2
+ *
  * @author zack <br>
  * @create 2021-06-04 16:51 <br>
  * @project custom-test <br>

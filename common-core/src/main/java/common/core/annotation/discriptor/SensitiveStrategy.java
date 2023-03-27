@@ -10,6 +10,7 @@ import java.util.function.Function;
  * @create 2021-06-09 09:39 <br>
  * @project custom-test <br>
  */
+@Deprecated
 @Getter
 @AllArgsConstructor
 public enum SensitiveStrategy {
