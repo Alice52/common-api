@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- considering control sls by config: include  -->
 <configuration>
+    <conversionRule conversionWord="errorLevel"
+                    converterClass="common.logging.converter.custom.DefaultErrorLevelConverter"/>
+    <conversionRule conversionWord="errorType"
+                    converterClass="common.logging.converter.custom.DefaultErrorTypeConverter"/>
+
     <!-- include: common-core/resource-->
     <include resource="logback-include.xml"/>
+    <include resource="logback-include-json.xml"/>
 
     <springProperty scope="context" name="enabled" source="sls.enabled"/>
 
@@ -10,7 +16,7 @@
     <root level="INFO">
         <!--  aliyun-sls: need sls id & key etcs.   -->
         <if condition='property("enabled") == "true"'>
-        <!-- <if condition='property("env").contains("dev") || property("env").contains("prod")'>-->
+            <!-- <if condition='property("env").contains("dev") || property("env").contains("prod")'>-->
             <then>
                 <appender-ref ref="aliyun"/>
             </then>

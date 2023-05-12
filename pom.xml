@@ -61,6 +61,7 @@
         <logback.classic.version>1.2.3</logback.classic.version>
         <aliyun.logback.version>0.1.18</aliyun.logback.version>
         <janino.version>3.1.9</janino.version>
+        <logstash.logback.version>7.3</logstash.logback.version>
 
         <!-- tool -->
         <jodah.expiringmap.version>0.5.10</jodah.expiringmap.version>
@@ -154,6 +155,11 @@
                 <groupId>com.aliyun.openservices</groupId>
                 <artifactId>aliyun-log-logback-appender</artifactId>
                 <version>${aliyun.logback.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.logstash.logback</groupId>
+                <artifactId>logstash-logback-encoder</artifactId>
+                <version>${logstash.logback.version}</version>
             </dependency>
 
             <!-- tool -->
@@ -430,6 +436,10 @@
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.logstash.logback</groupId>
+            <artifactId>logstash-logback-encoder</artifactId>
         </dependency>
 
         <!-- test -->

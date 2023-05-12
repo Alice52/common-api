@@ -4,7 +4,7 @@ import common.core.component.SpringContextHolder;
 import common.logging.anno.LogAnno;
 import common.logging.anno.event.SysLogEvent;
 import common.logging.anno.vo.LogVO;
-import common.logging.common.LogUtil;
+import common.logging.util.LogUtil;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;

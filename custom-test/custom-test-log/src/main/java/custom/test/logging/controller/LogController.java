@@ -1,5 +1,7 @@
 package custom.test.logging.controller;
 
+import common.core.constant.enums.BusinessResponseEnum;
+import common.core.exception.BusinessException;
 import common.core.util.R;
 import common.logging.anno.LogAnno;
 import common.logging.anno.LogAnnoV2;
@@ -38,5 +40,17 @@ public class LogController {
         threadPoolTaskExecutor.execute(() -> log.info("sub-thread log"));
 
         return R.<String>builder().data("pong").build();
+    }
+
+    @LogAnnoV2
+    @PostMapping("/runtime-exception")
+    public R<String> exception() {
+        throw new RuntimeException("runtime-exception");
+    }
+
+    @LogAnnoV2
+    @PostMapping("/biz-exception")
+    public R<String> bizException() {
+        throw new BusinessException(BusinessResponseEnum.PARAMTER_ERROR);
     }
 }

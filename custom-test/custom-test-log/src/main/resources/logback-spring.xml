@@ -1,8 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- considering control sls by config: include  -->
 <configuration>
+
+    <!-- sequence is important: must before include -->
+    <!-- overwrite error_level & error_type format: work !!! -->
+
+    <!--  should be add in  logback-spring.xml by default.
+        <conversionRule conversionWord="errorLevel"
+                        converterClass="common.logging.converter.custom.DefaultErrorLevelConverter"/>
+        <conversionRule conversionWord="errorType"
+                        converterClass="common.logging.converter.custom.DefaultErrorTypeConverter"/>
+    -->
+    <conversionRule conversionWord="errorLevel"
+                    converterClass="custom.test.logging.converter.CustomLogErrorLevelConverter"/>
+    <conversionRule conversionWord="errorType"
+                    converterClass="custom.test.logging.converter.CustomLogErrorTypeConverter"/>
+
     <!-- include: common-log/resource-->
     <include resource="logback-include.xml"/>
+    <include resource="logback-include-json.xml"/>
 
     <springProperty scope="context" name="enabled" source="sls.enabled"/>
 
@@ -15,8 +31,14 @@
             </then>
         </if>
 
-        <appender-ref ref="de-console"/>
-        <appender-ref ref="de-debug"/>
-        <appender-ref ref="error"/>
+        <appender-ref ref="de-json-console"/>
     </root>
+
+    <!-- or by env
+        <springProfile name="staging,prod">
+            <root level="INFO">
+                <appender-ref ref="json"/>
+            </root>
+        </springProfile>
+    -->
 </configuration>

@@ -1,4 +1,4 @@
-package common.logging.common;
+package common.logging.converter;
 
 import ch.qos.logback.classic.pattern.MessageConverter;
 import ch.qos.logback.classic.spi.ILoggingEvent;

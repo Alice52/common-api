@@ -1,4 +1,4 @@
-package common.logging.common;
+package common.logging.util;
 
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.http.Method;
