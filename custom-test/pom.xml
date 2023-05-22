@@ -24,6 +24,7 @@
         <module>custom-test-log</module>
         <module>custom-test-crypt</module>
         <module>custom-kotlin</module>
+        <module>base-identity-server</module>
     </modules>
 
     <dependencies>

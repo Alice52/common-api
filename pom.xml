@@ -33,6 +33,7 @@
         <module>common-mq</module>
         <module>custom-test</module>
         <module>common-crypt</module>
+        <module>common-token</module>
     </modules>
 
     <properties>
@@ -40,6 +41,7 @@
         <spring-boot.repackage.skip>true</spring-boot.repackage.skip>
 
         <!--  #region  ====================== common version =====================    -->
+        <reversion>0.0.1</reversion>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <sonar.organization>alice52</sonar.organization>
         <sonar-maven-plugin.version>3.9.1.2184</sonar-maven-plugin.version>
