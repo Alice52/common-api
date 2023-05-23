@@ -21,42 +21,42 @@ import javax.annotation.Resource;
 @EnableConfigurationProperties(TokenProviderProperties.class)
 public class TokenAutoConfiguration {
 
-  @Resource private TokenProviderProperties tokenProperties;
+    @Resource private TokenProviderProperties tokenProperties;
 
-  @Bean
-  public TokenHttpRequests tokenHttpRequests(
-      TokenProviderProperties properties, ObjectMapper objectMapper) {
-    return new TokenHttpRequests(properties, objectMapper);
-  }
+    @Bean
+    public TokenHttpRequests tokenHttpRequests(
+            TokenProviderProperties properties, ObjectMapper objectMapper) {
+        return new TokenHttpRequests(properties, objectMapper);
+    }
 
-  @Bean
-  public TokenManager tokenManager(TokenHttpRequests tokenHttpRequests) {
-    return new TokenManager(tokenHttpRequests);
-  }
+    @Bean
+    public TokenManager tokenManager(TokenHttpRequests tokenHttpRequests) {
+        return new TokenManager(tokenHttpRequests);
+    }
 
-  /**
-   * usage sample: do http request by using TokenRestTemplate.
-   *
-   * @param tokenManager
-   * @return
-   */
-  @Bean
-  public TokenRestTemplate tokenRestTemplate(TokenManager tokenManager) {
-    return new TokenRestTemplate(tokenManager);
-  }
+    /**
+     * usage sample: do http request by using TokenRestTemplate.
+     *
+     * @param tokenManager
+     * @return
+     */
+    @Bean
+    public TokenRestTemplate tokenRestTemplate(TokenManager tokenManager) {
+        return new TokenRestTemplate(tokenManager);
+    }
 
-  /**
-   * usage sample
-   *
-   * <pre>
-   * @FeignClient(name = "xxx-client", url = "${xx.xx.url}", configuration = FeignTokenInterceptor.class)
-   * </pre>
-   *
-   * @param tokenManager
-   * @return
-   */
-  @Bean
-  public FeignTokenInterceptor feignTokenInterceptor(TokenManager tokenManager) {
-    return new FeignTokenInterceptor(tokenManager);
-  }
+    /**
+     * usage sample
+     *
+     * <pre>
+     * @FeignClient(name = "xxx-client", url = "${xx.xx.url}", configuration = FeignTokenInterceptor.class)
+     * </pre>
+     *
+     * @param tokenManager
+     * @return
+     */
+    @Bean
+    public FeignTokenInterceptor feignTokenInterceptor(TokenManager tokenManager) {
+        return new FeignTokenInterceptor(tokenManager);
+    }
 }

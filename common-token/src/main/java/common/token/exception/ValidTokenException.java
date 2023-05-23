@@ -7,11 +7,11 @@ package common.token.exception;
  */
 public class ValidTokenException extends RuntimeException {
 
-  public ValidTokenException(String message, Exception e) {
-    super(message, e);
-  }
+    public ValidTokenException(String message, Exception e) {
+        super(message, e);
+    }
 
-  public ValidTokenException(String message) {
-    super(message);
-  }
+    public ValidTokenException(String message) {
+        super(message);
+    }
 }

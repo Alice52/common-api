@@ -20,14 +20,14 @@ import static common.token.constant.Constants.accessToken;
 @RequiredArgsConstructor
 public class RestTemplateTokenInterceptor implements ClientHttpRequestInterceptor {
 
-  private final TokenManager tokenManager;
+    private final TokenManager tokenManager;
 
-  @Override
-  public ClientHttpResponse intercept(
-      HttpRequest request, byte[] body, ClientHttpRequestExecution execution) throws IOException {
-    request
-        .getHeaders()
-        .add(AUTHENTICATION_HEADER_NAME, accessToken(tokenManager.getAccessToken()));
-    return execution.execute(request, body);
-  }
+    @Override
+    public ClientHttpResponse intercept(
+            HttpRequest request, byte[] body, ClientHttpRequestExecution execution)
+            throws IOException {
+        request.getHeaders()
+                .add(AUTHENTICATION_HEADER_NAME, accessToken(tokenManager.getAccessToken()));
+        return execution.execute(request, body);
+    }
 }

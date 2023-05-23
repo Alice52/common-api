@@ -29,6 +29,8 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 public class DecryptComponent {
 
     protected static final int TRY_DECRYPT_TIMES = 3;
+    // 默认解密算法
+    private static final String EBC_ALGORITHM = "AES/ECB/PKCS5Padding";
     public static ExecutorService EXECUTOR =
             new ThreadPoolExecutor(
                     0,
@@ -38,30 +40,12 @@ public class DecryptComponent {
                     new SynchronousQueue<Runnable>(),
                     Executors.defaultThreadFactory(),
                     new ThreadPoolExecutor.CallerRunsPolicy());
-
-    // 默认解密算法
-    private static final String EBC_ALGORITHM = "AES/ECB/PKCS5Padding";
     // 私有解密成员变量
     private static SecretKeySpec secretKey;
 
     private static TokenService tokenService;
     private static RedisUtil redisUtil;
     private static ObjectMapper objectMapper;
-
-    @Resource
-    public void setObjectMapper(ObjectMapper objectMapper) {
-        DecryptComponent.objectMapper = objectMapper;
-    }
-
-    @Resource
-    public void setTokenService(TokenService tokenService) {
-        DecryptComponent.tokenService = tokenService;
-    }
-
-    @Resource
-    public void setRedisUtil(RedisUtil redisUtil) {
-        DecryptComponent.redisUtil = redisUtil;
-    }
 
     /**
      * 密钥处理
@@ -136,5 +120,20 @@ public class DecryptComponent {
 
     private static String getDecryptKey() {
         return redisUtil.get(RedisHttpEnum.DECRYPT_TOKEN_KEY, String.class);
+    }
+
+    @Resource
+    public void setObjectMapper(ObjectMapper objectMapper) {
+        DecryptComponent.objectMapper = objectMapper;
+    }
+
+    @Resource
+    public void setTokenService(TokenService tokenService) {
+        DecryptComponent.tokenService = tokenService;
+    }
+
+    @Resource
+    public void setRedisUtil(RedisUtil redisUtil) {
+        DecryptComponent.redisUtil = redisUtil;
     }
 }

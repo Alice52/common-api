@@ -16,10 +16,10 @@ import static common.token.constant.Constants.accessToken;
 @RequiredArgsConstructor
 public class FeignTokenInterceptor implements RequestInterceptor {
 
-  private final TokenManager tokenManager;
+    private final TokenManager tokenManager;
 
-  @Override
-  public void apply(RequestTemplate template) {
-    template.header(AUTHENTICATION_HEADER_NAME, accessToken(tokenManager.getAccessToken()));
-  }
+    @Override
+    public void apply(RequestTemplate template) {
+        template.header(AUTHENTICATION_HEADER_NAME, accessToken(tokenManager.getAccessToken()));
+    }
 }

@@ -18,6 +18,12 @@ public class EnumValueTests {
         // ....
     }
 
+    private enum Status3 {
+        A,
+        B,
+        C;
+    }
+
     private class Request {
         @EnumValue(
                 strValues = {"UNSHIPPED", "SHIPPED", ""},
@@ -31,11 +37,5 @@ public class EnumValueTests {
 
         @EnumValue(values = Status3.class, message = "xxx")
         private Status3 status3;
-    }
-
-    private enum Status3 {
-        A,
-        B,
-        C;
     }
 }

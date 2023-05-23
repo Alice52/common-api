@@ -16,11 +16,11 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "common.token.provider")
 public class TokenProviderProperties {
 
-  private String authenticationUrl;
+    private String authenticationUrl;
 
-  private String keyName = "accessKeyId";
-  private String keyValue;
+    private String keyName = "accessKeyId";
+    private String keyValue;
 
-  private String secretName = "accessKeySecret";
-  private String secretValue;
+    private String secretName = "accessKeySecret";
+    private String secretValue;
 }

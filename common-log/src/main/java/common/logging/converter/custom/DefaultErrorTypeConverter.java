@@ -7,5 +7,5 @@ import common.logging.converter.ErrorTypeConverter;
  * @create 2023-05-12 9:54 AM <br>
  * @project project-cloud-custom <br>
  */
-public  class DefaultErrorTypeConverter extends ErrorTypeConverter
+public class DefaultErrorTypeConverter extends ErrorTypeConverter
         implements DefaultAlertDefinition {}

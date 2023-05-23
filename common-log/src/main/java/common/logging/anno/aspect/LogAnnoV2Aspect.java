@@ -37,6 +37,42 @@ public class LogAnnoV2Aspect {
     @Value("${common.core.global.request-id.key:req-id}")
     private String requestIdKey;
 
+    private static void logRequest(LogVOV2 vo) {
+        log.info(
+                "\n【请求ID】: {}\n"
+                        + "【请求URL】: {}\n"
+                        + "【请求URI】: {}\n"
+                        + "【请求方式】：{}\n"
+                        + "【请求头】：{}\n"
+                        + "【请求param】：{}\n"
+                        + "【请求body】：{}\n"
+                        + "【请求IP】：{}\n"
+                        + "【请求类】：{}\n"
+                        + "【请求方法】：{}\n"
+                        + "【请求开始时间】：{}\n",
+                vo.getReqId(),
+                vo.getUrl(),
+                vo.getUri(),
+                vo.getMethod(),
+                vo.getHeaders(),
+                JSONUtil.toJsonStr(vo.getParams()),
+                vo.getBody(),
+                vo.getRemoteAddr(),
+                vo.getBeanName(),
+                vo.getMethodName(),
+                vo.getRequestTime());
+        vo.clearUnNecessaryField();
+    }
+
+    private static void logResponse(LogVOV2 vo) {
+        log.info(
+                "\n【请求ID】: {}\n" + "【请求结束时间】：{}\n" + "【请求耗时】：{}\n" + "【请求结果】：{}\n",
+                vo.getReqId(),
+                vo.getRequestEndTime(),
+                vo.getRequestDuration(),
+                vo.getResult());
+    }
+
     private void doBefore(JoinPoint joinPoint) {
         try {
             ServletRequestAttributes attributes =
@@ -76,42 +112,6 @@ public class LogAnnoV2Aspect {
         } finally {
             tl.remove();
         }
-    }
-
-    private static void logRequest(LogVOV2 vo) {
-        log.info(
-                "\n【请求ID】: {}\n"
-                        + "【请求URL】: {}\n"
-                        + "【请求URI】: {}\n"
-                        + "【请求方式】：{}\n"
-                        + "【请求头】：{}\n"
-                        + "【请求param】：{}\n"
-                        + "【请求body】：{}\n"
-                        + "【请求IP】：{}\n"
-                        + "【请求类】：{}\n"
-                        + "【请求方法】：{}\n"
-                        + "【请求开始时间】：{}\n",
-                vo.getReqId(),
-                vo.getUrl(),
-                vo.getUri(),
-                vo.getMethod(),
-                vo.getHeaders(),
-                JSONUtil.toJsonStr(vo.getParams()),
-                vo.getBody(),
-                vo.getRemoteAddr(),
-                vo.getBeanName(),
-                vo.getMethodName(),
-                vo.getRequestTime());
-        vo.clearUnNecessaryField();
-    }
-
-    private static void logResponse(LogVOV2 vo) {
-        log.info(
-                "\n【请求ID】: {}\n" + "【请求结束时间】：{}\n" + "【请求耗时】：{}\n" + "【请求结果】：{}\n",
-                vo.getReqId(),
-                vo.getRequestEndTime(),
-                vo.getRequestDuration(),
-                vo.getResult());
     }
 
     /**

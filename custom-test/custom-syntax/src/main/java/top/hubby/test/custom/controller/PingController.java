@@ -1,7 +1,7 @@
 package top.hubby.test.custom.controller;
 
-import common.logging.anno.LogAnno;
 import common.core.util.R;
+import common.logging.anno.LogAnno;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;

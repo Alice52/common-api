@@ -5,6 +5,7 @@ import org.springframework.lang.Nullable;
 
 public class ManualPojo {
     private Integer age;
+
     public String getFoo() {
         return null;
     }

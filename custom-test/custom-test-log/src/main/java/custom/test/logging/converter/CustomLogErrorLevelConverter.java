@@ -1,7 +1,6 @@
 package custom.test.logging.converter;
 
 import common.logging.converter.ErrorLevelConverter;
-import common.logging.converter.ErrorTypeConverter;
 
 /**
  * @author T04856 <br>

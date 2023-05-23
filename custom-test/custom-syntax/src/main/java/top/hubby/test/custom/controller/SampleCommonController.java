@@ -1,10 +1,10 @@
 package top.hubby.test.custom.controller;
 
-import common.logging.anno.LogAnno;
 import common.core.annotation.LocalIdempotentRequest;
 import common.core.annotation.LocalLimitRequest;
 import common.core.exception.assertion.IBaseAssert;
 import common.core.util.R;
+import common.logging.anno.LogAnno;
 import common.redis.annotation.RedisIdempotentRequest;
 import common.redis.annotation.RedisLimitRequest;
 import common.redis.annotation.RedisLock;

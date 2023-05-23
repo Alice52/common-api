@@ -43,21 +43,6 @@ public class HttpSupport<T> {
     private static ObjectMapper objectMapper;
     private static OkHttpClient httpClient;
 
-    @Resource
-    public void setHttpClient(OkHttpClient httpClient) {
-        HttpSupport.httpClient = httpClient;
-    }
-
-    @Resource
-    public void setHmpProperties(HttpProperties hmpProperties) {
-        HttpSupport.properties = hmpProperties;
-    }
-
-    @Resource
-    public void setObjectMapper(ObjectMapper objectMapper) {
-        HttpSupport.objectMapper = objectMapper;
-    }
-
     public static String doRequest(
             Method method,
             String uri,
@@ -140,5 +125,20 @@ public class HttpSupport<T> {
         paramStr.setLength(paramStr.length() - 1);
 
         return String.format("%s%s%s", host, uri, paramStr);
+    }
+
+    @Resource
+    public void setHttpClient(OkHttpClient httpClient) {
+        HttpSupport.httpClient = httpClient;
+    }
+
+    @Resource
+    public void setHmpProperties(HttpProperties hmpProperties) {
+        HttpSupport.properties = hmpProperties;
+    }
+
+    @Resource
+    public void setObjectMapper(ObjectMapper objectMapper) {
+        HttpSupport.objectMapper = objectMapper;
     }
 }

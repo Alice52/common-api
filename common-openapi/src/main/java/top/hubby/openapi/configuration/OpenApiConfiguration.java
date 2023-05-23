@@ -32,9 +32,8 @@ import java.util.Map;
 @EnableConfigurationProperties(OpenApiProperties.class)
 public class OpenApiConfiguration {
 
-    @Resource private OpenApiProperties properties;
-
     public static Map<String, String> APP_MAP = new HashMap<>();
+    @Resource private OpenApiProperties properties;
 
     @PostConstruct
     public void init() {

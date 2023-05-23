@@ -3,7 +3,6 @@ package custom.test.logging.converter;
 import ch.qos.logback.classic.spi.IThrowableProxy;
 import ch.qos.logback.classic.spi.ThrowableProxy;
 import common.core.exception.BusinessException;
-import common.logging.converter.AlertDefinition;
 import common.logging.converter.ErrorMarker;
 import common.logging.converter.custom.DefaultAlertDefinition;
 

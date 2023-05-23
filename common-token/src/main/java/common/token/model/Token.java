@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Token {
-  private String accessToken;
-  private long ttl;
-  private long expireTime;
+    private String accessToken;
+    private long ttl;
+    private long expireTime;
 }

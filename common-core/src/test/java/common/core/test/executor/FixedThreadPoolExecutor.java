@@ -22,10 +22,10 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class FixedThreadPoolExecutor {
 
-    private int threadCount = 1;
-    private int queueSize = 1;
     private static final Thread.UncaughtExceptionHandler exceptionHandler =
             (t, e) -> log.error(String.format("handle exception in child thread. %s", e));
+    private int threadCount = 1;
+    private int queueSize = 1;
 
     public ThreadPoolExecutor executor() {
         ThreadFactory f =

@@ -22,10 +22,14 @@ public class ErrorMarker implements Marker {
     public static final String SLIGHT_ERROR = "Slight Error";
     public static final String BUSINESS_ALARM = "Business Alarm";
 
-    public static final ErrorMarker HIGH = new ErrorMarker(MarkerFactory.getMarker(NUM_1), INFRASTRUCTURE_ERROR);
-    public static final ErrorMarker MEDIUM = new ErrorMarker(MarkerFactory.getMarker(NUM_2), SYSTEM_ERROR);
-    public static final ErrorMarker LOW = new ErrorMarker(MarkerFactory.getMarker(NUM_3), BUSINESS_ERROR);
-    public static final ErrorMarker SLIGHT = new ErrorMarker(MarkerFactory.getMarker(NUM_4), SLIGHT_ERROR);
+    public static final ErrorMarker HIGH =
+            new ErrorMarker(MarkerFactory.getMarker(NUM_1), INFRASTRUCTURE_ERROR);
+    public static final ErrorMarker MEDIUM =
+            new ErrorMarker(MarkerFactory.getMarker(NUM_2), SYSTEM_ERROR);
+    public static final ErrorMarker LOW =
+            new ErrorMarker(MarkerFactory.getMarker(NUM_3), BUSINESS_ERROR);
+    public static final ErrorMarker SLIGHT =
+            new ErrorMarker(MarkerFactory.getMarker(NUM_4), SLIGHT_ERROR);
     public static final ErrorMarker EMPTY = new ErrorMarker(MarkerFactory.getMarker(""), "");
 
     private final Marker baseMarker;

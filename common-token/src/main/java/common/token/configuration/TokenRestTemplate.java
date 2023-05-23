@@ -19,19 +19,19 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TokenRestTemplate extends RestTemplate {
 
-  private final TokenManager tokenManager;
+    private final TokenManager tokenManager;
 
-  @NotNull
-  @Override
-  public List<ClientHttpRequestInterceptor> getInterceptors() {
-    List<ClientHttpRequestInterceptor> interceptors = super.getInterceptors();
-    if (CollectionUtils.isEmpty(interceptors)) {
-      interceptors = new ArrayList<>();
-    }
+    @NotNull
+    @Override
+    public List<ClientHttpRequestInterceptor> getInterceptors() {
+        List<ClientHttpRequestInterceptor> interceptors = super.getInterceptors();
+        if (CollectionUtils.isEmpty(interceptors)) {
+            interceptors = new ArrayList<>();
+        }
 
-    if (interceptors.stream().noneMatch(RestTemplateTokenInterceptor.class::isInstance)) {
-      interceptors.add(new RestTemplateTokenInterceptor(tokenManager));
+        if (interceptors.stream().noneMatch(RestTemplateTokenInterceptor.class::isInstance)) {
+            interceptors.add(new RestTemplateTokenInterceptor(tokenManager));
+        }
+        return interceptors;
     }
-    return interceptors;
-  }
 }

@@ -1,6 +1,5 @@
 package common.kotlin;
 
-
 import lombok.Data;
 
 @Data
