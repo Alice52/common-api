@@ -14,3 +14,9 @@ common:
       request-id:
         enabled: true
         key: req-id
+
+opentracing:
+  jaeger:
+    enabled: true
+    enable-b3-propagation: true
+    log-spans: false

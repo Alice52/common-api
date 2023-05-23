@@ -16,5 +16,4 @@ org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
   common.core.configuration.properties.SecurityIgnoreProperties,\
   common.core.component.BeanContextUtil,\
   common.core.component.EnvUtil,\
-  common.core.util.security.AesUtils,\
-  common.core.configuration.MvcRequestConfiguration
+  common.core.util.security.AesUtils

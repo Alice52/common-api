@@ -34,6 +34,7 @@
         <module>custom-test</module>
         <module>common-crypt</module>
         <module>common-token</module>
+        <module>common-feign</module>
     </modules>
 
     <properties>

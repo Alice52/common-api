@@ -7,6 +7,7 @@ import common.logging.anno.aspect.LogServiceAspect;
 import common.logging.anno.aspect.WebRequestLogAspect;
 import common.logging.anno.event.SysLogListener;
 import common.logging.anno.filter.LogHttpServletFilter;
+import common.logging.request.HttpRequestTraceFilter;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.context.annotation.Bean;
@@ -56,5 +57,15 @@ public class LogAutoConfiguration {
     @Bean
     public LogAnnoAspect sysLogAspect() {
         return new LogAnnoAspect();
+    }
+
+    // @Bean
+    public HttpRequestTraceFilter requestLoggingFilter() {
+        HttpRequestTraceFilter filter = new HttpRequestTraceFilter();
+        filter.setIncludeHeaders(true);
+        filter.setIncludeClientInfo(true);
+        filter.setIncludeQueryString(true);
+        filter.setIncludePayload(true);
+        return filter;
     }
 }

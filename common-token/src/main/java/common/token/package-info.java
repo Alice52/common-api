@@ -1,7 +1,7 @@
 package common.token;
 
 /**
- * this module will add token(jwt) to header, which get from identity server. <br>
+ * todo: this module will add token(jwt) to header, which get from identity server. <br>
  * <br>
  * WIP:
  *

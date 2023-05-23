@@ -8,9 +8,17 @@ sls:
   topic: ${spring.application.name}
   level: INFO
 
+
+opentracing:
+  jaeger:
+    enabled: true
+    enable-b3-propagation: true
+    log-spans: false
+
 common:
   core:
     global:
       request-id:
         enabled: true
         key: req-id
+

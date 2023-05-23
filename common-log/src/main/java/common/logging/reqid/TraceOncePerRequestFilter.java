@@ -19,6 +19,7 @@ import java.util.UUID;
  */
 @Slf4j
 @Component
+@Deprecated
 public class TraceOncePerRequestFilter extends OncePerRequestFilter {
 
     /** 日志跟踪标识 */

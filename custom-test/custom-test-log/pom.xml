@@ -16,6 +16,7 @@
             <artifactId>common-api-inject</artifactId>
             <version>${project.version}</version>
         </dependency>
+
     </dependencies>
 
 </project>

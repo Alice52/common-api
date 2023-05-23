@@ -14,6 +14,7 @@ import java.util.UUID;
  * @project project-cloud-custom <br>
  */
 @Slf4j
+@Deprecated
 @WebFilter(filterName = "traceIdFilter", urlPatterns = "/*")
 public class TraceFilter implements Filter {
 
