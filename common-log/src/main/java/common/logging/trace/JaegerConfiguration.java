@@ -5,6 +5,16 @@ import io.opentracing.contrib.java.spring.jaeger.starter.TracerBuilderCustomizer
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * this will configure traceid generator and broadcast.
+ *
+ * @see io.opentracing.contrib.java.spring.jaeger.starter.JaegerAutoConfiguration
+ * @see io.opentracing.contrib.spring.tracer.configuration.TracerRegisterAutoConfiguration
+ * @see io.opentracing.contrib.spring.web.starter.ServerTracingAutoConfiguration#TracingHandlerInterceptor
+ * @see io.opentracing.contrib.spring.web.starter.SkipPatternAutoConfiguration
+ * @see io.opentracing.contrib.spring.web.starter.RestTemplateTracingAutoConfiguration
+ * @see io.opentracing.contrib.spring.web.starter.WebClientTracingAutoConfiguration
+ */
 @Configuration
 public class JaegerConfiguration {
 
