@@ -98,7 +98,7 @@
         <redisson.version>3.17.7</redisson.version>
 
         <!-- mq -->
-        <rabbitmq.client.version>5.16.0</rabbitmq.client.version>
+        <rabbitmq.client.version>5.18.0</rabbitmq.client.version>
 
         <!-- others -->
         <junit.version>4.13.2</junit.version>
