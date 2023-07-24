@@ -1,6 +1,8 @@
 <included>
     <springProperty scope="context" name="app_name" source="spring.application.name" defaultValue=""/>
+    <!-- https://blog.csdn.net/qiaodaima0/article/details/125504761
     <contextName>${app_name}</contextName>
+    -->
 
     <!-- 格式化定义消息 -->
     <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter"/>
