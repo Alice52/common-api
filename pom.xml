@@ -61,7 +61,7 @@
         <swagger.starter>3.0.0</swagger.starter>
         <slf4j.api.version>1.7.36</slf4j.api.version>
         <logback.core.version>1.2.9</logback.core.version>
-        <logback.classic.version>1.2.3</logback.classic.version>
+        <logback.classic.version>1.4.11</logback.classic.version>
         <aliyun.logback.version>0.1.18</aliyun.logback.version>
         <janino.version>3.1.9</janino.version>
         <logstash.logback.version>7.3</logstash.logback.version>
