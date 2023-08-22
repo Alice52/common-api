@@ -1,12 +1,17 @@
 package custom.test.logging.controller;
 
+import static common.logging.desensitize.v3.DesensitizeMarkerFactory.NAME_SENSITIVE_MARKER;
+
 import common.core.constant.enums.BusinessResponseEnum;
 import common.core.exception.BusinessException;
 import common.core.util.R;
 import common.logging.anno.LogAnno;
 import common.logging.anno.LogAnnoV2;
+
 import io.swagger.annotations.Api;
+
 import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,6 +27,11 @@ import javax.annotation.Resource;
 public class LogController {
 
     @Resource private ThreadPoolTaskExecutor threadPoolTaskExecutor;
+
+    @GetMapping("/marker")
+    public void markerDesensitize() {
+        log.info(NAME_SENSITIVE_MARKER, "name: {}", "zack");
+    }
 
     @LogAnno
     @GetMapping("/anno")

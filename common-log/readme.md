@@ -11,6 +11,9 @@
    - 真实情况下, 需要脱敏的数据不是很多: 可以直接 log 手动写(**不推荐**)
    - XxxConverter: 不推荐(可以注解方式)
    - [配置脱敏](https://github.com/liuchengyin01/LogbackDesensitization): **推荐**
+5. log marker
+   - log marker 是一种在日志中插入特定标记或注释的技术, 用于标识和分隔不同的事件或阶段
+   - 它可以帮助开发人员和系统管理员更轻松地理解和分析日志消息, 加快故障排除和日志分析的过程, 数据脱敏
 
 ## trace request
 
