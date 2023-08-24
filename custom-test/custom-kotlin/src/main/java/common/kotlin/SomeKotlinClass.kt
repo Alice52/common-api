@@ -21,5 +21,5 @@ fun main() {
 
     val ddd = SomeData()
 
-    JavaUsage.cycleUsage()
+    // JavaUsage.cycleUsage()
 }

@@ -1,0 +1,9 @@
+server:
+  ssl:
+    # 证书路径
+    key-store: classpath:httpsKey.p12
+    key-alias: undertowhttps
+    enabled: true
+    key-store-type: JKS
+    key-store-password: 123456
+  port: 443

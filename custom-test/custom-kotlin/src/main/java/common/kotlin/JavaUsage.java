@@ -11,6 +11,6 @@ public class JavaUsage {
     }
 
     public static void cycleUsage() {
-        new SomeKotlinClass().call();
+        // new SomeKotlinClass().call();
     }
 }
