@@ -2,7 +2,7 @@ package common.core.test.executor;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import common.core.executor.reject.CallerBlocksPolicy;
-import common.core.util.pool.PoolMonitorUtil;
+import common.core.util.pool.PoolUtil;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -44,7 +44,7 @@ public class FixedThreadPoolExecutor {
                         f,
                         new CallerBlocksPolicy());
 
-        PoolMonitorUtil.printStatsFixedRate(threadPoolExecutor, 10);
+        PoolUtil.printStatsFixedRate(threadPoolExecutor, 10);
 
         return threadPoolExecutor;
     }
