@@ -78,7 +78,7 @@
 
         <!-- spring -->
         <spring.boot.version>2.7.5</spring.boot.version>
-        <actuator.admin.version>2.7.7</actuator.admin.version>
+        <actuator.admin.version>2.7.11</actuator.admin.version>
         <spring.cloud.version>2021.0.4</spring.cloud.version>
         <cloud.alibaba.version>2021.1</cloud.alibaba.version>
         <security.oauth.version>2.5.2.RELEASE</security.oauth.version>
