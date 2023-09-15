@@ -25,7 +25,6 @@
         <module>custom-test-crypt</module>
         <module>custom-kotlin</module>
         <module>base-identity-server</module>
-        <module>custom-security-https</module>
     </modules>
 
     <dependencies>
