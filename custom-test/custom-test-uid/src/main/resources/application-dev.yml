@@ -1,0 +1,12 @@
+spring:
+  profiles:
+    # this sequence is master
+    include: common-dev,database-dev,redis-dev
+
+common:
+  uid:
+    enabled: true
+    time-bit: 29
+    work-bit: 21
+    seq-bit: 13
+    epoch-str: 2016-09-20

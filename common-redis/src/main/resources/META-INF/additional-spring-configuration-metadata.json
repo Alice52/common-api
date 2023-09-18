@@ -1,0 +1,14 @@
+{
+  "properties": [
+    {
+      "name": "common.core.redis.module",
+      "type": "java.lang.String",
+      "description": "module name for build redis key."
+    },
+    {
+      "name": "common.core.redis.expire-time",
+      "type": "java.lang.Long",
+      "description": "default expire time and unit is hours."
+    }
+  ]
+}

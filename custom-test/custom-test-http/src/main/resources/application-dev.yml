@@ -1,0 +1,27 @@
+spring:
+  profiles:
+    # this sequence is master
+    include: common-dev,database-dev,uid-dev,common
+  redis:
+    host: ENC(nqt57Pt5vouq7RVAl03akf/zwmO4nZYW3936v9nnTF9KkEDgMpjs5eEbv7HGW4dl)
+    password: ENC(JIczcGuavcI1nX9NbM0YcDyHiQ834QTPhqmczAw+Qr8Nm6wPeq5p5M076HzPSbFF)
+    port: ENC(AcXQfYO9iFqD0RYGjek03cmHP3k9y7fl9HEy41cg/mr0xoT4ApjXUbtlpKNK8OCp)
+    database: 15
+    enable: true
+
+common:
+  http:
+    max_retry_times: 10
+    retry_sleep: 100
+
+    host: http://localhost:9005
+    grant_type: client_credentials
+
+    client_id: custom-test-http
+    client_secret: client_secret
+    access_token_url: /openapi/access-token
+
+    decrypt_client_id: custom-test-http
+    decrypt_client_secret: client_secret
+    decrypt_token_url: /openapi/access-token
+    decrypt_type: full

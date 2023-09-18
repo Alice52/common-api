@@ -1,0 +1,19 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  common.core.configuration.JacksonConfig,\
+  common.core.configuration.RestTemplateConfig,\
+  common.core.configuration.SnowflakeConfig,\
+  common.core.component.SpringContextHolder,\
+  common.core.exception.handler.DefaultHandler,\
+  common.core.exception.handler.ServletExceptionHandler,\
+  common.core.exception.handler.ValidationExceptionHandler,\
+  common.core.exception.handler.BusinessExceptionHandler,\
+  common.core.aspect.IdempotentRequestAspect,\
+  common.core.aspect.LimitRequestAspect,\
+  common.core.component.AppContextHolder,\
+  common.core.component.ValidatorContext,\
+  common.core.filter.TimeoutFilter,\
+  common.core.filter.RepeatReadHttpServletFilter,\
+  common.core.configuration.properties.SecurityIgnoreProperties,\
+  common.core.component.BeanContextUtil,\
+  common.core.component.EnvUtil,\
+  common.core.util.security.AesUtils

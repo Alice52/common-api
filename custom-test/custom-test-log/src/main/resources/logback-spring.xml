@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- considering control sls by config: include  -->
+<configuration>
+
+    <!-- sequence is important: must before include -->
+    <!-- overwrite error_level & error_type format: work !!! -->
+
+    <!--  should be add in  logback-spring.xml by default.
+        <conversionRule conversionWord="errorLevel"
+                        converterClass="common.logging.converter.custom.DefaultErrorLevelConverter"/>
+        <conversionRule conversionWord="errorType"
+                        converterClass="common.logging.converter.custom.DefaultErrorTypeConverter"/>
+    -->
+    <property name="CONSOLE_LOG_PATTERN"
+              value="${%jsonMsg traceId=%X{X-B3-TraceId} spanId=%X{X-B3-SpanId} sampled=%X{X-B3-Sampled}} %n"/>
+
+    <conversionRule conversionWord="errorLevel"
+                    converterClass="custom.test.logging.converter.CustomLogErrorLevelConverter"/>
+    <conversionRule conversionWord="errorType"
+                    converterClass="custom.test.logging.converter.CustomLogErrorTypeConverter"/>
+
+    <!-- include: common-log/resource-->
+    <include resource="logback-include.xml"/>
+    <include resource="logback-include-json.xml"/>
+
+    <springProperty scope="context" name="enabled" source="sls.enabled"/>
+
+    <!-- Level: FATAL 0  ERROR 3  WARN 4  INFO 6  DEBUG 7 -->
+    <root level="INFO">
+        <!--  aliyun-sls: need sls id & key etcs.   -->
+        <if condition='property("enabled") == "true"'>
+            <then>
+                <appender-ref ref="aliyun"/>
+            </then>
+        </if>
+
+        <appender-ref ref="de-json-console"/>
+    </root>
+
+    <!-- or by env
+        <springProfile name="staging,prod">
+            <root level="INFO">
+                <appender-ref ref="json"/>
+            </root>
+        </springProfile>
+    -->
+</configuration>

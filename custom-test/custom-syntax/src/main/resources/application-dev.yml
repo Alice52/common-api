@@ -1,0 +1,14 @@
+spring:
+  profiles:
+    # this sequence is master
+    include: common-dev,redis-dev,common
+
+common:
+  core:
+    global:
+      handler:
+        enabled: true
+      request-id:
+        enabled: true
+        key: req-id
+

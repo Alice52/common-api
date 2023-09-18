@@ -1,0 +1,50 @@
+name: Build Common-Api
+
+on:
+  workflow_dispatch:
+  push:
+  # paths:
+  #  - "common*/**"
+  #  - ".github/workflows/build-common-api.yml"
+
+concurrency:
+  group: ${{ github.event_name }}-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, 'ci skip')"
+    strategy:
+      matrix:
+        java: ["8", "11", "17"]
+    env: # define constant
+      PROJECT_PREFIX: common-api/
+    steps:
+      - name: Export Global Var
+        # define global var, then put to GITHUB_ENV
+        run: |
+          echo "PROJECT_HOME=$PWD" >> $GITHUB_ENV
+
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK ${{ matrix.Java }}
+        uses: actions/setup-java@v3
+        with:
+          java-version: ${{ matrix.java }}
+          distribution: "zulu"
+          cache: "maven"
+
+      - name: Cache Maven packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+
+      - name: Build Common-Api
+        run: |
+          PROJECT_NAME=
+          cd $PROJECT_HOME/$PROJECT_NAME
+          mvn clean package -DskipTests=true

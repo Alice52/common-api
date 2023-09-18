@@ -1,0 +1,31 @@
+name: Maven Central Repo Deployment
+
+on:
+  workflow_dispatch:
+  release:
+    types: [released]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Maven Central Repo
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+          server-id: sonatype-nexus-staging
+          server-username: ${{ secrets.PUBLISH_OSSRH_USER }}
+          server-password: ${{ secrets.PUBLISH_OSSRH_PASSWORD }}
+          gpg-passphrase:  ${{ secrets.PUBLISH_GPG_PASSWORD }}
+
+      - name: Publish to Maven Central Repo
+        uses: samuelmeuli/action-maven-publish@v1
+        with:
+          gpg_private_key: ${{ secrets.PUBLISH_GPG_SECRET }}
+          gpg_passphrase: ${{ secrets.PUBLISH_GPG_PASSWORD }}
+          nexus_username: ${{ secrets.PUBLISH_OSSRH_USER }}
+          nexus_password: ${{ secrets.PUBLISH_OSSRH_PASSWORD }}

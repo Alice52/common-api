@@ -1,0 +1,5 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+    common.oss.service.impl.AliyunOssHandler,\
+    common.oss.service.impl.TencentOssHandler,\
+    common.oss.context.OssContext,\
+    common.oss.context.OssContextV2\

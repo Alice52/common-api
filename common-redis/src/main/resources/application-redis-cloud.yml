@@ -1,0 +1,17 @@
+spring:
+  redis:
+    host: ENC(7MAJ2snSOCG2b0MsdPFJmE9Rtq1kTWTgPzrbwaso/d+Yu4TBL6Viu6CU6hhZP2iN)
+    password: ENC(JIczcGuavcI1nX9NbM0YcDyHiQ834QTPhqmczAw+Qr8Nm6wPeq5p5M076HzPSbFF)
+    port: ENC(AcXQfYO9iFqD0RYGjek03cmHP3k9y7fl9HEy41cg/mr0xoT4ApjXUbtlpKNK8OCp)
+    database: 13
+    enable: true
+    redisson: classpath:redisson-cloud.yml
+#  cache:
+#    # fix error: Cannot find cache named 'xx' for Builder Or Config Redis as cache management
+#    type: simple
+
+common:
+  core:
+    redis:
+      module: common
+      # expire-time: 24

@@ -1,0 +1,5 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  common.logging.reqid.RequestInterceptor,\
+  common.logging.anno.configuration.LogAutoConfiguration,\
+  common.logging.util.LogUtil,\
+  common.logging.trace.JaegerConfiguration

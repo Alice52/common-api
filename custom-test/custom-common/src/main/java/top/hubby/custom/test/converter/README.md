@@ -1,0 +1,1 @@
+https://github.com/Alice52/tutorials-sample/blob/feature-zack/java/javaee/spring-boot/integration/boot-tool/boot-tool-mapstruct/

@@ -1,0 +1,39 @@
+# 日志脱敏
+log-desensitize:
+  # 是否忽略大小写匹配，默认为true
+  ignore: true
+  # 是否开启脱敏，默认为false
+  enable: true
+  # pattern下的key/value为固定脱敏规则
+  pattern:
+    # 邮箱 - @前第4-7位脱敏
+    email: "@>(4,7)"
+    # qq邮箱 - @后1-3位脱敏
+    qqemail: "@<(1,3)"
+    # 姓名 - 姓脱敏，如*杰伦
+    name: 1,1
+    # 密码 - 所有需要完全脱敏的都可以使用内置的password
+    password: password
+    # 身份证号
+    identity: 9,13
+    idcard: 9,13
+
+  patterns:
+    # 一个字段根据多种值含义进行自定义脱敏: username字段的值可以是手机号、也可以是邮箱, 这个值动态改变的
+    - key: username
+      custom:
+        # 手机号 - 11位
+        - defaultRegex: phone
+          position: 4,7
+        # 邮箱 - @
+        - defaultRegex: email
+          position: "@>(3,12)"
+        # 身份证 - 15/18位
+        - defaultRegex: identity
+          position: 1,3
+        # 自定义正则
+        - customRegex: "^1[0-9]{10}"
+          position: 1,3
+        # 都匹配不到时，按照这种规则来
+        - defaultRegex: other
+          position: 1,3

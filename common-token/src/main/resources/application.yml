@@ -1,0 +1,9 @@
+common:
+  token:
+    enable: true
+    provider:
+      authenticationUrl: xxx
+      keyName: accessKeyId
+      keyValue: xxx
+      secretName: accessKeySecret
+      secretValue: xxx

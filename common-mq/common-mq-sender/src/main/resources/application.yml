@@ -1,0 +1,10 @@
+#common:
+#  mq:
+#    enable: true
+#    queue-type: direct  # direct/fanout/topic
+#    exchange: custom-test-mq-sender-exchange
+#    queue: custom-test-mq-sender-queue
+#    routing-key: routing-key
+#    dead-letter-queue: common-mq-sender-dl-queue
+#    dead-letter-exchange: common-mq-sender-dl-exchange
+#    dead-letter-routing-key: common-mq-sender-dl-routing-key

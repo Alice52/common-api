@@ -1,0 +1,65 @@
+server:
+  undertow:
+    io-threads: 2
+    # undertow:   worker(availableProcessors() * 8), queue(N/A)
+    # tomcat:     worker(200), queue[负载高峰(恢复时长)](100)
+    worker-threads: 30
+    accesslog:
+      dir: logs/access/
+      enabled: true
+      pattern: '%h %l %u %t "%r" %s %b %D "%{i,Referer}" "%{i,User-Agent}"'
+      # prefix: ${spring.application.name}_access
+      suffix: log
+      rotate: true
+
+# 加解密根密码
+jasypt:
+  encryptor:
+    password: ${JASYPT_ENCRYPTOR_PASSWORD}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+# Spring 相关
+spring:
+  mvc:
+    async:
+      request-timeout: 20
+    throw-exception-if-no-handler-found: true
+  main:
+    allow-bean-definition-overriding: true
+  jackson:
+    default-property-inclusion: non_null
+  web:
+    resources:
+      add-mappings: false
+
+logging:
+  level:
+    custom.*: debug
+    common.*: debug
+
+## 直接放行URL
+#common:
+#  core:
+#    ignore:
+#      ignoreMatchers:
+#        - antPattern: /actuator/**
+#        - antPattern: /v2/api-docs
+#          method: GET
+#        - antPattern: /aug/test/**
+#          method: GET
+#        - antPattern: /aug/inner/**
+#        - antPattern: /mcdonalds/inner/**
+#        - antPattern: /mcdonalds/health/**
+#          method: GET
+#        - antPattern: /mcdonalds/store/**
+#          method: GET
+#    security:
+#      urlRules:
+#        - accessRule: "@pms.isAdmin()"
+#          matchers:
+#            - pattern: /admin/**
