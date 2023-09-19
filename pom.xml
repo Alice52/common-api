@@ -44,7 +44,7 @@
         <reversion>0.0.4</reversion>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <sonar.organization>alice52</sonar.organization>
-        <sonar-maven-plugin.version>3.9.1.2184</sonar-maven-plugin.version>
+        <sonar-maven-plugin.version>3.10.0.2594</sonar-maven-plugin.version>
 
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
