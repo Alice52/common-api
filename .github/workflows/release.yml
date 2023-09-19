@@ -29,4 +29,4 @@ jobs:
           nexus_username: ${{ secrets.PUBLISH_OSSRH_USER }}
           nexus_password: ${{ secrets.PUBLISH_OSSRH_PASSWORD }}
           maven_profiles: sonatype-oss-release
-          maven_goals_phases: clean deploy -DskipTests=true -e -X
+          maven_goals_phases: clean deploy -DskipTests=true
