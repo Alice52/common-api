@@ -9,4 +9,4 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       # conventional style
-      - uses: ahmadnassri/action-commit-lint@v2.0.4
+      - uses: ahmadnassri/action-commit-lint@v2.1.16
