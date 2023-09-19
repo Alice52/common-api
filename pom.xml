@@ -57,7 +57,7 @@
         <logback.core.version>1.2.9</logback.core.version>
         <logback.classic.version>1.2.3</logback.classic.version>
         <aliyun.logback.version>0.1.18</aliyun.logback.version>
-        <janino.version>3.1.9</janino.version>
+        <janino.version>3.1.10</janino.version>
         <logstash.logback.version>7.3</logstash.logback.version>
 
         <!-- tool -->
