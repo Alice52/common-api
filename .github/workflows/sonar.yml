@@ -1,5 +1,6 @@
 name: Sonar CI
 on:
+  workflow_dispatch:
   push:
   # paths:
   #  - "common*/**"
@@ -25,8 +26,8 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: 11
-          distribution: "zulu"
-          cache: "maven"
+          distribution: 'zulu'
+          cache: 'maven'
 
       - name: Cache SonarCloud packages
         uses: actions/cache@v3

@@ -645,7 +645,7 @@
     <profiles>
         <!-- mvn repository;-->
         <profile>
-            <id>deploy</id>
+            <id>sonatype-oss-release</id>
             <activation>
                 <jdk>[1.8,)</jdk>
             </activation>
@@ -664,22 +664,22 @@
                             </execution>
                         </executions>
                     </plugin>
-<!--                    <plugin>-->
-<!--                        <groupId>org.apache.maven.plugins</groupId>-->
-<!--                        <artifactId>maven-javadoc-plugin</artifactId>-->
-<!--                        <version>3.4.1</version>-->
-<!--                        <executions>-->
-<!--                            <execution>-->
-<!--                                <id>attach-javadocs</id>-->
-<!--                                <goals>-->
-<!--                                    <goal>jar</goal>-->
-<!--                                </goals>-->
-<!--                            </execution>-->
-<!--                        </executions>-->
-<!--                        <configuration>-->
-<!--                            <additionalparam>-Xdoclint:none</additionalparam>-->
-<!--                        </configuration>-->
-<!--                    </plugin>-->
+                    <!--                    <plugin>-->
+                    <!--                        <groupId>org.apache.maven.plugins</groupId>-->
+                    <!--                        <artifactId>maven-javadoc-plugin</artifactId>-->
+                    <!--                        <version>3.4.1</version>-->
+                    <!--                        <executions>-->
+                    <!--                            <execution>-->
+                    <!--                                <id>attach-javadocs</id>-->
+                    <!--                                <goals>-->
+                    <!--                                    <goal>jar</goal>-->
+                    <!--                                </goals>-->
+                    <!--                            </execution>-->
+                    <!--                        </executions>-->
+                    <!--                        <configuration>-->
+                    <!--                            <additionalparam>-Xdoclint:none</additionalparam>-->
+                    <!--                        </configuration>-->
+                    <!--                    </plugin>-->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
@@ -701,7 +701,7 @@
                         <extensions>true</extensions>
                         <configuration>
                             <serverId>ossrh</serverId>
-                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                            <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
                             <autoReleaseAfterClose>true</autoReleaseAfterClose>
                         </configuration>
                     </plugin>
@@ -714,8 +714,8 @@
     <distributionManagement>
         <repository>
             <id>ossrh</id>
-            <name>Nexus Release Repository</name>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+            <name>sonatype-nexus-staging</name>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
         </repository>
         <snapshotRepository>
             <id>sonatype-nexus-snapshots</id>
