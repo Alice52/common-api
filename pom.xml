@@ -64,7 +64,7 @@
         <jodah.expiringmap.version>0.5.10</jodah.expiringmap.version>
         <lombok.version>1.18.24</lombok.version>
         <hutool.all.version>5.8.9</hutool.all.version>
-        <jasypt.encrtpy.version>3.0.4</jasypt.encrtpy.version>
+        <jasypt.encrtpy.version>3.0.5</jasypt.encrtpy.version>
         <mapstruct.version>1.5.3.Final</mapstruct.version>
         <guava.version>31.1-jre</guava.version>
         <validation.api.version>2.0.1.Final</validation.api.version>
