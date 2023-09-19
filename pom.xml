@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.sonatype.oss</groupId>
-        <artifactId>oss-parent</artifactId>
-        <version>7</version>
-    </parent>
-
     <groupId>io.github.alice52</groupId>
     <artifactId>common-api</artifactId>
-    <version>0.0.3</version>
+    <version>0.0.4</version>
     <packaging>pom</packaging>
 
     <name>common-api</name>
@@ -45,7 +40,7 @@
         <kotlin.code.style>official</kotlin.code.style>
 
         <!--  #region  ====================== common version =====================    -->
-        <reversion>0.0.3</reversion>
+        <reversion>0.0.4</reversion>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <sonar.organization>alice52</sonar.organization>
         <sonar-maven-plugin.version>3.9.1.2184</sonar-maven-plugin.version>
@@ -112,7 +107,6 @@
         <qcloud.version>5.6.125.2</qcloud.version>
         <!--  #region  ====================== common version =====================    -->
     </properties>
-
 
     <dependencyManagement>
         <dependencies>
@@ -397,7 +391,6 @@
         </dependencies>
     </dependencyManagement>
 
-
     <dependencies>
         <!-- kotlin -->
         <dependency>
@@ -654,7 +647,8 @@
     <profiles>
         <!-- mvn repository;-->
         <profile>
-            <id>sonatype-oss-release</id>
+            <!-- 给 mvn 命令使用 指定 -P profile_name-->
+            <id>sonatype-release</id>
             <activation>
                 <jdk>[1.8,)</jdk>
             </activation>
@@ -676,6 +670,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
+                        <!-- please donot upgrade -->
                         <version>2.10.4</version>
                         <executions>
                             <execution>
@@ -709,6 +704,7 @@
                         <version>1.6.8</version>
                         <extensions>true</extensions>
                         <configuration>
+                            <!-- must same as ossrh in distributionManagement/repository/id, and which set by release.yml' server_id -->
                             <serverId>ossrh</serverId>
                             <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
                             <autoReleaseAfterClose>true</autoReleaseAfterClose>
@@ -726,16 +722,19 @@
             <name>sonatype-nexus-staging</name>
             <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
         </repository>
+        <!-- use s01 due to link: https://s01.oss.sonatype.org/#view-repositories;releases~browsestorage~io/github/alice52
+            <repository>
+                <id>sonatype-nexus-staging</id>
+                <name>Nexus Staging Repository</name>
+                <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+            </repository>
+        -->
         <snapshotRepository>
             <id>sonatype-nexus-snapshots</id>
             <name>Nexus Snapshot Repository</name>
             <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
-        <!-- <repository>
-            <id>sonatype-nexus-staging</id>
-            <name>Nexus Staging Repository</name>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository> -->
+
     </distributionManagement>
 
 </project>
