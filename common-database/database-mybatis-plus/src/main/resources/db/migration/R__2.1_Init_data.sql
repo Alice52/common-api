@@ -1,0 +1,16 @@
+DELIMITER $$
+DROP PROCEDURE IF EXISTS MODIFY_DATA $$
+CREATE PROCEDURE MODIFY_DATA()
+BEGIN
+
+DELETE FROM `coupon_type` WHERE id in (1, 2, 3);
+  INSERT INTO coupon_type(id, name)
+  VALUES
+    (1, '节日礼券'),
+    (2, '生日礼券'),
+    (3, '优惠券');
+
+END $$
+DELIMITER ;
+CALL MODIFY_DATA;
+DROP PROCEDURE MODIFY_DATA;

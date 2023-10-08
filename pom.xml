@@ -95,6 +95,7 @@
         <mybatis.spring.boot.version>2.2.2</mybatis.spring.boot.version>
         <elasticsearch.version>7.17.7</elasticsearch.version>
         <redisson.version>3.17.7</redisson.version>
+        <flyway.version>5.2.4</flyway.version>
 
         <!-- mq -->
         <rabbitmq.client.version>5.16.0</rabbitmq.client.version>
@@ -335,6 +336,11 @@
                 <groupId>org.redisson</groupId>
                 <artifactId>redisson-spring-data-21</artifactId>
                 <version>${redisson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-core</artifactId>
+                <version>${flyway.version}</version>
             </dependency>
 
             <!-- swagger2 -->
