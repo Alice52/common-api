@@ -1,18 +1,23 @@
 package common.http.interceptor;
 
 import cn.hutool.core.util.NumberUtil;
+
 import common.http.configuration.HttpProperties;
 import common.http.exception.DecryptException;
 import common.http.exception.RetryException;
+
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
+
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
 import java.util.concurrent.TimeUnit;
+
+import javax.annotation.Resource;
 
 /**
  * @author asd <br>
@@ -44,9 +49,10 @@ public class RetryInterceptor implements Interceptor {
             throw new RetryException(properties.getMaxRetryTimes(), errMsg);
         }
 
-        Response response = null;
         try {
-            response = chain.proceed(request);
+            Response response = chain.proceed(request);
+            // todo: check api response success or throw exception else.
+            return response;
         } catch (DecryptException ex) {
             // there are no benefit to retry this error, so throw it directly.
             errMsg = ex.getMessage();
@@ -63,10 +69,8 @@ public class RetryInterceptor implements Interceptor {
             try {
                 TimeUnit.MILLISECONDS.sleep(sleepMillis);
             } finally {
-                process(chain, request);
+                return process(chain, request);
             }
         }
-
-        return response;
     }
 }
