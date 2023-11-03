@@ -1,11 +1,15 @@
 package common.logging.reqid.async;
 
 import lombok.extern.slf4j.Slf4j;
+
+import org.slf4j.MDC;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.task.TaskDecorator;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
+import java.util.Map;
 import java.util.concurrent.ThreadPoolExecutor;
 
 /**
@@ -37,5 +41,37 @@ public class SampleThreadPoolConfig {
     @Async("threadPoolTaskExecutor")
     public void testSyncMethod() {
         // usage
+    }
+}
+
+@Slf4j
+class MdcTaskDecorator implements TaskDecorator {
+    /**
+     * 使异步线程池获得主线程的上下文
+     *
+     * @param runnable
+     * @return
+     */
+    @Override
+    public Runnable decorate(Runnable runnable) {
+
+        Map<String, String> context = MDC.getCopyOfContextMap();
+        return () -> {
+            Map<String, String> previous = MDC.getCopyOfContextMap();
+            if (context == null) {
+                MDC.clear();
+            } else {
+                MDC.setContextMap(context);
+            }
+            try {
+                runnable.run();
+            } finally {
+                if (previous == null) {
+                    MDC.clear();
+                } else {
+                    MDC.setContextMap(previous);
+                }
+            }
+        };
     }
 }

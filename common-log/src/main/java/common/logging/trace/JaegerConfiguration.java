@@ -5,6 +5,8 @@ import io.opentracing.contrib.java.spring.jaeger.starter.TracerBuilderCustomizer
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import static common.logging.trace.TraceIdConstants.*;
+
 /**
  * this will configure traceid generator and broadcast.
  *
@@ -18,9 +20,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class JaegerConfiguration {
 
-    public static final String TRACE_ID_NAME = "X-B3-TraceId";
-    public static final String SPAN_ID_NAME = "X-B3-SpanId";
-    public static final String SAMPLED_NAME = "X-B3-Sampled";
 
     @Bean
     public TracerBuilderCustomizer mdcBuilderCustomizer() {

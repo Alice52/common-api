@@ -1,12 +1,16 @@
 package common.logging.reqid;
 
+import common.logging.trace.TraceIdConstants;
+
 import lombok.extern.slf4j.Slf4j;
+
 import org.slf4j.MDC;
+
+import java.io.IOException;
+import java.util.UUID;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
-import java.io.IOException;
-import java.util.UUID;
 
 /**
  * @author asd <br>
@@ -18,9 +22,6 @@ import java.util.UUID;
 @WebFilter(filterName = "traceIdFilter", urlPatterns = "/*")
 public class TraceFilter implements Filter {
 
-    /** 日志跟踪标识 */
-    private static final String TRACE_ID = "TRACE_ID";
-
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {}
 
@@ -28,7 +29,7 @@ public class TraceFilter implements Filter {
     public void doFilter(
             ServletRequest request, ServletResponse servletResponse, FilterChain filterChain)
             throws IOException, ServletException {
-        MDC.put(TRACE_ID, UUID.randomUUID().toString());
+        MDC.put(TraceIdConstants.TRACE_ID_NAME, UUID.randomUUID().toString());
         filterChain.doFilter(request, servletResponse);
     }
 

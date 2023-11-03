@@ -1,6 +1,8 @@
 package common.logging.reqid;
 
 import common.core.util.web.WebUtil;
+import common.logging.trace.TraceIdConstants;
+
 import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -26,8 +28,8 @@ import javax.servlet.http.HttpServletResponse;
 public class RequestInterceptor extends HandlerInterceptorAdapter implements WebMvcConfigurer {
 
     /** if use responseProperties, will throw exception due to responseProperties is null now. */
-    @Value("${common.core.global.request-id.key:req-id}")
-    private String requestIdKey;
+    @Value("${common.core.global.request-id.key:}")
+    private String requestIdKey = TraceIdConstants.TRACE_ID_NAME;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
