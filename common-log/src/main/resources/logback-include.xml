@@ -24,18 +24,18 @@
     <property name="log.path" value="logs/${app_name}"/>
 
     <property name="console.pattern"
-              value="${CONSOLE_LOG_PATTERN:-%clr(%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}}){faint} [req-id: %X{req-id} traceId: %X{X-B3-TraceId}, spanId: %X{X-B3-SpanId}, parent: %X{X-B3-ParentSpanId:-}] [error_level:%errorLevel] [error_type: %errorType]  %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %jsonMsg%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
+              value="${CONSOLE_LOG_PATTERN:-%clr(%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}}){faint} [req-id: %X{X-B3-SpanId} traceId: %X{X-B3-TraceId}, spanId: %X{X-B3-SpanId}, parent: %X{X-B3-ParentSpanId:-}] [error_level:%errorLevel] [error_type: %errorType]  %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %jsonMsg%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
     <property name="file.pattern"
-              value="${FILE_LOG_PATTERN:-%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}} [req-id: %X{req-id} traceId: %X{X-B3-TraceId}, spanId: %X{X-B3-SpanId}, parent: %X{X-B3-ParentSpanId:-}] [error_level:%errorLevel] [error_type: %errorType] ${LOG_LEVEL_PATTERN:-%5p} ${PID:- } --- [%t] %-40.40logger{39} : %jsonMsg%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
+              value="${FILE_LOG_PATTERN:-%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}} [req-id: %X{X-B3-SpanId} traceId: %X{X-B3-TraceId}, spanId: %X{X-B3-SpanId}, parent: %X{X-B3-ParentSpanId:-}] [error_level:%errorLevel] [error_type: %errorType] ${LOG_LEVEL_PATTERN:-%5p} ${PID:- } --- [%t] %-40.40logger{39} : %jsonMsg%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
 
     <!-- sls properties -->
-    <springProperty scope="context" name="sls.endpoint" source="sls.endpoint:"/>
-    <springProperty scope="context" name="sls.access-key-id" source="sls.access-key-id:"/>
-    <springProperty scope="context" name="sls.access-key-secret" source="sls.access-key-secret:"/>
-    <springProperty scope="context" name="sls.project" source="sls.project:"/>
-    <springProperty scope="context" name="sls.log-store" source="sls.log-store:"/>
-    <springProperty scope="context" name="sls.topic" source="sls.topic:"/>
-    <springProperty scope="context" name="sls.level" source="sls.level:"/>
+    <springProperty scope="context" name="sls.endpoint" source="common.logs.sls.endpoint:"/>
+    <springProperty scope="context" name="sls.access-key-id" source="common.logs.sls.access-key-id:"/>
+    <springProperty scope="context" name="sls.access-key-secret" source="common.logs.sls.access-key-secret:"/>
+    <springProperty scope="context" name="sls.project" source="common.logs.sls.project:"/>
+    <springProperty scope="context" name="sls.log-store" source="common.logs.sls.log-store:"/>
+    <springProperty scope="context" name="sls.topic" source="common.logs.sls.topic:"/>
+    <springProperty scope="context" name="sls.level" source="common.logs.sls.level:"/>
 
     <!-- 为了防止进程退出时，内存中的数据丢失，请加上此选项 -->
     <shutdownHook class="ch.qos.logback.core.hook.DelayingShutdownHook"/>

@@ -201,7 +201,7 @@ public class WebUtil extends org.springframework.web.util.WebUtils {
     }
     // endregion
 
-    // region: req-id
+    // region: X-B3-SpanId
     public String getRequestId(HttpServletRequest request, String requestIdKey) {
         String requestId;
         String parameterRequestId = request.getParameter(requestIdKey);

@@ -23,14 +23,21 @@
     <include resource="logback-include.xml"/>
     <include resource="logback-include-json.xml"/>
 
-    <springProperty scope="context" name="enabled" source="sls.enabled"/>
+    <springProperty scope="context" name="sls.enabled" source="common.logs.sls.enabled"/>
+    <springProperty scope="context" name="logstash.enable" source="common.logs.logstash.enable"/>
 
     <!-- Level: FATAL 0  ERROR 3  WARN 4  INFO 6  DEBUG 7 -->
     <root level="INFO">
         <!--  aliyun-sls: need sls id & key etcs.   -->
-        <if condition='property("enabled") == "true"'>
+        <if condition='property("sls.enabled") == "true"'>
             <then>
                 <appender-ref ref="aliyun"/>
+            </then>
+        </if>
+        <if condition='property("logstash.enable") == "true"'>
+            <!-- <if condition='property("env").contains("dev") || property("env").contains("prod")'>-->
+            <then>
+                <appender-ref ref="logstash-json"/>
             </then>
         </if>
 

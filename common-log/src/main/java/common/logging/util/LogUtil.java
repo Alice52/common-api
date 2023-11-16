@@ -123,7 +123,7 @@ public class LogUtil {
         return params.toString().trim();
     }
 
-    @Value("${common.core.global.request-id.key:req-id}")
+    @Value("${common.logs.request-id.key:X-B3-SpanId}")
     public void setRequestIdKey(String requestIdKey) {
         LogUtil.requestIdKey = requestIdKey;
     }

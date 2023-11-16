@@ -1,14 +1,3 @@
-sls:
-  enabled: false
-  endpoint: cn-shanghai.log.aliyuncs.com
-  access-key-id: ${SLS_ACCESS_ID}
-  access-key-secret: ${SLS_ACCESS_SECRET}
-  project: tims-cms-service-local
-  log-store: tims-cms-service-local-logstore
-  topic: ${spring.application.name}
-  level: INFO
-
-
 opentracing:
   jaeger:
     enabled: true
@@ -16,9 +5,20 @@ opentracing:
     log-spans: false
 
 common:
-  core:
-    global:
-      request-id:
-        enabled: true
-        key: req-id
-
+  logs:
+    request-id:
+      enabled: true
+      key: X-B3-SpanId
+    sls:
+      enabled: false
+      endpoint: cn-shanghai.log.aliyuncs.com
+      access-key-id: ${SLS_ACCESS_ID}
+      access-key-secret: ${SLS_ACCESS_SECRET}
+      project: tims-cms-service-local
+      log-store: tims-cms-service-local-logstore
+      topic: ${spring.application.name}
+      level: INFO
+    logstash:
+      enable: true
+      host: frps.xxx.top
+      port: 50000

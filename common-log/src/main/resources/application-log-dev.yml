@@ -1,19 +1,22 @@
-sls:
-  enabled: false
-  endpoint: cn-shanghai.log.aliyuncs.com
-  access-key-id: ${SLS_ACCESS_ID}
-  access-key-secret: ${SLS_ACCESS_SECRET}
-  project: tims-cms-service-local
-  log-store: tims-cms-service-local-logstore
-  topic: ${spring.application.name}
-  level: INFO
-
 common:
-  core:
-    global:
-      request-id:
-        enabled: true
-        key: req-id
+  logs:
+    request-id:
+      enabled: true
+      key: X-B3-SpanId
+    sls:
+      enabled: false
+      endpoint: cn-shanghai.log.aliyuncs.com
+      access-key-id: ${SLS_ACCESS_ID}
+      access-key-secret: ${SLS_ACCESS_SECRET}
+      project: tims-cms-service-local
+      log-store: tims-cms-service-local-logstore
+      topic: ${spring.application.name}
+      level: INFO
+    logstash:
+      # todo: re-impl LogstashTcpSocketAppender for enc host and port
+      enable: true
+      host: frps.xx.top
+      port: 50000
 
 opentracing:
   jaeger:

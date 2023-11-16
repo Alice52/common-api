@@ -29,7 +29,7 @@ public class TraceFilter implements Filter {
     public void doFilter(
             ServletRequest request, ServletResponse servletResponse, FilterChain filterChain)
             throws IOException, ServletException {
-        MDC.put(TraceIdConstants.TRACE_ID_NAME, UUID.randomUUID().toString());
+        MDC.put(TraceIdConstants.SPAN_ID_NAME, UUID.randomUUID().toString());
         filterChain.doFilter(request, servletResponse);
     }
 

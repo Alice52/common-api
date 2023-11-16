@@ -34,7 +34,7 @@ import java.util.Optional;
 public class LogAnnoV2Aspect {
     private static NamedThreadLocal<LogVOV2> tl = new NamedThreadLocal<>("open-api-log");
 
-    @Value("${common.core.global.request-id.key:req-id}")
+    @Value("${common.logs.request-id.key:X-B3-SpanId}")
     private String requestIdKey;
 
     private static void logRequest(LogVOV2 vo) {

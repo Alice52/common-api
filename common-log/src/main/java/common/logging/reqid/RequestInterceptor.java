@@ -21,15 +21,15 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Component
 @ConditionalOnProperty(
-        prefix = "common.core.global.request-id",
+        prefix = "common.logs.request-id",
         value = {"enabled"},
         havingValue = "true",
         matchIfMissing = true)
 public class RequestInterceptor extends HandlerInterceptorAdapter implements WebMvcConfigurer {
 
     /** if use responseProperties, will throw exception due to responseProperties is null now. */
-    @Value("${common.core.global.request-id.key:}")
-    private String requestIdKey = TraceIdConstants.TRACE_ID_NAME;
+    @Value("${common.logs.request-id.key:}")
+    private String requestIdKey = TraceIdConstants.SPAN_ID_NAME;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {

@@ -40,7 +40,8 @@ common:
     global:
       handler:
         enabled: true
-      request-id:
-        enabled: true
-        key: req-id
+  logs:
+    request-id:
+      enabled: true
+      key: X-B3-SpanId
 

@@ -1,4 +1,5 @@
 <included>
+
     <!-- json输出 -->
     <appender name="json-console" class="ch.qos.logback.core.ConsoleAppender">
         <!-- 日志输出编码 -->
@@ -19,7 +20,7 @@
                         "stack_trace": "%exception",
                         "error_level": "%errorLevel",
                         "error_type": "%errorType",
-                        "request_id": "%X{req-id}",
+                        "request_id": "%X{X-B3-SpanId:-}",
                         "request_uri": "%X{X-SERVICE-REQUEST-URI}",
                         "username": "%X{X-SERVICE-USER-NAME}",
                         "app_version": "%X{X-CLIENT-VERSION}",
@@ -57,7 +58,7 @@
                         "stack_trace": "%exception",
                         "error_level": "%errorLevel",
                         "error_type": "%errorType",
-                        "request_id": "%X{req-id}",
+                        "request_id": "%X{X-B3-SpanId:-}",
                         "request_uri": "%X{X-SERVICE-REQUEST-URI}",
                         "username": "%X{X-SERVICE-USER-NAME}",
                         "app_version": "%X{X-CLIENT-VERSION}",
@@ -78,4 +79,47 @@
         </encoder>
     </appender>
 
+
+    <springProperty scope="context" name="logstash.host" source="common.logs.logstash.host"/>
+    <springProperty scope="context" name="logstash.port" source="common.logs.logstash.port"/>
+
+    <appender name="logstash-json" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <destination>${logstash.host}:${logstash.port}</destination>
+        <encoder charset="UTF-8" class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <timestamp>
+                    <timeZone>UTC</timeZone>
+                </timestamp>
+                <pattern>
+                    <pattern>
+                        {
+                        "tags": ["${app_name}"],
+                        "project": "${app_name}",
+                        "timestamp": "%date{\"yyyy-MM-dd'T'HH:mm:ss,SSSZ\"}",
+                        "log_level": "%level",
+                        "thread": "%thread",
+                        "message": "%jsonMsg",
+                        "stack_trace": "%exception",
+                        "error_level": "%errorLevel",
+                        "error_type": "%errorType",
+                        "request_id": "%X{X-B3-SpanId:-}",
+                        "request_uri": "%X{X-SERVICE-REQUEST-URI}",
+                        "username": "%X{X-SERVICE-USER-NAME}",
+                        "app_version": "%X{X-CLIENT-VERSION}",
+                        "module_name": "%X{X-SERVICE-MODULE-NAME}",
+                        "trace": "%X{X-B3-TraceId:-}",
+                        "span": "%X{X-B3-SpanId:-}",
+                        "parent": "%X{X-B3-ParentSpanId:-}",
+                        "exportable": "%X{X-Span-Export:-}",
+                        "api_response_time": "#asLong{%X{X-SERVICE-REQUEST-COSTTIME}}",
+                        "api_class": "%X{X-SERVICE-REQUEST-CLASS}",
+                        "api_method": "%X{X-SERVICE-REQUEST-METHOD}",
+                        "api_exception": "%X{X-SERVICE-REQUEST-EXCEPTION}",
+                        "api_request_app": "%X{X-SERVICE-REQUEST-APP:-}"
+                        }
+                    </pattern>
+                </pattern>
+            </providers>
+        </encoder>
+    </appender>
 </included>

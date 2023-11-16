@@ -37,8 +37,8 @@
    ```xml
    <!-- 之前 -->
    <property name="log.pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{20} - [%method,%line] - %msg%n" />
-   <!-- 增加req-id后 -->
-   <property name="log.pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{20} - [%method,%line] - [%X{req-id}] - %msg%n" />
+   <!-- 增加X-B3-SpanId后 -->
+   <property name="log.pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{20} - [%method,%line] - [%X{X-B3-SpanId}] - %msg%n" />
    ```
 
 ### async with main thread traceid
