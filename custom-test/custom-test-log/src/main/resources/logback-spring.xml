@@ -23,8 +23,8 @@
     <include resource="logback-include.xml"/>
     <include resource="logback-include-json.xml"/>
 
-    <springProperty scope="context" name="sls.enabled" source="common.logs.sls.enabled"/>
-    <springProperty scope="context" name="logstash.enable" source="common.logs.logstash.enable"/>
+    <springProperty scope="context" name="sls.enabled" source="common.logs.sls.enabled" defaultValue="false"/>
+    <springProperty scope="context" name="logstash.enable" source="common.logs.logstash.enable" defaultValue="false"/>
 
     <!-- Level: FATAL 0  ERROR 3  WARN 4  INFO 6  DEBUG 7 -->
     <root level="INFO">

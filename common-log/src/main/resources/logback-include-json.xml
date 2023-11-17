@@ -80,8 +80,8 @@
     </appender>
 
 
-    <springProperty scope="context" name="logstash.host" source="common.logs.logstash.host"/>
-    <springProperty scope="context" name="logstash.port" source="common.logs.logstash.port"/>
+    <springProperty scope="context" name="logstash.host" source="common.logs.logstash.host" defaultValue="x.x.x"/>
+    <springProperty scope="context" name="logstash.port" source="common.logs.logstash.port" defaultValue="8080"/>
 
     <appender name="logstash-json" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
         <destination>${logstash.host}:${logstash.port}</destination>
