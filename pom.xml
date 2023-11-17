@@ -29,6 +29,7 @@
         <module>common-crypt</module>
         <module>common-token</module>
         <module>common-feign</module>
+        <module>common-test</module>
     </modules>
 
     <properties>

@@ -1,0 +1,14 @@
+spring:
+  profiles:
+    # this sequence is master
+    include: common-dev,redis-dev,common
+  datasource:
+    url: jdbc:h2:mem:test_db;DB_CLOSE_DELAY=-1;MODE=MySQL
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: sa
+  h2:
+    console:
+      enabled: false
+  flyway:
+    enabled: false
