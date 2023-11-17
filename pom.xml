@@ -69,7 +69,7 @@
         <!-- tool -->
         <jodah.expiringmap.version>0.5.10</jodah.expiringmap.version>
         <lombok.version>1.18.30</lombok.version>
-        <hutool.all.version>5.8.9</hutool.all.version>
+        <hutool.all.version>5.8.23</hutool.all.version>
         <jasypt.encrtpy.version>3.0.4</jasypt.encrtpy.version>
         <mapstruct.version>1.5.3.Final</mapstruct.version>
         <guava.version>32.0.0-android</guava.version>
