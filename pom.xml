@@ -105,7 +105,7 @@
         <junit.version>4.13.2</junit.version>
         <jquery.version>3.3.1</jquery.version>
         <justauth.starter>1.4.0</justauth.starter>
-        <grpc_version>1.50.2</grpc_version>
+        <grpc_version>1.59.0</grpc_version>
         <curator.zk.version>5.4.0</curator.zk.version>
         <qcloud.version>5.6.187</qcloud.version>
         <!--  #region  ====================== common version =====================    -->
