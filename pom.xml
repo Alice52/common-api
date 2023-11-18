@@ -67,7 +67,7 @@
         <logstash.logback.version>7.3</logstash.logback.version>
 
         <!-- tool -->
-        <jodah.expiringmap.version>0.5.10</jodah.expiringmap.version>
+        <jodah.expiringmap.version>0.5.11</jodah.expiringmap.version>
         <lombok.version>1.18.30</lombok.version>
         <hutool.all.version>5.8.9</hutool.all.version>
         <jasypt.encrtpy.version>3.0.4</jasypt.encrtpy.version>
