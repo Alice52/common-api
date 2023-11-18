@@ -99,7 +99,7 @@
         <flyway.version>5.2.4</flyway.version>
 
         <!-- mq -->
-        <rabbitmq.client.version>5.18.0</rabbitmq.client.version>
+        <rabbitmq.client.version>5.20.0</rabbitmq.client.version>
 
         <!-- others -->
         <junit.version>4.13.2</junit.version>
