@@ -13,6 +13,7 @@ import org.springframework.web.context.WebApplicationContext;
 import javax.annotation.Resource;
 
 /**
+ * @see custom-syntax#test
  * @author zack <br>
  * @create 2023/11/18 00:01 <br>
  * @project common-api <br>

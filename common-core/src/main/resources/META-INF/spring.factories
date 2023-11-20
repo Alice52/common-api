@@ -17,3 +17,6 @@ org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
   common.core.component.BeanContextUtil,\
   common.core.component.EnvUtil,\
   common.core.util.security.AesUtils
+
+org.springframework.boot.env.EnvironmentPostProcessor=\
+  common.core.configuration.VaultConfig

@@ -15,7 +15,7 @@ common:
     logstash:
       # todo: re-impl LogstashTcpSocketAppender for enc host and port
       enable: true
-      host: frps.xx.top
+      host: frps.xxx.top
       port: 50000
 
 opentracing:

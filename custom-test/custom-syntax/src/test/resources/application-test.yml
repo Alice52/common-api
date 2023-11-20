@@ -12,3 +12,9 @@ spring:
       enabled: false
   flyway:
     enabled: false
+
+
+management:
+  endpoint:
+    health:
+      enabled: false
