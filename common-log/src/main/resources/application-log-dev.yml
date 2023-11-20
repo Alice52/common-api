@@ -14,7 +14,7 @@ common:
       level: INFO
     logstash:
       # todo: re-impl LogstashTcpSocketAppender for enc host and port
-      enable: true
+      enable: false
       host: frps.xxx.top
       port: 50000
 

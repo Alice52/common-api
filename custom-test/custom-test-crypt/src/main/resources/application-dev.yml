@@ -11,3 +11,9 @@ common:
     padding: PKCS5Padding # cn.hutool.crypto.Padding
     key: 5231549ab56d11eca37d0242ac160003
     iv: 6bb5f2ae715711edbdbb00163e2cf386
+  logs:
+    logstash:
+      # todo: re-impl LogstashTcpSocketAppender for enc host and port
+      enable: false
+      host: frps.xx.top
+      port: 50000

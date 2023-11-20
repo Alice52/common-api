@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- considering control sls by config: include  -->
 <configuration>
-    <conversionRule conversionWord="errorLevel"
-                    converterClass="common.logging.converter.custom.DefaultErrorLevelConverter"/>
-    <conversionRule conversionWord="errorType"
-                    converterClass="common.logging.converter.custom.DefaultErrorTypeConverter"/>
+    <conversionRule conversionWord="errorLevel" converterClass="common.logging.converter.custom.DefaultErrorLevelConverter"/>
+    <conversionRule conversionWord="errorType" converterClass="common.logging.converter.custom.DefaultErrorTypeConverter"/>
 
     <!-- include: common-core/resource-->
     <include resource="logback-include.xml"/>

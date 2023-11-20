@@ -29,13 +29,13 @@
               value="${FILE_LOG_PATTERN:-%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}} [req-id: %X{X-B3-SpanId} traceId: %X{X-B3-TraceId}, spanId: %X{X-B3-SpanId}, parent: %X{X-B3-ParentSpanId:-}] [error_level:%errorLevel] [error_type: %errorType] ${LOG_LEVEL_PATTERN:-%5p} ${PID:- } --- [%t] %-40.40logger{39} : %jsonMsg%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
 
     <!-- sls properties -->
-    <springProperty scope="context" name="sls.endpoint" source="common.logs.sls.endpoint" defaultValue="x"/>
-    <springProperty scope="context" name="sls.access-key-id" source="common.logs.sls.access-key-id" defaultValue="x"/>
-    <springProperty scope="context" name="sls.access-key-secret" source="common.logs.sls.access-key-secret" defaultValue="x"/>
-    <springProperty scope="context" name="sls.project" source="common.logs.sls.project" defaultValue="x"/>
-    <springProperty scope="context" name="sls.log-store" source="common.logs.sls.log-store" defaultValue="x"/>
-    <springProperty scope="context" name="sls.topic" source="common.logs.sls.topic" defaultValue="x"/>
-    <springProperty scope="context" name="sls.level" source="common.logs.sls.level" defaultValue="x"/>
+    <springProperty scope="context" name="sls.endpoint" source="common.logs.sls.endpoint:" defaultValue="x"/>
+    <springProperty scope="context" name="sls.access-key-id" source="common.logs.sls.access-key-id:" defaultValue="x"/>
+    <springProperty scope="context" name="sls.access-key-secret" source="common.logs.sls.access-key-secret:" defaultValue="x"/>
+    <springProperty scope="context" name="sls.project" source="common.logs.sls.project:" defaultValue="x"/>
+    <springProperty scope="context" name="sls.log-store" source="common.logs.sls.log-store:" defaultValue="x"/>
+    <springProperty scope="context" name="sls.topic" source="common.logs.sls.topic:" defaultValue="x"/>
+    <springProperty scope="context" name="sls.level" source="common.logs.sls.level:" defaultValue="x"/>
 
     <!-- 为了防止进程退出时，内存中的数据丢失，请加上此选项 -->
     <shutdownHook class="ch.qos.logback.core.hook.DelayingShutdownHook"/>
