@@ -75,7 +75,7 @@
         <guava.version>32.0.0-android</guava.version>
         <validation.api.version>2.0.1.Final</validation.api.version>
         <kaptcha.version>0.0.9</kaptcha.version>
-        <aws.version>1.12.423</aws.version>
+        <aws.version>1.12.593</aws.version>
 
         <!-- spring -->
         <spring.boot.version>2.7.17</spring.boot.version>
