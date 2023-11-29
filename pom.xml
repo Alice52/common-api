@@ -60,7 +60,7 @@
         <swagger2.knife4j>3.0.3</swagger2.knife4j>
         <swagger.starter>3.0.0</swagger.starter>
         <slf4j.api.version>1.7.36</slf4j.api.version>
-        <logback.core.version>1.2.9</logback.core.version>
+        <logback.core.version>1.3.12</logback.core.version>
         <logback.classic.version>1.2.3</logback.classic.version>
         <aliyun.logback.version>0.1.23</aliyun.logback.version>
         <janino.version>3.1.9</janino.version>
