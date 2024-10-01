@@ -679,7 +679,7 @@
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
                         <!-- please donot upgrade -->
-                        <version>2.10.4</version>
+                        <version>3.10.1</version>
                         <executions>
                             <execution>
                                 <id>attach-javadocs</id>
